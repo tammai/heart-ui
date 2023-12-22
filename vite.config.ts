@@ -29,6 +29,7 @@ export default defineConfig({
         ),
       },
       name: "HeartUI",
+      formats: ["es"],
     },
     rollupOptions: {
       external: ["vue", "@nuxt/kit"],
