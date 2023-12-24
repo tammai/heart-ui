@@ -1,4 +1,4 @@
-import { defineNuxtPlugin, useAppConfig } from "nuxt/app";
+import { defineNuxtPlugin, useAppConfig } from "#app";
 import { globalCss, heartGlobalKey, setGlobalCss } from "../common";
 
 export default defineNuxtPlugin((nuxtApp) => {

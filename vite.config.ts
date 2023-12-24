@@ -31,7 +31,7 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["vue", "@nuxt/kit", "nuxt/app"],
+      external: ["vue", "@nuxt/kit", "#app"],
       output: {
         preserveModules: true,
         globals: {

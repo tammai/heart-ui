@@ -22,7 +22,12 @@
 
     /* Custom */
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+
+    /* Nuxt */
+    "paths": {
+      "#app": ["./node_modules/nuxt/dist/app"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
