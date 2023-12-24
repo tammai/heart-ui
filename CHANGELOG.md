@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.6
+
+[compare changes](https://github.com/tammai/heart-ui/compare/v0.0.5...v0.0.6)
+
+### 🩹 Fixes
+
+- **nuxt:** Try to fix import app.conig.mjs error ([4e3abdc](https://github.com/tammai/heart-ui/commit/4e3abdc))
+
+### ❤️ Contributors
+
+- Tam Mai <tam.mai@bigin.vn>
+
 ## v0.0.5
 
 [compare changes](https://github.com/tammai/heart-ui/compare/v0.0.4...v0.0.5)
