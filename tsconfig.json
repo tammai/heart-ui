@@ -26,7 +26,7 @@
 
     /* Nuxt */
     "paths": {
-      "#app": ["./node_modules/nuxt/dist/app"]
+      "#imports": ["./node_modules/nuxt/dist/app"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.vue"],
