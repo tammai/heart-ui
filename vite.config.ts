@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import UnoCSS from "unocss/vite";
-import { glob } from "glob";
+import { globSync } from "glob";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -14,25 +14,24 @@ export default defineConfig({
       entry: {
         index: "./src/index.ts",
         nuxt: "./src/nuxt.ts",
+        "nuxt/plugin": "./src/nuxt/plugin.ts",
         ...Object.fromEntries(
-          glob.sync("src/components/**/*.vue").map((file) => [
-            // This remove `src/` as well as the file extension from each
-            // file, so e.g. src/nested/foo.js becomes nested/foo
-            path.relative(
-              "src",
-              file.slice(0, file.length - path.extname(file).length)
-            ),
-            // This expands the relative paths to absolute paths, so e.g.
-            // src/nested/foo becomes /project/src/nested/foo.js
-            fileURLToPath(new URL(file, import.meta.url)),
-          ])
+          globSync("src/components/**/*.vue").map((file) => {
+            return [
+              path.relative(
+                "src",
+                file.slice(0, file.length - path.extname(file).length)
+              ),
+              fileURLToPath(new URL(file, import.meta.url)),
+            ];
+          })
         ),
       },
       name: "HeartUI",
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["vue", "@nuxt/kit"],
+      external: ["vue", "@nuxt/kit", "nuxt/app"],
       output: {
         preserveModules: true,
         globals: {

@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { heartCss } from './utils'
 import 'virtual:uno.css'
 
-import { HeartUI } from 'heart-ui'
+import { HeartUI, globalCss } from 'heart-ui'
 
 const app = createApp(App)
-app.use(HeartUI, { css: heartCss })
+app.use(HeartUI, { css: globalCss.value })
 app.mount('#app')

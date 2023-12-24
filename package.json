@@ -18,6 +18,24 @@
         "default": "./dist/nuxt.js",
         "types": "./dist/nuxt.d.ts"
       }
+    },
+    "./common/*": {
+      "import": {
+        "default": "./dist/common/*.js",
+        "types": "./dist/common/*.d.ts"
+      }
+    },
+    "./components/*": {
+      "import": {
+        "default": "./dist/components/*.js",
+        "types": "./dist/components/*.vue.d.ts"
+      }
+    },
+    "./composables/*": {
+      "import": {
+        "default": "./dist/composables/*.js",
+        "types": "./dist/composables/*.d.ts"
+      }
     }
   },
   "style": "./dist/style.css",
@@ -31,7 +49,8 @@
     "release": "changelogen --release && npm publish && git push --follow-tags",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "nuxt:prepack": "nuxt-module-build build"
   },
   "dependencies": {
     "@vueuse/core": "^10.7.0",
@@ -45,6 +64,7 @@
     "@vitejs/plugin-vue": "^4.5.2",
     "changelogen": "^0.5.5",
     "glob": "^10.3.10",
+    "nuxt": "^3.8.2",
     "typescript": "^5.2.2",
     "unocss": "^0.58.0",
     "vite": "^5.0.8",

@@ -1,26 +1,50 @@
-// import { fileURLToPath } from "node:url";
-import { defineNuxtModule, addComponentsDir, createResolver } from "@nuxt/kit";
+import {
+  defineNuxtModule,
+  createResolver,
+  addPlugin,
+  addComponentsDir,
+  addImports,
+} from "@nuxt/kit";
+import { globalCss } from ".";
 
 export default defineNuxtModule({
   meta: {
     name: "heart-ui",
     configKey: "heart",
   },
-  setup() {
+  setup: () => {
+    const resolver = createResolver(import.meta.url);
+
     addComponentsDir({
-      path: createResolver(import.meta.url).resolve("./components/"),
+      path: resolver.resolve("./components/"),
       prefix: "h",
       pattern: "**/*.js",
-      ignore: ["**/*.vue.js", "**/*.cjs", "**/*.d.ts"],
+      ignore: ["**/*.vue.js", "**/*.d.ts"],
     });
+
+    addImports({
+      name: "useGlobalCss", // name of the composable to be used
+      as: "useGlobalCss",
+      from: resolver.resolve("./composables/index"),
+    });
+
+    addPlugin(resolver.resolve("./nuxt/plugin"));
   },
 });
 
 declare module "@nuxt/schema" {
+  interface AppConfigInput {
+    heart?: { css: typeof globalCss } | undefined;
+  }
+
+  interface AppConfig {
+    heart?: { css: typeof globalCss } | undefined;
+  }
+
   interface NuxtConfig {
-    heart?: Record<string, unknown>;
+    heart?: { css: typeof globalCss } | undefined;
   }
   interface NuxtOptions {
-    heart?: Record<string, unknown>;
+    heart?: { css: typeof globalCss } | undefined;
   }
 }

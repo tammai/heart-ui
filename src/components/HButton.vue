@@ -24,9 +24,9 @@ import { CssEntry, globalCss } from "../common";
 import HIcon from "./HIcon.vue";
 
 export type ButtonCssProp = {
-  root: CssEntry;
-  prefix: CssEntry;
-  suffix: CssEntry;
+  root?: CssEntry;
+  prefix?: CssEntry;
+  suffix?: CssEntry;
 };
 
 defineOptions({ name: "HButton", components: { HIcon } });

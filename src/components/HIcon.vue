@@ -9,7 +9,7 @@ import { CSSProperties, computed } from "vue";
 import { CssEntry, globalCss } from "../common/index";
 
 export type IconCssProp = {
-  root: CssEntry;
+  root?: CssEntry;
 };
 
 defineOptions({ name: "HIcon" });
