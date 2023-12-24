@@ -12,7 +12,7 @@ export default defineNuxtModule({
     name: "heart-ui",
     configKey: "heart",
   },
-  setup: () => {
+  setup: (_, nuxt) => {
     const resolver = createResolver(import.meta.url);
 
     addComponentsDir({
@@ -27,7 +27,7 @@ export default defineNuxtModule({
       as: "useGlobalCss",
       from: resolver.resolve("./composables/index"),
     });
-
+    nuxt.options.build.transpile.push(resolver.resolve("./nuxt/plugin"));
     addPlugin(resolver.resolve("./nuxt/plugin"));
   },
 });
