@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.8
+
+[compare changes](https://github.com/tammai/heart-ui/compare/v0.0.7...v0.0.8)
+
+### 🩹 Fixes
+
+- **nuxt:** Try to fix import plugin ([a049d61](https://github.com/tammai/heart-ui/commit/a049d61))
+
+### ❤️ Contributors
+
+- Tam Mai <tam.mai@bigin.vn>
+
 ## v0.0.7
 
 [compare changes](https://github.com/tammai/heart-ui/compare/v0.0.6...v0.0.7)
