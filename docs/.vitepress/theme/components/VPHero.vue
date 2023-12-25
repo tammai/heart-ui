@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { type Ref, inject } from "vue";
 import type { DefaultTheme } from "vitepress/theme";
-import { VPButton } from "vitepress/theme";
-import { VPImage } from "vitepress/theme";
+import VPButton from "./VPButton.vue";
+import VPImage from "./VPImage.vue";
 
 export interface HeroAction {
   theme?: "brand" | "alt";
@@ -129,13 +129,14 @@ const heroImageSlotExists = inject("hero-image-slot-exists") as Ref<boolean>;
 
 .name,
 .text {
+  margin-left: auto;
+  margin-right: auto;
   max-width: 392px;
   letter-spacing: -0.4px;
-  line-height: 40px;
-  font-size: 32px;
+  line-height: 48px;
+  font-size: 40px;
   font-weight: 700;
   white-space: pre-wrap;
-  margin: 16px auto;
   text-align: center;
 }
 
@@ -159,16 +160,16 @@ const heroImageSlotExists = inject("hero-image-slot-exists") as Ref<boolean>;
   .name,
   .text {
     max-width: 576px;
-    line-height: 56px;
-    font-size: 48px;
+    line-height: 60px;
+    font-size: 56px;
   }
 }
 
 @media (min-width: 960px) {
   .name,
   .text {
-    line-height: 64px;
-    font-size: 56px;
+    line-height: 72px;
+    font-size: 60px;
   }
 
   .VPHero.has-image .name,
@@ -178,14 +179,15 @@ const heroImageSlotExists = inject("hero-image-slot-exists") as Ref<boolean>;
 }
 
 .tagline {
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 8px;
-  max-width: 392px;
+  max-width: 480px;
   line-height: 24px;
   font-size: 16px;
   font-weight: 400;
   white-space: pre-wrap;
   color: var(--vp-c-text-2);
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -196,7 +198,7 @@ const heroImageSlotExists = inject("hero-image-slot-exists") as Ref<boolean>;
 @media (min-width: 640px) {
   .tagline {
     padding-top: 12px;
-    max-width: 760px;
+    max-width: 920px;
     line-height: 28px;
     font-size: 18px;
   }

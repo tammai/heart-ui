@@ -4,8 +4,8 @@ layout: home
 title: Home
 
 hero:
-  text: The <span style="color:#ee4422">UI Library</span> for Vue/Nuxt lovers
-  tagline: "Craft your unique interface effortlessly with flexible customization options for a seamless and intuitive user experience, simplifying your workflow."
+  text: The <span style="color:var(--vp-c-brand-1)">UI Library</span> for Vue<small style="color:var(--vp-c-text-3)">&amp;</small>Nuxt lovers
+  tagline: "A diverse suite of customizable components unstyled by default, yet with built-in themes, this collection is powered by top-tier packages includes <a href='https://unocss.dev/' style='color:var(--vp-c-text-1)' target='_blank'>UnoCSS</a> and <a href='https://vueuse.org/' target='_blank' style='color:var(--vp-c-text-1)'>VueUse</a>, offering unparalleled convenience and adaptability."
   actions:
     - theme: brand
       text: Markdown Examples

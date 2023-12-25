@@ -1,4 +1,3 @@
-import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
@@ -28,17 +27,5 @@ export default defineConfig({
     socialLinks: [
       { icon: "github", link: "https://github.com/tammai/heart-ui" },
     ],
-  },
-  vite: {
-    resolve: {
-      alias: [
-        {
-          find: /^.*\/VPHero\.vue$/,
-          replacement: fileURLToPath(
-            new URL("./theme/components/CustomVPHero.vue", import.meta.url)
-          ),
-        },
-      ],
-    },
   },
 });
