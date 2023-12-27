@@ -36,11 +36,6 @@
         "default": "./dist/composables/*.js",
         "types": "./dist/composables/*.d.ts"
       }
-    },
-    "./nuxt-layer": {
-      "import": {
-        "default": "./dist/nuxt-layer/nuxt.config.ts"
-      }
     }
   },
   "style": "./dist/style.css",

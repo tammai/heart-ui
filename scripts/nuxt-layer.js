@@ -1,18 +1,18 @@
 import fs from "node:fs";
 import path from "path";
 
-const sources = ["components", "composables", "utils"];
+const sourceFiles = ["package.json", "nuxt.config.ts"];
+const sourceDirs = ["components", "composables", "utils"];
 const destination = path.resolve("./dist/nuxt-layer/");
 
 fs.rmSync(destination, { recursive: true, force: true });
 fs.mkdirSync(destination);
 
-fs.copyFileSync(
-  path.resolve("./src/nuxt/nuxt.config.ts"),
-  destination + "/nuxt.config.ts"
+sourceFiles.forEach((source) =>
+  fs.copyFileSync(path.resolve(`./src/${source}`), `${destination}/${source}`)
 );
 
-sources.forEach((source) =>
+sourceDirs.forEach((source) =>
   fs.cpSync(path.resolve(`./src/${source}`), `${destination}/${source}/`, {
     recursive: true,
   })
