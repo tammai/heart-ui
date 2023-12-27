@@ -33,8 +33,8 @@ defineOptions({ name: "HButton", components: { HIcon } });
 
 withDefaults(
   defineProps<{
-    tag: string | Component;
-    nativeType: string;
+    tag?: string | Component;
+    nativeType?: string;
     prefixIcon?: Component;
     suffixIcon?: Component;
     css?: ButtonCssProp;
