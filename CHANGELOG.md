@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.0.9
+
+[compare changes](https://github.com/tammai/heart-ui/compare/v0.0.8...v0.0.9)
+
+### 🚀 Enhancements
+
+- **docs:** Add custom theme ([fd97db1](https://github.com/tammai/heart-ui/commit/fd97db1))
+- **nuxt:** Add Nuxt Layer ([12c2430](https://github.com/tammai/heart-ui/commit/12c2430))
+- **generic:** Update release script ([ee53b9b](https://github.com/tammai/heart-ui/commit/ee53b9b))
+
+### ❤️ Contributors
+
+- Tam Mai <tam.mai@bigin.vn>
+
 ## v0.0.8
 
 [compare changes](https://github.com/tammai/heart-ui/compare/v0.0.7...v0.0.8)
