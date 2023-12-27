@@ -51,8 +51,8 @@
     "build": "vite build && vue-tsc && node ./scripts/nuxt-layer.js",
     "types": "vue-tsc",
     "preview": "pnpm run -C playground preview",
-    "prerelease": "changelogen --clean --release",
-    "release": "npm publish && git push --follow-tags",
+    "release": "changelogen --clean --release",
+    "postrelease": "npm publish && git push --follow-tags",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
