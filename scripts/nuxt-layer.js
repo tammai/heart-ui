@@ -10,7 +10,7 @@ fs.mkdirSync(destination);
 
 sourceFiles.forEach((source) =>
   fs.copyFileSync(
-    path.resolve(`./src/nuxt-layer/${source}`),
+    path.resolve(`./src/nuxt/${source}`),
     `${destination}/${source}`
   )
 );
