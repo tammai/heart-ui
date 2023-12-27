@@ -9,7 +9,10 @@ fs.rmSync(destination, { recursive: true, force: true });
 fs.mkdirSync(destination);
 
 sourceFiles.forEach((source) =>
-  fs.copyFileSync(path.resolve(`./src/${source}`), `${destination}/${source}`)
+  fs.copyFileSync(
+    path.resolve(`./src/nuxt-layer/${source}`),
+    `${destination}/${source}`
+  )
 );
 
 sourceDirs.forEach((source) =>
