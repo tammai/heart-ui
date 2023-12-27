@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.12
+
+[compare changes](https://github.com/tammai/heart-ui/compare/v0.0.11...v0.0.12)
+
+### 💅 Refactors
+
+- **nuxt:** Remove layer ([937c762](https://github.com/tammai/heart-ui/commit/937c762))
+
+### ❤️ Contributors
+
+- Tam Mai <tam.mai@bigin.vn>
+
 ## v0.0.11
 
 [compare changes](https://github.com/tammai/heart-ui/compare/v0.0.10...v0.0.11)
