@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.0.11
+
+[compare changes](https://github.com/tammai/heart-ui/compare/v0.0.10...v0.0.11)
+
+### 🩹 Fixes
+
+- **nuxt:** Add package.json ([c2da621](https://github.com/tammai/heart-ui/commit/c2da621))
+- **nuxt:** Fix nuxt layer script ([ed71c12](https://github.com/tammai/heart-ui/commit/ed71c12))
+- **nuxt:** Again ([f49fc52](https://github.com/tammai/heart-ui/commit/f49fc52))
+
+### ❤️ Contributors
+
+- Tam Mai <tam.mai@bigin.vn>
+
 ## v0.0.10
 
 [compare changes](https://github.com/tammai/heart-ui/compare/v0.0.8...v0.0.10)
