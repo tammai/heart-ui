@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.0.13
+
+[compare changes](https://github.com/tammai/heart-ui/compare/v0.0.12...v0.0.13)
+
+### 📦 Build
+
+- Add date-fns ([76d7a94](https://github.com/tammai/heart-ui/commit/76d7a94))
+- Update build scripts ([ab5986f](https://github.com/tammai/heart-ui/commit/ab5986f))
+
+### ❤️ Contributors
+
+- Tam Mai <tam.mai@bigin.vn>
+
 ## v0.0.12
 
 [compare changes](https://github.com/tammai/heart-ui/compare/v0.0.11...v0.0.12)
