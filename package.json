@@ -46,6 +46,7 @@
     "build": "vite build && vue-tsc",
     "types": "vue-tsc",
     "preview": "pnpm run -C playground preview",
+    "bump": "changelogen --bump",
     "release": "changelogen --clean --release && npm publish && git push --follow-tags",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
