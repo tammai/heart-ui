@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { buildPlugin } from "vite-plugin-build";
 import UnoCSS from "unocss/vite";
 import { globSync } from "glob";
 import path from "node:path";
