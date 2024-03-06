@@ -23,7 +23,10 @@ const props = withDefaults(
 );
 
 const computedStyle = computed<CSSProperties>(() => ({
-  fontSize: props.size,
-  lineHeight: props.size,
+  fontSize: props.size + 'px',
+  lineHeight: props.size + 'px',
+  width: props.size + 'px',
+  height: props.size + 'px',
+  minWidth: props.size + 'px',
 }));
 </script>
