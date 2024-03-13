@@ -1,14 +1,14 @@
 import { defineNuxtPlugin, useAppConfig } from "#imports";
-import { globalCss, heartGlobalKey, setGlobalCss } from "../common";
+import { theme, heartGlobalKey, setTheme } from "../common";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const appConfig = useAppConfig();
-  setGlobalCss(appConfig.heart?.css ?? {});
-  nuxtApp.vueApp.provide(heartGlobalKey, { css: globalCss.value });
+  setTheme(appConfig.heart?.theme ?? {});
+  nuxtApp.vueApp.provide(heartGlobalKey, { theme: theme.value });
 
   return {
     provide: {
-      heart: { css: globalCss.value },
+      heart: { theme: theme.value, setTheme },
     },
   };
 });

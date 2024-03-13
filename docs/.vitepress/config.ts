@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "HeartUI",
-  description: "The UI Library for Vue/Nuxt lovers",
+  description: "The UI Library for customization",
   head: [["link", { rel: "icon", href: "/heart.svg", type: "image/svg+xml" }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -28,4 +28,9 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/tammai/heart-ui" },
     ],
   },
+  // vite: {
+  //   server: {
+  //     port: 3333
+  //   }
+  // }
 });

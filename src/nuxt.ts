@@ -5,7 +5,7 @@ import {
   addComponentsDir,
   addImports,
 } from "@nuxt/kit";
-import { globalCss } from ".";
+import { HeartTheme } from ".";
 
 export default defineNuxtModule({
   meta: {
@@ -23,8 +23,8 @@ export default defineNuxtModule({
     });
 
     addImports({
-      name: "useGlobalCss", // name of the composable to be used
-      as: "useGlobalCss",
+      name: "useTheme", // name of the composable to be used
+      as: "useHeartTheme",
       from: resolver.resolve("./composables/index"),
     });
     nuxt.options.build.transpile.push(resolver.resolve("./nuxt/plugin"));
@@ -34,17 +34,17 @@ export default defineNuxtModule({
 
 declare module "@nuxt/schema" {
   interface AppConfigInput {
-    heart?: { css: typeof globalCss } | undefined;
+    heart?: { theme: { css: HeartTheme } } | undefined;
   }
 
   interface AppConfig {
-    heart?: { css: typeof globalCss } | undefined;
+    heart?: { theme: { css: HeartTheme } } | undefined;
   }
 
   interface NuxtConfig {
-    heart?: { css: typeof globalCss } | undefined;
+    heart?: { theme: { css: HeartTheme } } | undefined;
   }
   interface NuxtOptions {
-    heart?: { css: typeof globalCss } | undefined;
+    heart?: { theme: { css: HeartTheme } } | undefined;
   }
 }
