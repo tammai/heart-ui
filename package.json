@@ -1,9 +1,10 @@
 {
   "name": "heart-ui",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "global.d.ts"
   ],
   "module": "./dist/index.js",
   "exports": {
