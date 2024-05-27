@@ -2,98 +2,74 @@
   <component
     :is="tag"
     :type="nativeType"
-    :class="[
-      css?.root ?? theme.css.button.root,
-      computedCssClass,
-      disabled ? css?.disabled ?? theme.css.button.disabled : '',
-      loading ? 'relative pointer-events-none' : '',
-    ]"
-    :disabled="disabled || loading"
+    :class="computedCssClass"
+    :disabled="disabled || busy"
   >
-    <slot name="prefix">
-      <Icon
-        v-if="icons?.prefix"
-        :class="[
-          css?.prefix ?? theme.css.button.prefix,
-          { invisible: loading },
-          'text-[1.5em]',
-        ]"
-        :icon="icons.prefix"
-      />
-    </slot>
+    <span
+      v-if="$slots.prefix ?? prefixIcon ?? icons?.prefix"
+      :class="computedPrefixClass"
+    >
+      <slot name="prefix">
+        <HIcon :icon="`${prefixIcon || icons?.prefix}`" />
+      </slot>
+    </span>
 
-    <span :class="[css?.text ?? theme.css.button.text, { invisible: loading }]">
+    <span :class="computedTextClass">
       <slot />
     </span>
-    <slot name="suffix">
-      <Icon
-        v-if="icons?.suffix"
-        :class="[
-          css?.suffix ?? theme.css.button.suffix,
-          { invisible: loading },
-          'text-[1.5em]',
-        ]"
-        :icon="icons.suffix"
-      />
-    </slot>
-    <slot v-if="loading" name="loading">
-      <div :class="[css?.loading ?? theme.css.button.loading]">
-        <Icon :icon="computedLoadingIcon" class="text-[1.5em]" />
-      </div>
-    </slot>
+    <span
+      v-if="$slots.suffix ?? suffixIcon ?? icons?.suffix"
+      :class="computedSuffixClass"
+    >
+      <slot name="suffix">
+        <HIcon :icon="suffixIcon ?? icons?.suffix ?? ''" />
+      </slot>
+    </span>
+    <span v-if="busy" :class="computedBusyClass">
+      <slot name="busy">
+        <HIcon :icon="computedLoadingIcon" />
+      </slot>
+    </span>
   </component>
 </template>
 
 <script setup lang="ts">
 import { Component, computed } from "vue";
-import { Icon } from "@iconify/vue";
 import { CssEntry } from "../common";
-import { useTheme } from "..";
+import { useHeartTheme } from "..";
+import HIcon from "./HIcon.vue";
 
 // Types
 
-export type ButtonCssProp = {
+type ButtonCssPropStyle = {
+  default?: CssEntry;
+  custom?: CssEntry;
+  primary?: CssEntry;
+  danger?: CssEntry;
+  warning?: CssEntry;
+  info?: CssEntry;
+  success?: CssEntry;
+};
+
+export interface ButtonCssProp {
   root?: CssEntry;
   prefix?: CssEntry;
   suffix?: CssEntry;
   text?: CssEntry;
-  loading?: CssEntry;
+  busy?: CssEntry;
   disabled?: CssEntry;
   style?: {
-    solid?: {
-      default?: CssEntry;
-      custom?: CssEntry;
-      primary?: CssEntry;
-      danger?: CssEntry;
-      warning?: CssEntry;
-      info?: CssEntry;
-      success?: CssEntry;
-    };
-    outline?: {
-      default?: CssEntry;
-      custom?: CssEntry;
-      primary?: CssEntry;
-      danger?: CssEntry;
-      warning?: CssEntry;
-      info?: CssEntry;
-      success?: CssEntry;
-    };
-    ghost?: {
-      default?: CssEntry;
-      custom?: CssEntry;
-      primary?: CssEntry;
-      danger?: CssEntry;
-      warning?: CssEntry;
-      info?: CssEntry;
-      success?: CssEntry;
-    };
+    solid?: ButtonCssPropStyle;
+    outline?: ButtonCssPropStyle;
+    ghost?: ButtonCssPropStyle;
+    semi?: ButtonCssPropStyle;
   };
   size?: {
     default?: CssEntry;
     small?: CssEntry;
     large?: CssEntry;
   };
-};
+}
 
 // Options, Props and Emits
 
@@ -105,10 +81,14 @@ const props = withDefaults(
     tag?: string | Component;
     nativeType?: string;
     icons?: { prefix?: string; suffix?: string; loading?: string };
-    loading?: boolean;
+    prefixIcon?: string;
+    suffixIcon?: string;
+    loadingIcon?: string;
+    busy?: boolean;
     disabled?: boolean;
     outline?: boolean;
     ghost?: boolean;
+    semi?: boolean;
     primary?: boolean;
     danger?: boolean;
     warning?: boolean;
@@ -127,12 +107,13 @@ const props = withDefaults(
 
 // Composables
 
-const { theme } = useTheme();
+const { theme } = useHeartTheme();
 
 // Computed values
 
 const computedLoadingIcon = computed(
-  () => props.icons?.loading ?? theme.value.icons.loading.dot
+  () =>
+    props.loadingIcon ?? props.icons?.loading ?? theme.value.icons.loading.dot
 );
 
 const computedCssClass = computed(() => {
@@ -140,6 +121,7 @@ const computedCssClass = computed(() => {
     css,
     outline,
     ghost,
+    semi,
     primary,
     danger,
     warning,
@@ -149,12 +131,15 @@ const computedCssClass = computed(() => {
     rounded,
     small,
     large,
+    busy,
+    disabled,
   } = props;
 
   const _style =
     (outline &&
       (css?.style?.outline ?? theme.value.css.button.style.outline)) ||
     (ghost && (css?.style?.ghost ?? theme.value.css.button.style.ghost)) ||
+    (semi && (css?.style?.semi ?? theme.value.css.button.style.semi)) ||
     (css?.style?.solid ?? theme.value.css.button.style.solid);
 
   const _size = theme.value.css.button.size;
@@ -181,6 +166,32 @@ const computedCssClass = computed(() => {
     size.push(_rounded);
   }
 
-  return [...style, ...size];
+  return [
+    css?.root ?? theme.value.css.button.root,
+    ...style,
+    ...size,
+    disabled && (css?.disabled ?? theme.value.css.button.disabled),
+    busy && "relative pointer-events-none",
+  ];
 });
+
+const computedBusyClass = computed(() => [
+  "absolute top-0 left-0 z-1 w-full h-full flex justify-center items-center",
+  props.css?.busy ?? theme.value.css.button.busy,
+]);
+
+const computedPrefixClass = computed(() => [
+  props.css?.prefix ?? theme.value.css.button.prefix,
+  { invisible: props.busy },
+]);
+
+const computedSuffixClass = computed(() => [
+  props.css?.suffix ?? theme.value.css.button.suffix,
+  { invisible: props.busy },
+]);
+
+const computedTextClass = computed(() => [
+  props.css?.text ?? theme.value.css.button.text,
+  { invisible: props.busy },
+]);
 </script>

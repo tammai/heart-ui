@@ -1,6 +1,38 @@
 # Changelog
 
 
+## v0.0.14
+
+[compare changes](https://github.com/tammai/heart-ui/compare/v0.0.12...v0.0.14)
+
+### 🚀 Enhancements
+
+- **button:** Implement more functions ([4be7466](https://github.com/tammai/heart-ui/commit/4be7466))
+
+### 💅 Refactors
+
+- **nuxt:** Remove layer ([937c762](https://github.com/tammai/heart-ui/commit/937c762))
+
+### 📖 Documentation
+
+- Update branding and slogan ([ff097ac](https://github.com/tammai/heart-ui/commit/ff097ac))
+
+### 📦 Build
+
+- Add date-fns ([76d7a94](https://github.com/tammai/heart-ui/commit/76d7a94))
+- Update build scripts ([ab5986f](https://github.com/tammai/heart-ui/commit/ab5986f))
+
+### 🏡 Chore
+
+- **release:** V0.0.12 ([87cc9a8](https://github.com/tammai/heart-ui/commit/87cc9a8))
+- Test changelog ([8d2a89f](https://github.com/tammai/heart-ui/commit/8d2a89f))
+- Update deps version and correct typing ([8eecca0](https://github.com/tammai/heart-ui/commit/8eecca0))
+
+### ❤️ Contributors
+
+- Tâm Mai ([@tammai](http://github.com/tammai))
+- Tam Mai <tam.mai@bigin.vn>
+
 ## v0.0.13
 
 [compare changes](https://github.com/tammai/heart-ui/compare/v0.0.12...v0.0.13)

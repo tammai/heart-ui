@@ -1,5 +1,5 @@
 import { theme, setTheme } from "../common";
 
-export const useTheme = () => {
-    return { theme, setTheme };
+export const useHeartTheme = () => {
+  return { theme, setTheme };
 };

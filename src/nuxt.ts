@@ -19,12 +19,12 @@ export default defineNuxtModule({
       path: resolver.resolve("./components/"),
       prefix: "h",
       pattern: "**/*.js",
-      ignore: ["**/*.vue.js", "**/*.d.ts"],
+      ignore: ["**/*.vue.js", "**/*.d.ts", "**/index.js"],
     });
 
     addImports({
-      name: "useTheme", // name of the composable to be used
-      as: "useHeartTheme",
+      name: "useHeartTheme", // name of the composable to be used
+      // as: "useHeartTheme",
       from: resolver.resolve("./composables/index"),
     });
     nuxt.options.build.transpile.push(resolver.resolve("./nuxt/plugin"));

@@ -14,6 +14,7 @@ export default defineConfig({
       entry: {
         index: "./src/index.ts",
         nuxt: "./src/nuxt.ts",
+        "composables/index": "./src/composables/index.ts",
         "nuxt/plugin": "./src/nuxt/plugin.ts",
         ...Object.fromEntries(
           globSync("src/components/**/*.vue").map((file) => {
@@ -31,7 +32,7 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["vue", "@nuxt/kit", "#imports", "nuxt/config"],
+      external: ["vue", "@nuxt/kit", "#imports", "nuxt/config", "@iconify/vue"],
       output: {
         preserveModules: true,
         globals: {

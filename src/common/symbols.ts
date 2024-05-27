@@ -1,1 +1,1 @@
-export const heartGlobalKey = Symbol("heart");
+export const HEART_GLOBAL_KEY = Symbol("heart");
