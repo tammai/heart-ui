@@ -1,7 +1,7 @@
 import { type App } from "vue";
 import * as components from "./components";
 import { theme, setTheme, type HeartTheme, HEART_GLOBAL_KEY } from "./common";
-import "@unocss/reset/tailwind.css"; // Will bundle with default UnoCSS output
+import "virtual:uno.css";
 
 export * from "./components";
 export * from "./composables";

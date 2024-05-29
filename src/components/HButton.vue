@@ -34,14 +34,14 @@
 </template>
 
 <script setup lang="ts">
-import { Component, computed } from "vue";
-import { CssEntry } from "../common";
+import { type Component, computed } from "vue";
+import { type CssEntry } from "../common";
 import { useHeartTheme } from "..";
 import HIcon from "./HIcon.vue";
 
 // Types
 
-type ButtonCssPropStyle = {
+interface ButtonCssPropStyle {
   default?: CssEntry;
   custom?: CssEntry;
   primary?: CssEntry;
@@ -49,9 +49,9 @@ type ButtonCssPropStyle = {
   warning?: CssEntry;
   info?: CssEntry;
   success?: CssEntry;
-};
+}
 
-export interface ButtonCssProp {
+interface ButtonCssProp {
   root?: CssEntry;
   prefix?: CssEntry;
   suffix?: CssEntry;
@@ -71,39 +71,38 @@ export interface ButtonCssProp {
   };
 }
 
+export interface ButtonProps {
+  css?: ButtonCssProp;
+  tag?: string | Component;
+  nativeType?: string;
+  icons?: { prefix?: string; suffix?: string; loading?: string };
+  prefixIcon?: string;
+  suffixIcon?: string;
+  loadingIcon?: string;
+  busy?: boolean;
+  disabled?: boolean;
+  outline?: boolean;
+  ghost?: boolean;
+  semi?: boolean;
+  primary?: boolean;
+  danger?: boolean;
+  warning?: boolean;
+  success?: boolean;
+  info?: boolean;
+  custom?: boolean;
+  rounded?: boolean;
+  small?: boolean;
+  large?: boolean;
+}
+
 // Options, Props and Emits
 
 defineOptions({ name: "HButton" });
 
-const props = withDefaults(
-  defineProps<{
-    css?: ButtonCssProp;
-    tag?: string | Component;
-    nativeType?: string;
-    icons?: { prefix?: string; suffix?: string; loading?: string };
-    prefixIcon?: string;
-    suffixIcon?: string;
-    loadingIcon?: string;
-    busy?: boolean;
-    disabled?: boolean;
-    outline?: boolean;
-    ghost?: boolean;
-    semi?: boolean;
-    primary?: boolean;
-    danger?: boolean;
-    warning?: boolean;
-    success?: boolean;
-    info?: boolean;
-    custom?: boolean;
-    rounded?: boolean;
-    small?: boolean;
-    large?: boolean;
-  }>(),
-  {
-    tag: "button",
-    nativeType: "button",
-  }
-);
+const props = withDefaults(defineProps<ButtonProps>(), {
+  tag: "button",
+  nativeType: "button",
+});
 
 // Composables
 

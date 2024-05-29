@@ -6,6 +6,19 @@ import {
   transformerVariantGroup,
 } from "unocss";
 import { theme } from "unocss/preset-mini";
+import presetTheme from "unocss-preset-theme";
+import { readFileSync } from "node:fs";
+
+const _defaultTheme = {
+  colors: {
+    primary: theme.colors.blue,
+    danger: theme.colors.rose,
+    info: theme.colors.cyan,
+    warning: theme.colors.amber,
+    success: theme.colors.green,
+    neutral: theme.colors.slate,
+  },
+};
 
 export default defineConfig({
   content: {
@@ -14,25 +27,31 @@ export default defineConfig({
     },
   },
   preflights: [
-    { getCSS: () => `html{font-family:Inter,${theme.fontFamily.sans}}` },
-  ],
-  theme: {
-    colors: {
-      primary: theme.colors.blue,
-      danger: theme.colors.rose,
-      info: theme.colors.cyan,
-      warning: theme.colors.amber,
-      success: theme.colors.green,
-      neutral: theme.colors.slate,
+    {
+      getCSS: () => {
+        const reset = readFileSync(
+          "./node_modules/@unocss/reset/tailwind-compat.css"
+        )
+          .toString()
+          .replace(
+            "font-family: ui-sans-serif",
+            "font-family: Inter, ui-sans-serif"
+          );
+        return reset;
+      },
     },
-  },
-  presets: [presetUno(), presetWebFonts({ fonts: { sans: "Inter:400,600" } })],
-  shortcuts: {
-    "heading-1": "text-4xl font-semibold",
-    "heading-2": "text-3xl font-semibold",
-    "heading-3": "text-2xl font-semibold",
-    "heading-4": "text-xl font-semibold",
-    "heading-5": "text-lg font-semibold",
-  },
+  ],
+  theme: _defaultTheme,
+  presets: [
+    presetUno(),
+    presetWebFonts({ fonts: { sans: "Inter:400,600" } }),
+    presetTheme({ theme: { light: _defaultTheme }, prefix: "--un-theme" }),
+  ],
+  shortcuts: Object.fromEntries(
+    ["4xl", "3xl", "2xl", "xl", "lg", "base"].map((item, index) => [
+      `heading-${index + 1}`,
+      `font-semibold text-${item}`,
+    ])
+  ),
   transformers: [transformerVariantGroup()],
 });

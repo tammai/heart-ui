@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), UnoCSS({ mode: "dist-chunk" })],
+  plugins: [vue(), UnoCSS()],
   publicDir: false,
   build: {
     lib: {
@@ -32,9 +32,18 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["vue", "@nuxt/kit", "#imports", "nuxt/config", "@iconify/vue"],
+      external: [
+        "vue",
+        "@nuxt/kit",
+        "#imports",
+        "nuxt/config",
+        "@iconify/vue",
+        "lodash-unified",
+        "@vueuse/core",
+      ],
       output: {
         preserveModules: true,
+        preserveModulesRoot: "src",
         globals: {
           vue: "vue",
         },
