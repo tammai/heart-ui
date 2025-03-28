@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Heart UI</title>
+    <g id="Heart-UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="Group" transform="translate(28.000000, 75.000000)" stroke="#D82A0C" stroke-width="8">
+            <polygon id="T1" points="86 200 0 150 86 100"></polygon>
+            <polygon id="T2" transform="translate(43.000000, 100.000000) scale(-1, 1) translate(-43.000000, -100.000000) " points="86 150 0 100 86 50"></polygon>
+            <polygon id="T3" points="86 100 0 50 86 5.68434189e-14"></polygon>
+            <polygon id="T4" transform="translate(129.000000, 50.000000) scale(-1, 1) translate(-129.000000, -50.000000) " points="172 100 86 50 172 0"></polygon>
+            <polygon id="T5" points="172 150 86 100 172 50"></polygon>
+            <polygon id="T6" transform="translate(129.000000, 150.000000) scale(-1, 1) translate(-129.000000, -150.000000) " points="172 200 86 150 172 100"></polygon>
+            <polygon id="T7" points="172 250 86 200 172 150"></polygon>
+            <polygon id="T8" transform="translate(215.000000, 200.000000) scale(-1, 1) translate(-215.000000, -200.000000) " points="258 250 172 200 258 150"></polygon>
+            <polygon id="T9" points="258 200 172 150 258 100"></polygon>
+            <polygon id="T10" transform="translate(215.000000, 100.000000) scale(-1, 1) translate(-215.000000, -100.000000) " points="258 150 172 100 258 50"></polygon>
+            <polygon id="T11" points="258 100 172 50 258 5.68434189e-14"></polygon>
+            <polygon id="T12" transform="translate(301.000000, 50.000000) scale(-1, 1) translate(-301.000000, -50.000000) " points="344 100 258 50 344 0"></polygon>
+            <polygon id="T13" points="344 150 258 100 344 50"></polygon>
+            <polygon id="T14" transform="translate(301.000000, 150.000000) scale(-1, 1) translate(-301.000000, -150.000000) " points="344 200 258 150 344 100"></polygon>
+        </g>
+    </g>
+</svg>
