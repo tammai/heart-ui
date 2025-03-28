@@ -1,18 +1,73 @@
-# Vue 3 + TypeScript + Vite
+# Nuxt Layer Starter
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Create Nuxt extendable layer with this GitHub template.
 
-## Recommended IDE Setup
+## Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Make sure to install the dependencies:
 
-## Type Support For `.vue` Imports in TS
+```bash
+pnpm install
+```
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Working on your layer
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Your layer is at the root of this repository, it is exactly like a regular Nuxt project, except you can publish it on NPM.
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+The `.playground` directory should help you on trying your layer during development.
+
+Running `pnpm dev` will prepare and boot `.playground` directory, which imports your layer itself.
+
+## Distributing your layer
+
+Your Nuxt layer is shaped exactly the same as any other Nuxt project, except you can publish it on NPM.
+
+To do so, you only have to check if `files` in `package.json` are valid, then run:
+
+```bash
+npm publish --access public
+```
+
+Once done, your users will only have to run:
+
+```bash
+npm install --save your-layer
+```
+
+Then add the dependency to their `extends` in `nuxt.config`:
+
+```ts
+defineNuxtConfig({
+  extends: 'your-layer'
+})
+```
+
+## Development Server
+
+Start the development server on http://localhost:3000
+
+```bash
+pnpm dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+pnpm build
+```
+
+Or statically generate it with:
+
+```bash
+pnpm generate
+```
+
+Locally preview production build:
+
+```bash
+pnpm preview
+```
+
+Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
