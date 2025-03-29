@@ -1,73 +1,27 @@
-# Nuxt Layer Starter
+# Heart UI
 
-Create Nuxt extendable layer with this GitHub template.
+A versatile and customizable UI library for Nuxt, delivered as a Nuxt layer for seamless integration. Built with TailwindCSS v4, VueUse, and official Nuxt modules, it provides a modern, efficient foundation for scalable and maintainable applications. Open-source and developer-friendly, Heart UI enhances both productivity and user experience.
 
 ## Setup
 
-Make sure to install the dependencies:
-
-```bash
-pnpm install
+```typescript [nuxt.config.ts]
+// nuxt.config.ts
+// ...
+extends: [
+  ['github:tammai/heart-ui', { install: true }]
+],
+heart: {
+  loadTheme: true,
+  loadDarkTheme: false,
+}
+// ...
 ```
 
-## Working on your layer
+### Theme Configuration
 
-Your layer is at the root of this repository, it is exactly like a regular Nuxt project, except you can publish it on NPM.
+- `loadTheme` This config is enable by default, it will load default theme. If you plan to use your own Tailwind theme configuration, set it to `false`.
+- `loadDarkTheme` This config will load default dark theme, default is `false`.
 
-The `.playground` directory should help you on trying your layer during development.
+## TypeScript
 
-Running `pnpm dev` will prepare and boot `.playground` directory, which imports your layer itself.
-
-## Distributing your layer
-
-Your Nuxt layer is shaped exactly the same as any other Nuxt project, except you can publish it on NPM.
-
-To do so, you only have to check if `files` in `package.json` are valid, then run:
-
-```bash
-npm publish --access public
-```
-
-Once done, your users will only have to run:
-
-```bash
-npm install --save your-layer
-```
-
-Then add the dependency to their `extends` in `nuxt.config`:
-
-```ts
-defineNuxtConfig({
-  extends: 'your-layer'
-})
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-pnpm dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-pnpm build
-```
-
-Or statically generate it with:
-
-```bash
-pnpm generate
-```
-
-Locally preview production build:
-
-```bash
-pnpm preview
-```
-
-Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+If you have problem with intellisense in VS Code, that cannot suggest hints for components. Consider to install [Nuxt Extension Pack](https://marketplace.visualstudio.com/items?itemName=Nuxtr.nuxt-vscode-extentions).

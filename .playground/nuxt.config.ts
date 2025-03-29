@@ -10,5 +10,7 @@ export default defineNuxtConfig({
     },
   },
   modules: ["@nuxt/image", "@nuxtjs/color-mode"],
-  css: ["../assets/css/tailwind.css", "../assets/css/dark.css"],
+  heart: {
+    loadDarkTheme: true,
+  },
 });
