@@ -12,5 +12,9 @@ export default defineNuxtConfig({
   modules: ["@nuxt/image", "@nuxtjs/color-mode"],
   heart: {
     loadDarkTheme: true,
+    theme: {
+      "color-primary": "orange",
+      "color-neutral": "zinc",
+    },
   },
 });

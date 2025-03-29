@@ -1,4 +1,4 @@
-import { isNumber } from "lodash-unified";
+import { get, isNumber } from "lodash-unified";
 
 export type CssClass =
   | string
@@ -7,3 +7,9 @@ export type CssClass =
 
 export const addUnit = (value: number | string) =>
   isNumber(value) || parseInt(value) ? value + "px" : value;
+
+export const getDefaultValue = (path: string) => {
+  const { heart } = useAppConfig();
+
+  return get(heart.default, path);
+};

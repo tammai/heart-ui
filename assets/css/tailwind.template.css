@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@source "../../components";
+
+@theme static {
+  --font-sans: __FONT_SANS__;
+  --font-weight-light: __FONT_WEIGHT_LIGHT__;
+  --font-weight-normal: __FONT_WEIGHT_NORMAL__;
+  --font-weight-medium: __FONT_WEIGHT_MEDIUM__;
+  --font-weight-semibold: __FONT_WEIGHT_SEMIBOLD__;
+  --font-weight-bold: __FONT_WEIGHT_BOLD__;
+
+  --color-primary-50: var(--color-__COLOR_PRIMARY__-50);
+  --color-primary-100: var(--color-__COLOR_PRIMARY__-100);
+  --color-primary-200: var(--color-__COLOR_PRIMARY__-200);
+  --color-primary-300: var(--color-__COLOR_PRIMARY__-300);
+  --color-primary-400: var(--color-__COLOR_PRIMARY__-400);
+  --color-primary-500: var(--color-__COLOR_PRIMARY__-500);
+  --color-primary-600: var(--color-__COLOR_PRIMARY__-600);
+  --color-primary-700: var(--color-__COLOR_PRIMARY__-700);
+  --color-primary-800: var(--color-__COLOR_PRIMARY__-800);
+  --color-primary-900: var(--color-__COLOR_PRIMARY__-900);
+  --color-primary-950: var(--color-__COLOR_PRIMARY__-950);
+
+  --color-neutral-50: var(--color-__COLOR_NEUTRAL__-50);
+  --color-neutral-100: var(--color-__COLOR_NEUTRAL__-100);
+  --color-neutral-200: var(--color-__COLOR_NEUTRAL__-200);
+  --color-neutral-300: var(--color-__COLOR_NEUTRAL__-300);
+  --color-neutral-400: var(--color-__COLOR_NEUTRAL__-400);
+  --color-neutral-500: var(--color-__COLOR_NEUTRAL__-500);
+  --color-neutral-600: var(--color-__COLOR_NEUTRAL__-600);
+  --color-neutral-700: var(--color-__COLOR_NEUTRAL__-700);
+  --color-neutral-800: var(--color-__COLOR_NEUTRAL__-800);
+  --color-neutral-900: var(--color-__COLOR_NEUTRAL__-900);
+  --color-neutral-950: var(--color-__COLOR_NEUTRAL__-950);
+
+  --color-danger-50: var(--color-__COLOR_DANGER__-50);
+  --color-danger-100: var(--color-__COLOR_DANGER__-100);
+  --color-danger-200: var(--color-__COLOR_DANGER__-200);
+  --color-danger-300: var(--color-__COLOR_DANGER__-300);
+  --color-danger-400: var(--color-__COLOR_DANGER__-400);
+  --color-danger-500: var(--color-__COLOR_DANGER__-500);
+  --color-danger-600: var(--color-__COLOR_DANGER__-600);
+  --color-danger-700: var(--color-__COLOR_DANGER__-700);
+  --color-danger-800: var(--color-__COLOR_DANGER__-800);
+  --color-danger-900: var(--color-__COLOR_DANGER__-900);
+  --color-danger-950: var(--color-__COLOR_DANGER__-950);
+
+  --color-success-50: var(--color-__COLOR_SUCCESS__-50);
+  --color-success-100: var(--color-__COLOR_SUCCESS__-100);
+  --color-success-200: var(--color-__COLOR_SUCCESS__-200);
+  --color-success-300: var(--color-__COLOR_SUCCESS__-300);
+  --color-success-400: var(--color-__COLOR_SUCCESS__-400);
+  --color-success-500: var(--color-__COLOR_SUCCESS__-500);
+  --color-success-600: var(--color-__COLOR_SUCCESS__-600);
+  --color-success-700: var(--color-__COLOR_SUCCESS__-700);
+  --color-success-800: var(--color-__COLOR_SUCCESS__-800);
+  --color-success-900: var(--color-__COLOR_SUCCESS__-900);
+  --color-success-950: var(--color-__COLOR_SUCCESS__-950);
+
+  --color-warning-50: var(--color-__COLOR_WARNING__-50);
+  --color-warning-100: var(--color-__COLOR_WARNING__-100);
+  --color-warning-200: var(--color-__COLOR_WARNING__-200);
+  --color-warning-300: var(--color-__COLOR_WARNING__-300);
+  --color-warning-400: var(--color-__COLOR_WARNING__-400);
+  --color-warning-500: var(--color-__COLOR_WARNING__-500);
+  --color-warning-600: var(--color-__COLOR_WARNING__-600);
+  --color-warning-700: var(--color-__COLOR_WARNING__-700);
+  --color-warning-800: var(--color-__COLOR_WARNING__-800);
+  --color-warning-900: var(--color-__COLOR_WARNING__-900);
+  --color-warning-950: var(--color-__COLOR_WARNING__-950);
+
+  --color-info-50: var(--color-__COLOR_INFO__-50);
+  --color-info-100: var(--color-__COLOR_INFO__-100);
+  --color-info-200: var(--color-__COLOR_INFO__-200);
+  --color-info-300: var(--color-__COLOR_INFO__-300);
+  --color-info-400: var(--color-__COLOR_INFO__-400);
+  --color-info-500: var(--color-__COLOR_INFO__-500);
+  --color-info-600: var(--color-__COLOR_INFO__-600);
+  --color-info-700: var(--color-__COLOR_INFO__-700);
+  --color-info-800: var(--color-__COLOR_INFO__-800);
+  --color-info-900: var(--color-__COLOR_INFO__-900);
+  --color-info-950: var(--color-__COLOR_INFO__-950);
+
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+/* Heart Preflight */
+
+body {
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-950);
+  font-weight: var(--font-weight-normal);
+  font-size: 0.875rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+h1 {
+  font-size: var(--text-5xl);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+}
+
+h3 {
+  font-size: var(--text-2xl);
+}
+
+h4 {
+  font-size: var(--text-lg);
+}
+
+h5 {
+  font-size: var(--text-sm);
+}
+
+h6 {
+  font-size: var(--text-xs);
+}
