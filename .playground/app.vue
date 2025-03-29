@@ -85,7 +85,7 @@
     </template>
     <div class="max-w-240 mx-auto p-5 lg:p-8">
       <div class="h-60 flex flex-col items-center justify-center">
-        <h1>Heart UI</h1>
+        <h1 class="!font-bold">Heart UI</h1>
         <p class="text-lg text-neutral-700 text-center max-w-140">
           The open-source customizable UI components built for Nuxt
         </p>

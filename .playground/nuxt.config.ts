@@ -9,4 +9,6 @@ export default defineNuxtConfig({
       title: "Heart UI",
     },
   },
+  modules: ["@nuxt/image", "@nuxtjs/color-mode"],
+  css: ["../assets/css/tailwind.css", "../assets/css/dark.css"],
 });

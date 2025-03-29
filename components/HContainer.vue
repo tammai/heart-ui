@@ -3,11 +3,11 @@
     <div v-if="$slots.header" class="h-[var(--h-header-height)]">
       <slot name="header" />
     </div>
-    <div :class="['grow', { flex: $slots.aside }]">
+    <div :class="['grow w-full', { flex: $slots.aside }]">
       <div v-if="$slots.aside" class="min-w-[var(--h-aside-width)]">
         <slot name="aside" />
       </div>
-      <div class="w-full">
+      <div class="w-full" :class="bodyClass">
         <slot />
       </div>
     </div>
@@ -23,11 +23,13 @@ const props = withDefaults(
     asideWidth?: number | string;
     headerHeight?: number | string;
     footerHeight?: number | string;
+    bodyClass?: CssClass;
   }>(),
   {
     headerHeight: 64,
     footerHeight: 64,
     asideWidth: 240,
+    bodyClass: "",
   }
 );
 
