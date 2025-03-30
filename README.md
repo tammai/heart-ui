@@ -1,6 +1,6 @@
 # Heart UI
 
-A versatile and customizable UI library for Nuxt, delivered as a Nuxt layer for seamless integration. Built with TailwindCSS v4, VueUse, and official Nuxt modules, it provides a modern, efficient foundation for scalable and maintainable applications. Open-source and developer-friendly, Heart UI enhances both productivity and user experience.
+A versatile and customizable UI library for Nuxt, delivered as a Nuxt layer for seamless integration. Built on top of Tailwind CSS, VueUse, and official Nuxt modules, it provides a modern and efficient foundation for building scalable, maintainable applications.
 
 ## Setup
 
@@ -13,6 +13,11 @@ extends: [
 heart: {
   loadTheme: true,
   loadDarkTheme: false,
+  theme: {
+    'font-family': '"Be Vietnam Pro", sans-serif'
+    'color-primary': 'orange',
+    'color-neutral': 'zinc'
+  }
 }
 // ...
 ```
@@ -21,7 +26,8 @@ heart: {
 
 - `loadTheme` This config is enable by default, it will load default theme. If you plan to use your own Tailwind theme configuration, set it to `false`.
 - `loadDarkTheme` This config will load default dark theme, default is `false`.
+- `theme` This config is for customize Tailwind theme, optional, full documentation at https://heart.nuxt.dev
 
 ## TypeScript
 
-If you have problem with intellisense in VS Code, that cannot suggest hints for components. Consider to install [Nuxt Extension Pack](https://marketplace.visualstudio.com/items?itemName=Nuxtr.nuxt-vscode-extentions).
+If VS Code doesn't show intellisense for components, install [Nuxt Extension Pack](https://marketplace.visualstudio.com/items?itemName=Nuxtr.nuxt-vscode-extentions).
