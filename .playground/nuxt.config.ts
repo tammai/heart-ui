@@ -15,6 +15,8 @@ export default defineNuxtConfig({
     theme: {
       "color-primary": "orange",
       "color-neutral": "zinc",
+      "background-color": "neutral-50",
+      "text-color": "neutral-950",
     },
   },
 });

@@ -1,6 +1,6 @@
-# Heart UI
+[![Heart UI](./public/github-cover.svg "Heart UI")](https://heart.nuxt.dev)
 
-A versatile and customizable UI library for Nuxt, delivered as a Nuxt layer for seamless integration. Built on top of Tailwind CSS, VueUse, and official Nuxt modules, it provides a modern and efficient foundation for building scalable, maintainable applications.
+Heart UI is a versatile and customizable UI library for Nuxt, delivered as a Nuxt layer for seamless integration. Built on top of Tailwind CSS and official Nuxt modules.
 
 ## Setup
 

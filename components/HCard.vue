@@ -1,9 +1,9 @@
 <template>
   <div
-    class="bg-white border border-neutral-200 outline-1 outline-transparent overflow-hidden transition-all"
+    class="overflow-hidden border border-neutral-200 bg-white ring-2 ring-transparent transition-all"
     :class="[
       {
-        'hover:outline-primary-600 hover:border-primary-600 hover:cursor-pointer':
+        'hover:ring-primary-600 hover:cursor-pointer hover:border-transparent':
           clickable,
       },
       roundedClass,
@@ -12,7 +12,7 @@
     <div
       v-if="$slots.header"
       :class="headerClass"
-      class="px-4 py-3 rounded-t-xl border-b border-neutral-200"
+      class="rounded-t-xl border-b border-neutral-200 px-4 py-3"
     >
       <slot name="header" />
     </div>
@@ -22,7 +22,7 @@
     <div
       v-if="$slots.footer"
       :class="footerClass"
-      class="px-4 py-3 rounded-b-xl border-t border-neutral-200"
+      class="rounded-b-xl border-t border-neutral-200 px-4 py-3"
     >
       <slot name="footer" />
     </div>

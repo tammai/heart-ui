@@ -45,6 +45,8 @@ type ThemeConfig = {
   "color-success": Color;
   "color-warning": Color;
   "color-danger": Color;
+  "background-color": string;
+  "text-color": string;
   [key: string]: string | number;
 };
 
@@ -54,6 +56,9 @@ export interface ModuleOptions {
   theme?: Partial<ThemeConfig>;
 }
 
+/**
+ * Configuration mapping for generate Tailwind configuration
+ */
 const CONFIG_MAPPING: Record<string, string> = {
   __FONT_SANS__: "font-sans",
   __FONT_WEIGHT_LIGHT__: "font-weight-light",
@@ -67,13 +72,22 @@ const CONFIG_MAPPING: Record<string, string> = {
   __COLOR_SUCCESS__: "color-success",
   __COLOR_WARNING__: "color-warning",
   __COLOR_INFO__: "color-info",
+  __BACKGROUND_COLOR__: "background-color",
+  __TEXT_COLOR__: "text-color",
 };
 
+/**
+ * Generate Tailwind configuration file based on template
+ *
+ * @param options Module options
+ * @param src Input file path
+ * @param dst Output file path
+ */
 const generateTailwindConfig = (
   options: ModuleOptions,
   src: string,
-  dst: string
-) => {
+  dst: string,
+): void => {
   readFile(join(currentDir, src), "utf-8", (err: Error, data: string) => {
     if (err) {
       return console.log("Cannot read file", src, err);
@@ -84,7 +98,7 @@ const generateTailwindConfig = (
     for (const prop in CONFIG_MAPPING) {
       result = result.replaceAll(
         prop,
-        `${options.theme![CONFIG_MAPPING[prop]]}`
+        `${options.theme![CONFIG_MAPPING[prop]]}`,
       );
     }
 
@@ -118,31 +132,35 @@ export default defineNuxtModule<ModuleOptions>({
       "color-success": "emerald",
       "color-warning": "amber",
       "color-danger": "rose",
+      "background-color": "neutral-50",
+      "text-color": "neutral-950",
     },
   },
   setup(_options, _nuxt) {
-    // const resolver = createResolver(import.meta.url);
+    const TAILWIND_TEMPLATE_PATH = "../assets/css/tailwind.template.css";
+    const TAILWIND_CSS_PATH = "../assets/css/tailwind.css";
+    const DARK_TEMPLATE_PATH = "../assets/css/dark.template.css";
+    const DARK_CSS_PATH = "../assets/css/dark.css";
 
     if (_options.loadTheme) {
       // Generate CSS files
       generateTailwindConfig(
         _options,
-        "../assets/css/tailwind.template.css",
-        "../assets/css/tailwind.css"
+        TAILWIND_TEMPLATE_PATH,
+        TAILWIND_CSS_PATH,
       );
-      generateTailwindConfig(
-        _options,
-        "../assets/css/dark.template.css",
-        "../assets/css/dark.css"
-      );
+      generateTailwindConfig(_options, DARK_TEMPLATE_PATH, DARK_CSS_PATH);
 
       // Load generated CSS files
-      _nuxt.options.css = _nuxt.options.css ?? [];
-      _nuxt.options.css.push(join(currentDir, "../assets/css/tailwind.css"));
+      const _css = [..._nuxt.options.css];
+
+      _nuxt.options.css = [join(currentDir, TAILWIND_CSS_PATH)];
 
       if (_options.loadDarkTheme) {
-        _nuxt.options.css.push(join(currentDir, "../assets/css/dark.css"));
+        _nuxt.options.css.push(join(currentDir, DARK_CSS_PATH));
       }
+
+      _nuxt.options.css = [..._nuxt.options.css, ..._css];
     }
   },
 });
