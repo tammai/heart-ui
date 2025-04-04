@@ -3,10 +3,10 @@
 </template>
 
 <script setup lang="ts">
-import type { LocaleCode } from "../types/heart/locale";
+import type { LocaleCode } from '../types/heart/locale';
 
 const props = withDefaults(defineProps<{ config?: { locale: LocaleCode } }>(), {
-  config: () => ({ locale: "en" }),
+  config: () => ({ locale: 'en' }),
 });
 
 useHead({

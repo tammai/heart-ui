@@ -25,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import { tv } from "tailwind-variants";
-import type { DeepPartial } from "../types/heart";
+import { tv } from 'tailwind-variants';
+import type { DeepPartial } from '../types/heart';
 
 export interface LayoutProps {
   slotSizes?: {
@@ -59,19 +59,19 @@ const props = withDefaults(defineProps<LayoutProps>(), {
 defineSlots<LayoutSlots>();
 
 const _css = {
-  base: "flex flex-col",
+  base: 'flex flex-col',
   slots: {
-    body: "grow w-full",
-    main: "w-full",
-    top: "h-[var(--h-layout-top-size)]",
-    right: "min-w-[var(--h-layout-right-size)]",
-    bottom: "h-[var(--h-layout-bottom-size)]",
-    left: "min-w-[var(--h-layout-left-size)]",
+    body: 'grow w-full',
+    main: 'w-full',
+    top: 'h-[var(--h-layout-top-size)]',
+    right: 'min-w-[var(--h-layout-right-size)]',
+    bottom: 'h-[var(--h-layout-bottom-size)]',
+    left: 'min-w-[var(--h-layout-left-size)]',
   },
   variants: {
     isMultiColumn: {
       true: {
-        body: "flex",
+        body: 'flex',
       },
     },
   },
@@ -79,9 +79,9 @@ const _css = {
 
 const css = computed(() =>
   tv({
-    extend: tv(props.ui),
-    ..._css,
-  })
+    extend: tv(_css),
+    ...props.ui,
+  }),
 );
 
 const style = computed(() => {

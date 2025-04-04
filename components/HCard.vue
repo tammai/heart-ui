@@ -1,53 +1,77 @@
 <template>
-  <div
-    class="overflow-hidden border border-neutral-200 bg-white ring-2 ring-transparent transition-all"
-    :class="[
-      {
-        'hover:ring-primary-600 hover:cursor-pointer hover:border-transparent':
-          clickable,
-      },
-      roundedClass,
-    ]"
-  >
-    <div
-      v-if="$slots.header"
-      :class="headerClass"
-      class="rounded-t-xl border-b border-neutral-200 px-4 py-3"
-    >
+  <div :class="css({ clickable }).base()">
+    <div v-if="$slots.header" :class="css().header()">
       <slot name="header" />
     </div>
-    <div :class="bodyClass" class="px-4 py-3">
+    <div :class="css().body()">
       <slot />
     </div>
-    <div
-      v-if="$slots.footer"
-      :class="footerClass"
-      class="rounded-b-xl border-t border-neutral-200 px-4 py-3"
-    >
+    <div v-if="$slots.footer" :class="css().footer()">
       <slot name="footer" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-type RoundedVariant = "none" | "sm" | "md" | "lg";
+import { tv } from 'tailwind-variants';
+import type { DeepPartial } from '../types/heart';
 
-const props = defineProps<{
-  headerClass?: CssClass;
-  footerClass?: CssClass;
-  bodyClass?: CssClass;
+export interface CardSlots {
+  default(props?: object): void;
+  header(props?: object): void;
+  footer(props?: object): void;
+}
+
+export interface CardProps {
+  size?: SizeVariant;
   clickable?: boolean;
-  rounded?: RoundedVariant;
-}>();
+  ui?: DeepPartial<typeof _css>;
+}
 
-const roundedClass = computed(() => {
-  const { rounded } = props;
+type SizeVariant = 'sm' | 'md' | 'lg';
+
+const props = defineProps<CardProps>();
+
+defineSlots<CardSlots>();
+
+const appConfig = useAppConfig();
+
+const _css = {
+  base: 'overflow-hidden border border-neutral-200 bg-white ring-2 ring-transparent transition-all',
+  slots: {
+    body: 'px-4 py-3',
+    header: 'rounded-t-xl border-b border-neutral-200 px-4 py-3',
+    footer: 'rounded-b-xl border-t border-neutral-200 px-4 py-3',
+  },
+  variants: {
+    clickable: {
+      true: 'hover:ring-primary-600 hover:cursor-pointer hover:border-transparent',
+    },
+  },
+};
+
+const sizeClass = computed(() => {
+  const size = props.size ?? appConfig.heart.size;
 
   return (
-    (rounded === "none" && "rounded-none") ||
-    (rounded === "sm" && "rounded-lg") ||
-    (rounded === "lg" && "rounded-2xl") ||
-    "rounded-xl"
+    (size === 'sm' && 'rounded-md') ||
+    (size === 'lg' && 'rounded-xl') ||
+    'rounded-lg'
   );
+});
+
+const paddingClass = computed(() => {
+  const size = props.size ?? appConfig.heart.size;
+
+  return (size === 'sm' && 'p-2') || (size === 'lg' && 'p-6') || 'p-4';
+});
+
+const css = computed(() => {
+  const computedCss = { ..._css };
+  computedCss.base = `${computedCss.base} ${sizeClass.value}`;
+  computedCss.slots.body = `${computedCss.slots.body} ${paddingClass.value}`;
+  computedCss.slots.header = `${computedCss.slots.header} ${paddingClass.value}`;
+  computedCss.slots.footer = `${computedCss.slots.footer} ${paddingClass.value}`;
+  return tv({ extend: tv(computedCss), ...props.ui });
 });
 </script>

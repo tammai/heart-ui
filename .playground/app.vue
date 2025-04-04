@@ -80,18 +80,18 @@
         </ClientOnly>
       </template>
 
-      <div class="container mx-auto p-5 lg:p-8">
+      <HContainer class="mx-auto p-5 lg:p-8">
         <div class="flex h-60 flex-col items-center justify-center">
           <h1 class="!font-bold">Heart UI</h1>
           <p class="max-w-140 text-center text-lg text-neutral-600">
             The collection of customizable UI components built for Nuxt
           </p>
-          <a href="https://github.com/tammai/heart-ui" target="_blank">
-            <Icon
-              name="mdi:github"
-              size="24"
-              class="mt-2 cursor-pointer text-neutral-700 hover:text-neutral-950"
-            />
+          <a
+            href="https://github.com/tammai/heart-ui"
+            target="_blank"
+            class="mt-4 flex cursor-pointer"
+          >
+            <Icon name="mdi:github" size="32" />
           </a>
         </div>
 
@@ -110,16 +110,16 @@
         >
           <template #top>
             <div
-              class="flex h-full flex-col items-center justify-center border-b-1 border-pink-300 dark:border-pink-600"
+              class="flex h-full flex-col items-center justify-center border-b border-pink-300 dark:border-pink-600"
             >
               Header
             </div>
           </template>
           <template #left>
             <div
-              class="flex h-full flex-col items-center justify-center border-r-1 border-pink-300 dark:border-pink-600"
+              class="flex h-full flex-col items-center justify-center border-r border-pink-300 dark:border-pink-600"
             >
-              Aside
+              Left Aside
             </div>
           </template>
           <div
@@ -127,9 +127,16 @@
           >
             Body
           </div>
+          <template #right>
+            <div
+              class="flex h-full flex-col items-center justify-center border-l border-pink-300 dark:border-pink-600"
+            >
+              Right Aside
+            </div>
+          </template>
           <template #bottom>
             <div
-              class="flex h-full flex-col items-center justify-center border-t-1 border-pink-300 dark:border-pink-600"
+              class="flex h-full flex-col items-center justify-center border-t border-pink-300 dark:border-pink-600"
             >
               Footer
             </div>
@@ -216,29 +223,41 @@
           </div>
           <div>
             <h4 class="mt-4 mb-1">Clickable</h4>
-            <HCard clickable class="h-50">
+            <HCard clickable class="h-50" @click="handleClick">
               <h4>Title</h4>
               <p>Content</p>
             </HCard>
           </div>
           <div>
             <h4 class="mt-4 mb-1">With Header</h4>
-            <HCard class="h-50">
-              <template #top> Header </template>
+            <HCard class="h-50" size="sm">
+              <template #header> Header </template>
               <h4>Title</h4>
               <p>Content</p>
             </HCard>
           </div>
           <div>
             <h4 class="mt-4 mb-1">With Footer</h4>
-            <HCard class="flex h-50 flex-col" body-class="grow">
+            <HCard
+              class="flex h-50 flex-col"
+              size="lg"
+              :ui="{ base: 'rounded-none', slots: { body: 'grow' } }"
+            >
               <h4>Title</h4>
               <p>Content</p>
-              <template #bottom> Footer </template>
+              <template #footer> Footer </template>
             </HCard>
           </div>
         </div>
-      </div>
+      </HContainer>
     </HLayout>
   </HApp>
 </template>
+
+<script setup lang="ts">
+const handleClick = () => {
+  if (import.meta.client) {
+    alert('You just clicked!');
+  }
+};
+</script>

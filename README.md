@@ -1,4 +1,4 @@
-[![Heart UI](./public/github-cover.svg "Heart UI")](https://heart.nuxt.dev)
+[![Heart UI](./public/github-cover.svg 'Heart UI')](https://heart.nuxt.dev)
 
 Heart UI is a versatile and customizable UI library for Nuxt, delivered as a Nuxt layer for seamless integration. Built on top of Tailwind CSS and official Nuxt modules.
 
@@ -13,9 +13,10 @@ extends: [
 heart: {
   loadTheme: true,
   loadDarkTheme: false,
+  // Override default theme
   theme: {
     'font-family': '"Be Vietnam Pro", sans-serif'
-    'color-primary': 'orange',
+    'color-primary': 'rose',
     'color-neutral': 'zinc'
   }
 }

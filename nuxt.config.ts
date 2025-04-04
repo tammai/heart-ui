@@ -1,8 +1,14 @@
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
-  modules: ["@nuxt/fonts", "@nuxt/icon", "@nuxtjs/color-mode"],
-
+  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxtjs/color-mode'],
+  eslint: {
+    config: {
+      stylistic: {
+        quotes: 'single',
+      },
+    },
+  },
   fonts: {
     defaults: {
       weights: [300, 400, 500, 600, 700],
