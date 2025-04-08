@@ -249,6 +249,43 @@
             </HCard>
           </div>
         </div>
+
+        <!-- Skeleton -->
+        <h2>Skeleton</h2>
+        <div class="mt-6 grid grid-cols-3 gap-6">
+          <HSkeleton />
+          <HSkeleton>
+            <template #template>
+              <div class="flex flex-col gap-3">
+                <HSkeletonItem variant="image" class="h-50 w-full" />
+                <HSkeletonItem variant="heading" class="w-1/3" />
+                <HSkeletonItem
+                  v-for="i in 3"
+                  :key="i"
+                  variant="text"
+                  :class="i === 3 ? 'w-1/2' : 'w-full'"
+                />
+              </div>
+            </template>
+          </HSkeleton>
+          <HSkeleton>
+            <template #template>
+              <div class="flex flex-col gap-6">
+                <div class="flex items-center gap-3">
+                  <HSkeletonItem variant="avatar" />
+                  <div class="flex grow flex-col gap-3">
+                    <HSkeletonItem variant="heading" />
+                    <HSkeletonItem class="w-1/2" />
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <HSkeletonItem variant="rect" class="h-20 w-30" />
+                  <HSkeletonItem variant="circle" class="size-20" />
+                </div>
+              </div>
+            </template>
+          </HSkeleton>
+        </div>
       </HContainer>
     </HLayout>
   </HApp>
