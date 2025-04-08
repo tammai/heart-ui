@@ -3,15 +3,22 @@
 </template>
 
 <script setup lang="ts">
-import type { LocaleCode } from '../types/heart/locale';
+import { merge } from 'lodash-unified';
+import type { HeartConfig } from '../types/heart';
 
-const props = withDefaults(defineProps<{ config?: { locale: LocaleCode } }>(), {
+const props = withDefaults(defineProps<{ config?: HeartConfig }>(), {
   config: () => ({ locale: 'en' }),
+});
+
+const { heart } = useAppConfig();
+
+merge(heart, {
+  ...props.config,
 });
 
 useHead({
   htmlAttrs: {
-    lang: props.config.locale,
+    lang: heart.locale,
   },
 });
 </script>

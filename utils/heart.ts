@@ -1,4 +1,4 @@
-import { get, isNumber } from "lodash-unified";
+import { get, isNumber } from 'lodash-unified';
 
 export type CssClass =
   | string
@@ -6,10 +6,14 @@ export type CssClass =
   | Array<string | Record<string, boolean>>;
 
 export const addUnit = (value: number | string) =>
-  isNumber(value) || parseInt(value) ? value + "px" : value;
+  isNumber(value) || parseInt(value) ? value + 'px' : value;
 
 export const getDefaultValue = (path: string) => {
   const { heart } = useAppConfig();
 
-  return get(heart.default, path);
+  return get(heart, path);
+};
+
+export const formatCssVariableName = (name: string) => {
+  return name.replace(/([A-Z])/g, '-$1').toLowerCase();
 };

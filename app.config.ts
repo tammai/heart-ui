@@ -1,7 +1,10 @@
 // type Status = "info" | "success" | "warning" | "danger";
 
+import type { HeartConfig, LocaleCode } from './types/heart';
+
 export default defineAppConfig({
   heart: {
+    locale: 'en',
     size: 'md',
     icon: {
       loading: '',
@@ -26,26 +29,6 @@ export default defineAppConfig({
 
 declare module '@nuxt/schema' {
   interface AppConfigInput {
-    heart?: {
-      size?: 'sm' | 'md' | 'lg';
-      icon?: Partial<{
-        loading: string;
-        next: string;
-        prev: string;
-        dropdown: string;
-        select: string;
-        plus: string;
-        minus: string;
-        clear: string;
-        close: string;
-        show: string;
-      }>;
-      message?: Partial<{
-        nodata: string;
-        select: string;
-      }>;
-      rounded?: boolean;
-      shadow?: 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-    };
+    heart?: HeartConfig;
   }
 }

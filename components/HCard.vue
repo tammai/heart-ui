@@ -39,9 +39,9 @@ const appConfig = useAppConfig();
 const _css = {
   base: 'overflow-hidden border border-neutral-200 bg-white ring-2 ring-transparent transition-all',
   slots: {
-    body: 'px-4 py-3',
-    header: 'rounded-t-xl border-b border-neutral-200 px-4 py-3',
-    footer: 'rounded-b-xl border-t border-neutral-200 px-4 py-3',
+    body: '',
+    header: 'border-b border-neutral-200',
+    footer: 'border-t border-neutral-200',
   },
   variants: {
     clickable: {
@@ -50,28 +50,19 @@ const _css = {
   },
 };
 
-const sizeClass = computed(() => {
+const css = computed(() => {
   const size = props.size ?? appConfig.heart.size;
-
-  return (
+  const padding = (size === 'sm' && 'p-2') || (size === 'lg' && 'p-6') || 'p-4';
+  const rounded =
     (size === 'sm' && 'rounded-md') ||
     (size === 'lg' && 'rounded-xl') ||
-    'rounded-lg'
-  );
-});
+    'rounded-lg';
 
-const paddingClass = computed(() => {
-  const size = props.size ?? appConfig.heart.size;
+  _css.base = `${_css.base} ${rounded}`;
+  _css.slots.body = `${_css.slots.body} ${padding}`;
+  _css.slots.header = `${_css.slots.header} ${padding}`;
+  _css.slots.footer = `${_css.slots.footer} ${padding}`;
 
-  return (size === 'sm' && 'p-2') || (size === 'lg' && 'p-6') || 'p-4';
-});
-
-const css = computed(() => {
-  const computedCss = { ..._css };
-  computedCss.base = `${computedCss.base} ${sizeClass.value}`;
-  computedCss.slots.body = `${computedCss.slots.body} ${paddingClass.value}`;
-  computedCss.slots.header = `${computedCss.slots.header} ${paddingClass.value}`;
-  computedCss.slots.footer = `${computedCss.slots.footer} ${paddingClass.value}`;
-  return tv({ extend: tv(computedCss), ...props.ui });
+  return tv({ extend: tv(_css), ...props.ui });
 });
 </script>

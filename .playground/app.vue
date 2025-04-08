@@ -1,67 +1,66 @@
 <template>
   <HApp>
-    <HLayout :slot-sizes="{ left: 200 }" class="min-h-screen">
+    <HLayout class="min-h-screen">
       <NuxtLoadingIndicator color="var(--color-primary)" />
-      <template #left>
+      <template #asideLeft>
         <ClientOnly>
-          <div class="sticky top-0 flex h-screen flex-col bg-neutral-200 p-5">
+          <div class="sticky top-0 bottom-0 flex h-screen flex-col p-5">
             <div class="flex items-center gap-2">
               <NuxtImg src="/heart-ui.svg" class="h-12" />
             </div>
-
-            <div class="mt-6">
-              <h6 class="mb-1 tracking-wider text-neutral-500 uppercase">
-                Container
-              </h6>
-              <a
-                v-for="item in ['Layout', 'Card']"
-                :key="item"
-                :href="`#${item.toLowerCase()}`"
-                class="block cursor-pointer rounded-r border-l border-neutral-300 pl-2.5 leading-8 text-neutral-700 transition-all"
-                :class="[
-                  $route.hash === `#${item.toLowerCase()}`
-                    ? 'border-primary-500 text-primary-600 bg-white/50 font-medium'
-                    : 'hover:border-neutral-400 hover:bg-white/25 hover:text-neutral-950',
-                ]"
-              >
-                {{ item }}
-              </a>
-            </div>
-            <div class="mt-6">
-              <h6 class="mb-1 tracking-wider text-neutral-500 uppercase">
-                Form
-              </h6>
-              <a
-                v-for="item in [
-                  'Button',
-                  'Input',
-                  'Select',
-                  'Radio',
-                  'Checkbox',
-                ]"
-                :key="item"
-                :href="`#${item.toLowerCase()}`"
-                class="block cursor-pointer rounded-r border-l border-neutral-300 pl-2.5 leading-8 text-neutral-700 transition-all"
-                :class="[
-                  $route.hash === `#${item.toLowerCase()}`
-                    ? 'border-primary-500 text-primary-600 bg-white/50 font-medium'
-                    : 'hover:border-neutral-400 hover:bg-white/25 hover:text-neutral-950',
-                ]"
-              >
-                {{ item }}
-              </a>
+            <div class="scrollbar-light grow overflow-y-auto">
+              <div class="mt-6 flex flex-col gap-1">
+                <h6 class="tracking-wider text-neutral-500 uppercase">
+                  Container
+                </h6>
+                <a
+                  v-for="item in ['Layout', 'Card']"
+                  :key="item"
+                  :href="`#${item.toLowerCase()}`"
+                  class="after:bg-primary-500 relative block cursor-pointer rounded px-3 leading-8 text-neutral-700 transition-all after:absolute after:top-1/2 after:left-0 after:block after:h-0 after:w-0.75 after:translate-y-[-50%] after:rounded after:transition-all after:content-['']"
+                  :class="[
+                    $route.hash === `#${item.toLowerCase()}`
+                      ? 'bg-neutral-200 after:h-5'
+                      : 'hover:bg-neutral-200',
+                  ]"
+                >
+                  {{ item }}
+                </a>
+              </div>
+              <div class="mt-5 flex flex-col gap-1">
+                <h6 class="tracking-wider text-neutral-500 uppercase">Form</h6>
+                <a
+                  v-for="item in [
+                    'Button',
+                    'Input',
+                    'Select',
+                    'Radio',
+                    'Checkbox',
+                  ]"
+                  :key="item"
+                  :href="`#${item.toLowerCase()}`"
+                  class="after:bg-primary-500 relative block cursor-pointer rounded px-3 leading-8 text-neutral-700 transition-all after:absolute after:top-1/2 after:left-0 after:block after:h-0 after:w-0.75 after:translate-y-[-50%] after:rounded after:transition-all after:content-['']"
+                  :class="[
+                    $route.hash === `#${item.toLowerCase()}`
+                      ? 'bg-neutral-200 after:h-5'
+                      : 'hover:bg-neutral-200',
+                  ]"
+                >
+                  {{ item }}
+                </a>
+              </div>
             </div>
             <div
-              class="mx-auto mt-auto flex gap-0.25 rounded-full bg-neutral-300 p-0.5"
+              class="mx-auto mt-5 flex gap-0.5 rounded-full bg-neutral-200 p-0.5"
             >
               <div
                 v-for="item in ['system', 'light', 'dark']"
                 :key="item"
                 class="flex h-6 w-6 cursor-pointer flex-col items-center justify-center rounded-full text-neutral-600 transition-all"
                 :class="{
-                  'bg-white/50 text-neutral-950':
+                  'bg-neutral-50 text-neutral-900':
                     $colorMode.preference === item,
-                  'text-neutral-950 hover:bg-white/30':
+                  'hover:bg-neutral-100 hover:text-neutral-800':
                     $colorMode.preference !== item,
                 }"
                 @click="$colorMode.preference = item"
@@ -84,7 +83,7 @@
         <div class="flex h-60 flex-col items-center justify-center">
           <h1 class="!font-bold">Heart UI</h1>
           <p class="max-w-140 text-center text-lg text-neutral-600">
-            The collection of customizable UI components built for Nuxt
+            A collection of customizable UI components for Nuxt
           </p>
           <a
             href="https://github.com/tammai/heart-ui"
@@ -106,16 +105,16 @@
 
         <h4 class="mt-4 mb-1">Default layout</h4>
         <HLayout
-          class="rounded border-1 border-pink-300 bg-pink-200 dark:border-pink-600 dark:bg-pink-700"
+          class="rounded border border-pink-300 bg-pink-200 dark:border-pink-600 dark:bg-pink-700"
         >
-          <template #top>
+          <template #header>
             <div
               class="flex h-full flex-col items-center justify-center border-b border-pink-300 dark:border-pink-600"
             >
               Header
             </div>
           </template>
-          <template #left>
+          <template #asideLeft>
             <div
               class="flex h-full flex-col items-center justify-center border-r border-pink-300 dark:border-pink-600"
             >
@@ -127,14 +126,14 @@
           >
             Body
           </div>
-          <template #right>
+          <template #asideRight>
             <div
               class="flex h-full flex-col items-center justify-center border-l border-pink-300 dark:border-pink-600"
             >
               Right Aside
             </div>
           </template>
-          <template #bottom>
+          <template #footer>
             <div
               class="flex h-full flex-col items-center justify-center border-t border-pink-300 dark:border-pink-600"
             >
@@ -144,8 +143,8 @@
         </HLayout>
 
         <h4 class="mt-4 mb-1">Two columns</h4>
-        <HLayout class="rounded border-1 border-neutral-200 bg-white">
-          <template #left>
+        <HLayout class="rounded border border-neutral-200 bg-white">
+          <template #asideLeft>
             <div
               class="flex h-full flex-col items-center justify-center border-r-1 border-neutral-200"
             >
@@ -156,8 +155,8 @@
         </HLayout>
 
         <h4 class="mt-4 mb-1">One column</h4>
-        <HLayout class="rounded border-1 border-neutral-200 bg-white">
-          <template #top>
+        <HLayout class="rounded border border-neutral-200 bg-white">
+          <template #header>
             <div
               class="flex h-full flex-col items-center justify-center border-b-1 border-neutral-200"
             >
@@ -165,7 +164,7 @@
             </div>
           </template>
           <div class="flex h-60 flex-col items-center justify-center">Body</div>
-          <template #bottom>
+          <template #footer>
             <div
               class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
             >
@@ -175,8 +174,8 @@
         </HLayout>
 
         <h4 class="mt-4 mb-1">Nested containers</h4>
-        <HLayout class="rounded border-1 border-neutral-200 bg-white">
-          <template #left>
+        <HLayout class="rounded border border-neutral-200 bg-white">
+          <template #asideLeft>
             <div
               class="flex h-full flex-col items-center justify-center border-r-1 border-neutral-200"
             >
@@ -184,7 +183,7 @@
             </div>
           </template>
           <HLayout>
-            <template #top>
+            <template #header>
               <div
                 class="flex h-full flex-col items-center justify-center border-b-1 border-neutral-200"
               >
@@ -194,7 +193,7 @@
             <div class="flex h-60 flex-col items-center justify-center">
               Body
             </div>
-            <template #bottom>
+            <template #footer>
               <div
                 class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
               >
@@ -230,7 +229,7 @@
           </div>
           <div>
             <h4 class="mt-4 mb-1">With Header</h4>
-            <HCard class="h-50" size="sm">
+            <HCard class="h-50">
               <template #header> Header </template>
               <h4>Title</h4>
               <p>Content</p>
@@ -240,8 +239,9 @@
             <h4 class="mt-4 mb-1">With Footer</h4>
             <HCard
               class="flex h-50 flex-col"
-              size="lg"
-              :ui="{ base: 'rounded-none', slots: { body: 'grow' } }"
+              :ui="{
+                slots: { body: 'grow' },
+              }"
             >
               <h4>Title</h4>
               <p>Content</p>
