@@ -1,6 +1,6 @@
 import { isNumber } from 'lodash-unified';
 
-export const skeletonKey = Symbol('skeleton');
+export const SKELETON_KEY = Symbol();
 
 export const addUnit = (value: number | string) =>
   isNumber(value) || parseInt(value) ? value + 'px' : value;

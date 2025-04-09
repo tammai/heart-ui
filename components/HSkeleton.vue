@@ -36,5 +36,5 @@ const props = withDefaults(defineProps<SkeletonProps>(), {
   loading: true,
 });
 
-provide(skeletonKey, props.animation);
+provide(SKELETON_KEY, { animation: toRef(() => props.animation) });
 </script>

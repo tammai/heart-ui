@@ -253,7 +253,7 @@
         <!-- Skeleton -->
         <h2>Skeleton</h2>
         <div class="mt-6 grid grid-cols-3 gap-6">
-          <HSkeleton />
+          <HSkeleton :animation="false" />
           <HSkeleton>
             <template #template>
               <div class="flex flex-col gap-3">

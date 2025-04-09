@@ -25,7 +25,9 @@ const props = withDefaults(defineProps<SkeletonItemProps>(), {
 
 const css = computed(() => {
   const { variant } = props;
-  const animation = inject<boolean>(skeletonKey, true);
+  const { animation } = inject<{ animation: Ref<boolean> }>(SKELETON_KEY, {
+    animation: ref(true),
+  });
 
   return {
     'bg-neutral-300': true,
@@ -39,7 +41,7 @@ const css = computed(() => {
     'h-2': variant === 'text',
     'size-50': variant === 'image',
     'size-12': ['circle', 'avatar'].includes(variant),
-    'animate-pulse': animation,
+    'animate-pulse': animation.value,
   };
 });
 </script>
