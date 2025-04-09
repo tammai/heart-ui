@@ -1,5 +1,5 @@
 <template>
-  <HApp>
+  <HApp :config="{ locale: 'vi' }">
     <HLayout class="min-h-screen">
       <NuxtLoadingIndicator color="var(--color-primary)" />
       <template #asideLeft>
@@ -268,7 +268,12 @@
               </div>
             </template>
           </HSkeleton>
-          <HSkeleton>
+          <HSkeleton
+            :ui="{
+              base: 'bg-red-300',
+              variants: { hasIcon: { true: 'text-red-400' } },
+            }"
+          >
             <template #template>
               <div class="flex flex-col gap-6">
                 <div class="flex items-center gap-3">

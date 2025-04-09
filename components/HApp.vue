@@ -6,19 +6,13 @@
 import { merge } from 'lodash-unified';
 import type { HeartConfig } from '../types/heart';
 
-const props = withDefaults(defineProps<{ config?: HeartConfig }>(), {
-  config: () => ({ locale: 'en' }),
-});
-
+const props = defineProps<{ config?: HeartConfig }>();
 const { heart } = useAppConfig();
-
-merge(heart, {
-  ...props.config,
-});
-
+updateAppConfig({ heart: merge(heart, props.config) });
 useHead({
   htmlAttrs: {
-    lang: heart.locale,
+    lang: heart.locale ?? 'en',
   },
 });
+console.log(useAppConfig());
 </script>

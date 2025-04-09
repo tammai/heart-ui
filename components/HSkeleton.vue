@@ -19,10 +19,14 @@
 </template>
 
 <script lang="ts" setup>
+import { tv } from 'tailwind-variants';
+import type { DeepPartial } from '../types/heart';
+
 export interface SkeletonProps {
   rows?: number;
   animation?: boolean;
   loading?: boolean;
+  ui?: DeepPartial<typeof _itemCss>;
 }
 
 export interface SkeletonSlots {
@@ -36,5 +40,28 @@ const props = withDefaults(defineProps<SkeletonProps>(), {
   loading: true,
 });
 
-provide(SKELETON_KEY, { animation: toRef(() => props.animation) });
+const _itemCss = {
+  base: 'bg-neutral-300',
+  variants: {
+    variant: {
+      rect: 'rounded h-3',
+      circle: 'rounded-full',
+      heading: 'rounded-full h-3',
+      text: 'rounded-full h-2',
+      image: 'rounded size-50',
+      avatar: 'rounded-full size-12',
+    },
+    animation: {
+      true: 'animate-pulse',
+    },
+    hasIcon: {
+      true: 'flex flex-col items-center justify-center text-neutral-400',
+    },
+  },
+};
+
+provide(SKELETON_CONTEXT_KEY, {
+  animation: toRef(() => props.animation),
+  css: tv({ extend: _itemCss, ...props.ui }),
+});
 </script>

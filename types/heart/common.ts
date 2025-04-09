@@ -20,6 +20,10 @@ export interface HeartConfig {
     clear: string;
     close: string;
     show: string;
+    skeleton: Partial<{
+      avatar: string;
+      image: string;
+    }>;
   }>;
   message?: Partial<{
     nodata: string;
