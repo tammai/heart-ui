@@ -93,6 +93,95 @@
             <Icon name="mdi:github" size="32" />
           </a>
         </div>
+        <h3 id="button" class="mt-8">Button</h3>
+        <div class="flex flex-wrap gap-4">
+          <h4 class="w-full">Default</h4>
+          <HButton @click="handleClick">Default</HButton>
+          <HButton type="tertiary">Tertiary</HButton>
+          <HButton type="ghost">Ghost</HButton>
+
+          <HButton variant="primary">Default</HButton>
+          <HButton variant="primary" type="tertiary">Tertiary</HButton>
+          <HButton variant="primary" type="ghost">Ghost</HButton>
+
+          <HButton variant="danger">Default</HButton>
+          <HButton variant="danger" type="tertiary">Tertiary</HButton>
+          <HButton variant="danger" type="ghost">Ghost</HButton>
+          <div class="w-full"></div>
+          <HButton variant="warning">Default</HButton>
+          <HButton variant="warning" type="tertiary">Tertiary</HButton>
+          <HButton variant="warning" type="ghost">Ghost</HButton>
+
+          <HButton variant="success">Default</HButton>
+          <HButton variant="success" type="tertiary">Tertiary</HButton>
+          <HButton variant="success" type="ghost">Ghost</HButton>
+
+          <HButton variant="info">Default</HButton>
+          <HButton variant="info" type="tertiary">Tertiary</HButton>
+          <HButton variant="info" type="ghost">Ghost</HButton>
+
+          <h4 class="w-full">Outline</h4>
+          <HButton outline>Default</HButton>
+          <HButton outline type="tertiary">Tertiary</HButton>
+          <HButton outline type="ghost">Ghost</HButton>
+
+          <HButton outline variant="primary">Default</HButton>
+          <HButton outline variant="primary" type="tertiary">Tertiary</HButton>
+          <HButton outline variant="primary" type="ghost">Ghost</HButton>
+
+          <HButton outline variant="danger">Default</HButton>
+          <HButton outline variant="danger" type="tertiary">Tertiary</HButton>
+          <HButton outline variant="danger" type="ghost">Ghost</HButton>
+          <div class="w-full"></div>
+          <HButton outline variant="warning">Default</HButton>
+          <HButton outline variant="warning" type="tertiary">Tertiary</HButton>
+          <HButton outline variant="warning" type="ghost">Ghost</HButton>
+
+          <HButton outline variant="success">Default</HButton>
+          <HButton outline variant="success" type="tertiary">Tertiary</HButton>
+          <HButton outline variant="success" type="ghost">Ghost</HButton>
+
+          <HButton outline variant="info">Default</HButton>
+          <HButton outline variant="info" type="tertiary">Tertiary</HButton>
+          <HButton outline variant="info" type="ghost">Ghost</HButton>
+
+          <h4 class="w-full">Rounded</h4>
+          <HButton rounded>Default</HButton>
+          <HButton rounded type="tertiary">Tertiary</HButton>
+          <HButton rounded type="ghost">Ghost</HButton>
+
+          <HButton rounded variant="primary">Default</HButton>
+          <HButton rounded variant="primary" type="tertiary">Tertiary</HButton>
+          <HButton rounded variant="primary" type="ghost">Ghost</HButton>
+
+          <HButton rounded variant="danger">Default</HButton>
+          <HButton rounded variant="danger" type="tertiary">Tertiary</HButton>
+          <HButton rounded variant="danger" type="ghost">Ghost</HButton>
+          <div class="w-full"></div>
+          <HButton rounded variant="warning">Default</HButton>
+          <HButton rounded variant="warning" type="tertiary">Tertiary</HButton>
+          <HButton rounded variant="warning" type="ghost">Ghost</HButton>
+
+          <HButton rounded variant="success">Default</HButton>
+          <HButton rounded variant="success" type="tertiary">Tertiary</HButton>
+          <HButton rounded variant="success" type="ghost">Ghost</HButton>
+
+          <HButton rounded variant="info">Default</HButton>
+          <HButton rounded variant="info" type="tertiary">Tertiary</HButton>
+          <HButton rounded variant="info" type="ghost">Ghost</HButton>
+
+          <h4 class="w-full">Size</h4>
+          <HButton size="sm">Small</HButton>
+          <HButton>Default</HButton>
+          <HButton size="lg">Large</HButton>
+
+          <h4 class="w-full">Icon</h4>
+          <HButton icon="fluent:person-24-regular" />
+          <HButton icon="fluent:arrow-left-24-regular">Left</HButton>
+          <HButton icon="fluent:arrow-right-24-regular" iconPosition="right">
+            Right
+          </HButton>
+        </div>
 
         <!-- Layout -->
         <h3 id="layout" class="mt-8">Layout</h3>
@@ -229,7 +318,7 @@
           </div>
           <div>
             <h4 class="mt-4 mb-1">With Header</h4>
-            <HCard class="h-50">
+            <HCard size="sm" class="h-50">
               <template #header> Header </template>
               <h4>Title</h4>
               <p>Content</p>
@@ -238,7 +327,9 @@
           <div>
             <h4 class="mt-4 mb-1">With Footer</h4>
             <HCard
+              size="lg"
               class="flex h-50 flex-col"
+              :rounded="false"
               :ui="{
                 slots: { body: 'grow' },
               }"
@@ -290,6 +381,27 @@
               </div>
             </template>
           </HSkeleton>
+        </div>
+        <h2 class="mt-6">Alert</h2>
+        <div class="grid grid-cols-2 gap-6">
+          <HAlert
+            variant="success"
+            title="Success"
+            message="This is a success!"
+          />
+          <HAlert variant="error" title="Error" message="This is an error!">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+            recusandae corporis culpa odio repudiandae, natus quas sint,
+            explicabo dolor ipsum ex sit tenetur impedit dolore et accusantium
+            beatae quaerat! Et!</HAlert
+          >
+          <HAlert variant="info" title="Info" message="This is an info!" />
+          <HAlert
+            variant="warning"
+            title="Warning"
+            message="This is a warning!"
+            closable
+          />
         </div>
       </HContainer>
     </HLayout>

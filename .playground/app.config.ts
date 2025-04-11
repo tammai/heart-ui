@@ -1,3 +1,11 @@
 export default defineAppConfig({
-  heart: {},
+  heart: {
+    icon: {
+      loading: {
+        name: 'svg-spinners:3-dots-scale',
+        animated: false,
+      },
+    },
+    rounded: true,
+  },
 });

@@ -28,13 +28,11 @@ const props = withDefaults(defineProps<SkeletonItemProps>(), {
   variant: 'text',
 });
 
-const { icon } = useHeartConfig();
-
 const skeletonContext = inject<SkeletonContext>(SKELETON_CONTEXT_KEY);
 
 const icons = computed(() => ({
-  image: icon?.skeleton?.image ?? 'fluent:image-32-regular',
-  avatar: icon?.skeleton?.avatar ?? 'fluent:person-24-regular',
+  image: getHeartConfig('icon.image') ?? 'fluent:image-32-regular',
+  avatar: getHeartConfig('icon.avatar') ?? 'fluent:person-24-regular',
 }));
 
 const css = computed(() => {

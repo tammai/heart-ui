@@ -62,6 +62,6 @@ const _itemCss = {
 
 provide(SKELETON_CONTEXT_KEY, {
   animation: toRef(() => props.animation),
-  css: tv({ extend: _itemCss, ...props.ui }),
+  css: tv({ extend: tv(_itemCss), ...props.ui }),
 });
 </script>

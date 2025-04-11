@@ -10,7 +10,7 @@ export interface HeartConfig {
   locale?: LocaleCode;
   size?: 'sm' | 'md' | 'lg';
   icon?: Partial<{
-    loading: string;
+    loading: { name: string; animated?: boolean };
     next: string;
     prev: string;
     dropdown: string;
@@ -30,5 +30,5 @@ export interface HeartConfig {
     select: string;
   }>;
   rounded?: boolean;
-  shadow?: 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  shadow?: boolean;
 }

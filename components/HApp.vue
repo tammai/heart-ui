@@ -14,5 +14,4 @@ useHead({
     lang: heart.locale ?? 'en',
   },
 });
-console.log(useAppConfig());
 </script>
