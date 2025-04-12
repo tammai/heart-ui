@@ -2,12 +2,12 @@
 
 # 💖 Heart UI
 
-**Heart UI** is a simple, beautiful, and customizable UI component library for [Nuxt](https://nuxt.com).  
+**Heart UI** is a simple, beautiful and customizable UI component library for [Nuxt](https://nuxt.com), delivered as a Nuxt layer for seamless integration.
 Built on top of Tailwind CSS and official Nuxt modules, designed to help developers build clean and consistent user interfaces faster.
 
 ![MIT License](https://img.shields.io/github/license/tammai/heart-ui)
-![Nuxt](https://img.shields.io/badge/nuxt-3-teal?logo=nuxt.js)
-![Made with Vue](https://img.shields.io/badge/made--with-vue-teal?logo=vue.js)
+![Nuxt](https://img.shields.io/badge/nuxt-3-green?logo=nuxt.js)
+![Made with Vue](https://img.shields.io/badge/made--with-vue-green?logo=vue.js)
 
 ---
 
