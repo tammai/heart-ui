@@ -93,6 +93,26 @@
             <Icon name="mdi:github" size="32" />
           </a>
         </div>
+
+        <h3 id="divider" class="mt-8">Divider</h3>
+        <div class="grid grid-cols-3 gap-5">
+          <HDivider class="my-4" />
+          <HDivider
+            icon="fluent:heart-24-filled"
+            icon-size="24"
+            class="text-rose-600"
+          />
+          <HDivider>Heart</HDivider>
+          <HDivider vertical class="h-20" />
+          <HDivider
+            vertical
+            icon="fluent:heart-24-filled"
+            icon-size="24"
+            class="h-20 text-rose-600"
+          />
+          <HDivider vertical class="h-20">Heart</HDivider>
+        </div>
+
         <h3 id="button" class="mt-8">Button</h3>
         <div class="flex flex-wrap gap-4">
           <h4 class="w-full">Default</h4>
