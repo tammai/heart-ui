@@ -6,9 +6,11 @@ export type DeepPartial<T> = T extends object
     }
   : T;
 
+export type ComponentSize = 'sm' | 'md' | 'lg';
+
 export interface HeartConfig {
   locale?: LocaleCode;
-  size?: 'sm' | 'md' | 'lg';
+  size?: ComponentSize;
   icon?: Partial<{
     loading: { name: string; animated?: boolean };
     next: string;

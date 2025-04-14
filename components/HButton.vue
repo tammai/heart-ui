@@ -3,19 +3,20 @@
     :type="nativeType"
     :class="
       css({
-        variant,
+        variant: buttonVariant,
         size: buttonSize,
-        type,
-        outline,
-        rounded,
+        type: buttonType,
+        outline: buttonOutline,
+        rounded: buttonRounded,
         disabled,
         loading,
-        icon: !!icon && !text && !$slots.default,
+        icon: !!icon && !label && !$slots.default,
         iconPosition,
       }).base()
     "
-    @click="handleClick"
+    :title="label ?? ''"
     :disabled="disabled || loading"
+    @click="handleClick"
   >
     <span v-if="loading" :class="css().loading()">
       <Icon
@@ -25,59 +26,89 @@
       />
     </span>
     <Icon v-if="icon" :name="icon" :size="iconSize" />
-    <span v-if="text || $slots.default">
-      <slot>{{ text }}</slot>
+    <span v-if="label || $slots.default">
+      <slot>{{ label }}</slot>
     </span>
   </button>
 </template>
 
 <script lang="ts" setup>
 import { tv } from 'tailwind-variants';
-import type { DeepPartial } from '../types/heart';
+import type { ComponentSize, DeepPartial } from '../types/heart';
+import type { Reactive } from 'vue';
+import type { ButtonGroupContext } from './HButtonGroup.vue';
 
-const props = withDefaults(
-  defineProps<{
-    nativeType?: 'button' | 'submit' | 'reset';
-    size?: 'sm' | 'md' | 'lg';
-    variant?:
-      | 'neutral'
-      | 'primary'
-      | 'danger'
-      | 'error'
-      | 'warning'
-      | 'success'
-      | 'info';
-    type?: 'solid' | 'tertiary' | 'ghost';
-    outline?: boolean;
-    rounded?: boolean;
-    disabled?: boolean;
-    loading?: boolean;
-    icon?: string;
-    iconPosition?: 'left' | 'right';
-    text?: string;
-    ui?: DeepPartial<typeof _css>;
-  }>(),
-  {
-    nativeType: 'button',
-    variant: 'neutral',
-    type: 'solid',
-    outline: false,
-    rounded: false,
-    iconPosition: 'left',
-  },
-);
+export type ButtonNativeType = 'button' | 'submit' | 'reset';
+export type ButtonType = 'solid' | 'tertiary' | 'ghost';
+export type ButtonVariant =
+  | 'neutral'
+  | 'primary'
+  | 'danger'
+  | 'error'
+  | 'warning'
+  | 'success'
+  | 'info';
+export type IconPosition = 'left' | 'right';
+
+export interface ButtonProps {
+  nativeType?: ButtonNativeType;
+  size?: ComponentSize;
+  variant?: ButtonVariant;
+  type?: ButtonType;
+  outline?: boolean;
+  rounded?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  icon?: string;
+  iconPosition?: IconPosition;
+  label?: string;
+  ui?: DeepPartial<typeof _css>;
+}
+
+const props = withDefaults(defineProps<ButtonProps>(), {
+  nativeType: 'button',
+  variant: 'neutral',
+  type: 'solid',
+  outline: false,
+  rounded: false,
+  iconPosition: 'left',
+});
 
 const emit = defineEmits<{
   (event: 'click', ev: MouseEvent): void;
 }>();
 
+const buttonGroupContext = inject<ButtonGroupContext | null>(
+  BUTTON_GROUP_CONTEXT_KEY,
+  null,
+);
+
 const loadingIcon = computed(() => getHeartConfig('icon.loading.name'));
+
 const loadingIconAnimated = computed(() =>
   getHeartConfig('icon.loading.animated'),
 );
 
 const buttonSize = computed(() => {
-  return props.size ?? getHeartConfig('size') ?? 'md';
+  return (
+    buttonGroupContext?.size ?? props.size ?? getHeartConfig('size') ?? 'md'
+  );
+});
+
+const buttonOutline = computed(() => {
+  return buttonGroupContext?.outline ?? props.outline;
+});
+
+const buttonRounded = computed(() => {
+  return buttonGroupContext?.rounded ?? props.rounded;
+});
+
+const buttonVariant = computed(() => {
+  return buttonGroupContext?.variant ?? props.variant;
+});
+
+const buttonType = computed(() => {
+  return buttonGroupContext?.type ?? props.type;
 });
 
 const iconSize = computed(() => {

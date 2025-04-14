@@ -14,7 +14,13 @@
                   Container
                 </h6>
                 <a
-                  v-for="item in ['Layout', 'Card']"
+                  v-for="item in [
+                    'Layout',
+                    'Card',
+                    'Skeleton',
+                    'Alert',
+                    'Divider',
+                  ]"
                   :key="item"
                   :href="`#${item.toLowerCase()}`"
                   class="after:bg-primary-500 relative block cursor-pointer rounded px-3 leading-8 text-neutral-700 transition-all after:absolute after:top-1/2 after:left-0 after:block after:h-0 after:w-0.75 after:translate-y-[-50%] after:rounded after:transition-all after:content-['']"
@@ -95,22 +101,95 @@
         </div>
 
         <h3 id="divider" class="mt-8">Divider</h3>
-        <div class="grid grid-cols-3 gap-5">
-          <HDivider class="my-4" />
-          <HDivider
-            icon="fluent:heart-24-filled"
-            icon-size="24"
-            class="text-rose-600"
-          />
-          <HDivider>Heart</HDivider>
-          <HDivider vertical class="h-20" />
-          <HDivider
-            vertical
-            icon="fluent:heart-24-filled"
-            icon-size="24"
-            class="h-20 text-rose-600"
-          />
-          <HDivider vertical class="h-20">Heart</HDivider>
+        <div class="grid grid-cols-3 gap-8">
+          <div class="flex h-40 flex-col gap-2">
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+            <HDivider class="my-3" />
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+          </div>
+          <div class="flex h-40 flex-col gap-2">
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+            <HDivider
+              icon="fluent:heart-24-filled"
+              icon-size="24"
+              class="text-rose-600"
+            />
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+          </div>
+          <div class="flex h-40 flex-col gap-2">
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+            <HDivider>Heart</HDivider>
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+          </div>
+
+          <div class="flex gap-2">
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+            <HDivider vertical class="mx-3 h-30" />
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+            <HDivider
+              vertical
+              icon="fluent:heart-24-filled"
+              icon-size="24"
+              class="h-30 text-rose-600"
+            />
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+            <HDivider vertical class="h-30">Heart</HDivider>
+            <div
+              class="flex grow items-center justify-center rounded bg-neutral-200"
+            >
+              Content
+            </div>
+          </div>
         </div>
 
         <h3 id="button" class="mt-8">Button</h3>
@@ -201,6 +280,22 @@
           <HButton icon="fluent:arrow-right-24-regular" iconPosition="right">
             Right
           </HButton>
+
+          <h4 class="w-full">Group</h4>
+          <HButtonGroup size="sm" type="ghost" outline rounded>
+            <HButton>One</HButton>
+            <HButton>Two</HButton>
+            <HButton>Three</HButton>
+          </HButtonGroup>
+          <HButtonGroup outline type="tertiary">
+            <HButton icon="fluent:arrow-left-24-regular"></HButton>
+            <HButton icon="fluent:arrow-right-24-regular"></HButton>
+          </HButtonGroup>
+          <HButtonGroup size="lg" variant="primary">
+            <HButton>One</HButton>
+            <HButton>Two</HButton>
+            <HButton>Three</HButton>
+          </HButtonGroup>
         </div>
 
         <!-- Layout -->
@@ -362,7 +457,7 @@
         </div>
 
         <!-- Skeleton -->
-        <h2>Skeleton</h2>
+        <h2 id="skeleton" class="mt-8">Skeleton</h2>
         <div class="mt-6 grid grid-cols-3 gap-6">
           <HSkeleton :animation="false" />
           <HSkeleton>
@@ -402,7 +497,7 @@
             </template>
           </HSkeleton>
         </div>
-        <h2 class="mt-6">Alert</h2>
+        <h2 id="alert" class="mt-8">Alert</h2>
         <div class="grid grid-cols-2 gap-6">
           <HAlert
             variant="success"

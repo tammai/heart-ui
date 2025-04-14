@@ -44,6 +44,6 @@ const _css = {
 };
 
 const css = computed(() => {
-  return tv({ extend: _css, ...props.ui });
+  return tv({ extend: tv(_css), ...props.ui });
 });
 </script>

@@ -14,21 +14,21 @@
 </template>
 
 <script lang="ts" setup>
+import type { SkeletonContext } from './HSkeleton.vue';
+
 export interface SkeletonItemProps {
   variant?: 'rect' | 'circle' | 'heading' | 'text' | 'image' | 'avatar';
   iconSize?: number;
-}
-
-export interface SkeletonContext {
-  css: (config: any) => string;
-  animation?: Ref<boolean>;
 }
 
 const props = withDefaults(defineProps<SkeletonItemProps>(), {
   variant: 'text',
 });
 
-const skeletonContext = inject<SkeletonContext>(SKELETON_CONTEXT_KEY);
+const skeletonContext = inject<SkeletonContext | null>(
+  SKELETON_CONTEXT_KEY,
+  null,
+);
 
 const icons = computed(() => ({
   image: getHeartConfig('icon.image') ?? 'fluent:image-32-regular',
