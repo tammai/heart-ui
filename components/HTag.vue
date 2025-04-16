@@ -5,10 +5,24 @@
   >
     <div
       v-show="visible"
-      :class="css({ size: tagSize, color, effect, rounded: tagRounded }).base()"
+      :class="
+        css({
+          size: tagSize,
+          color,
+          effect,
+          rounded: tagRounded,
+          disabled,
+        }).base()
+      "
     >
       <slot />
-      <Icon v-if="removable" :name="removeIcon" @click="handleRemove" />
+      <div
+        v-if="removable"
+        :class="css({ size: tagSize, rounded: tagRounded }).icon()"
+        @click="handleRemove"
+      >
+        <Icon :name="removeIcon" />
+      </div>
     </div>
   </transition>
 </template>
@@ -22,6 +36,7 @@ export type TagColorVariant =
   | 'success'
   | 'warning'
   | 'danger'
+  | 'error'
   | 'info'
   | 'red'
   | 'orange'
@@ -41,7 +56,7 @@ export type TagColorVariant =
   | 'pink'
   | 'rose';
 
-export type TagEffectVariant = 'dark' | 'light';
+export type TagEffectVariant = 'dark' | 'light' | 'plain';
 
 export interface TagProps {
   size?: ComponentSize;
@@ -50,6 +65,7 @@ export interface TagProps {
   title?: string;
   message?: string;
   removable?: boolean;
+  disabled?: boolean;
   ui?: DeepPartial<typeof _css>;
 }
 
@@ -73,276 +89,282 @@ const removeIcon = computed(() => {
 const _css = {
   slots: {
     base: 'inline-flex items-center border font-medium transition-all duration-500',
+    icon: 'flex hover:bg-black/10 rounded-full p-0.5 transition-all cursor-pointer',
     transitionLeave: 'opacity-0 scale-95',
     transitionEnter: 'opacity-100 scale-100',
   },
   variants: {
     size: {
-      sm: 'text-[0.625rem] px-1.5 h-5',
-      md: 'text-xs px-2 h-6',
-      lg: 'text-sm px-3 h-7',
+      sm: { base: 'text-[0.625rem] px-1.5 h-5 gap-0.5', icon: '-mr-0.75' },
+      md: { base: 'text-xs px-2 h-6 gap-0.75', icon: '-mr-1.25' },
+      lg: { base: 'text-sm px-3 h-7 gap-1', icon: '-mr-1.75' },
     },
     color: {
-      neutral: '',
-      primary: '',
-      success: '',
-      danger: '',
-      info: '',
-      warning: '',
-      red: '',
-      orange: '',
-      amber: '',
-      yellow: '',
-      lime: '',
-      green: '',
-      emerald: '',
-      teal: '',
-      cyan: '',
-      sky: '',
-      blue: '',
-      indigo: '',
-      violet: '',
-      purple: '',
-      fuchsia: '',
-      pink: '',
-      rose: '',
+      neutral: 'text-neutral-700 border-neutral-500',
+      primary: 'text-primary-600 border-primary-400',
+      success: 'text-success-600 border-success-400',
+      danger: 'text-danger-600 border-danger-400',
+      error: 'text-danger-600 border-danger-400',
+      info: 'text-info-600 border-info-400',
+      warning: 'text-warning-600 border-warning-400',
+      red: 'text-red-600 border-red-400',
+      orange: 'text-orange-600 border-orange-400',
+      amber: 'text-amber-600 border-amber-400',
+      yellow: 'text-yellow-600 border-yellow-400',
+      lime: 'text-lime-600 border-lime-400',
+      green: 'text-green-600 border-green-400',
+      emerald: 'text-emerald-600 border-emerald-400',
+      teal: 'text-teal-600 border-teal-400',
+      cyan: 'text-cyan-600 border-cyan-400',
+      sky: 'text-sky-600 border-sky-400',
+      blue: 'text-blue-600 border-blue-400',
+      indigo: 'text-indigo-600 border-indigo-400',
+      violet: 'text-violet-600 border-violet-400',
+      purple: 'text-purple-600 border-purple-400',
+      fuchsia: 'text-fuchsia-600 border-fuchsia-400',
+      pink: 'text-pink-600 border-pink-400',
+      rose: 'text-rose-600 border-rose-400',
     },
     effect: {
+      plain: '',
       light: '',
       dark: '',
     },
-    rounded: { true: 'rounded-full' },
+    rounded: { true: { base: 'rounded-full', icon: 'rounded-full' } },
+    disabled: {
+      true: 'opacity-50 select-none',
+    },
   },
   compoundVariants: [
     {
       effect: 'dark',
       color: 'neutral',
-      class: 'bg-neutral-700 border-neutral-800 text-neutral-50',
+      class: 'bg-neutral-600 border-neutral-600 text-neutral-50',
     },
     {
       effect: 'dark',
       color: 'primary',
-      class: 'bg-primary-700 border-primary-800 text-primary-50',
+      class: 'bg-primary-600 border-primary-600 text-primary-50',
     },
     {
       effect: 'dark',
       color: 'success',
-      class: 'bg-success-700 border-success-800 text-success-50',
+      class: 'bg-success-600 border-success-600 text-success-50',
     },
     {
       effect: 'dark',
-      color: 'danger',
-      class: 'bg-danger-700 border-danger-800 text-danger-50',
+      color: ['danger', 'error'],
+      class: 'bg-danger-600 border-danger-600 text-danger-50',
     },
     {
       effect: 'dark',
       color: 'info',
-      class: 'bg-info-700 border-info-800 text-info-50',
+      class: 'bg-info-600 border-info-600 text-info-50',
     },
     {
       effect: 'dark',
       color: 'warning',
-      class: 'bg-warning-700 border-warning-800 text-warning-50',
+      class: 'bg-warning-600 border-warning-600 text-warning-50',
     },
     {
       effect: 'dark',
       color: 'red',
-      class: 'bg-red-700 border-red-800 text-red-50',
+      class: 'bg-red-600 border-red-600 text-red-50',
     },
     {
       effect: 'dark',
       color: 'orange',
-      class: 'bg-orange-700 border-orange-800 text-orange-50',
+      class: 'bg-orange-600 border-orange-600 text-orange-50',
     },
     {
       effect: 'dark',
       color: 'amber',
-      class: 'bg-amber-700 border-amber-800 text-amber-50',
+      class: 'bg-amber-600 border-amber-600 text-amber-50',
     },
     {
       effect: 'dark',
       color: 'yellow',
-      class: 'bg-yellow-700 border-yellow-800 text-yellow-50',
+      class: 'bg-yellow-600 border-yellow-600 text-yellow-50',
     },
     {
       effect: 'dark',
       color: 'lime',
-      class: 'bg-lime-700 border-lime-800 text-lime-50',
+      class: 'bg-lime-600 border-lime-600 text-lime-50',
     },
     {
       effect: 'dark',
       color: 'green',
-      class: 'bg-green-700 border-green-800 text-green-50',
+      class: 'bg-green-600 border-green-600 text-green-50',
     },
     {
       effect: 'dark',
       color: 'emerald',
-      class: 'bg-emerald-700 border-emerald-800 text-emerald-50',
+      class: 'bg-emerald-600 border-emerald-600 text-emerald-50',
     },
     {
       effect: 'dark',
       color: 'teal',
-      class: 'bg-teal-700 border-teal-800 text-teal-50',
+      class: 'bg-teal-600 border-teal-600 text-teal-50',
     },
     {
       effect: 'dark',
       color: 'cyan',
-      class: 'bg-cyan-700 border-cyan-800 text-cyan-50',
+      class: 'bg-cyan-600 border-cyan-600 text-cyan-50',
     },
     {
       effect: 'dark',
       color: 'sky',
-      class: 'bg-sky-700 border-sky-800 text-sky-50',
+      class: 'bg-sky-600 border-sky-600 text-sky-50',
     },
     {
       effect: 'dark',
       color: 'blue',
-      class: 'bg-blue-700 border-blue-800 text-blue-50',
+      class: 'bg-blue-600 border-blue-600 text-blue-50',
     },
     {
       effect: 'dark',
       color: 'indigo',
-      class: 'bg-indigo-700 border-indigo-800 text-indigo-50',
+      class: 'bg-indigo-600 border-indigo-600 text-indigo-50',
     },
     {
       effect: 'dark',
       color: 'violet',
-      class: 'bg-violet-700 border-violet-800 text-violet-50',
+      class: 'bg-violet-600 border-violet-600 text-violet-50',
     },
     {
       effect: 'dark',
       color: 'purple',
-      class: 'bg-purple-700 border-purple-800 text-purple-50',
+      class: 'bg-purple-600 border-purple-600 text-purple-50',
     },
     {
       effect: 'dark',
       color: 'fuchsia',
-      class: 'bg-fuchsia-700 border-fuchsia-800 text-fuchsia-50',
+      class: 'bg-fuchsia-600 border-fuchsia-600 text-fuchsia-50',
     },
     {
       effect: 'dark',
       color: 'pink',
-      class: 'bg-pink-700 border-pink-800 text-pink-50',
+      class: 'bg-pink-600 border-pink-600 text-pink-50',
     },
     {
       effect: 'dark',
       color: 'rose',
-      class: 'bg-rose-700 border-rose-800 text-rose-50',
+      class: 'bg-rose-600 border-rose-600 text-rose-50',
     },
     {
       effect: 'light',
       color: 'neutral',
-      class: 'bg-neutral-200 border-neutral-300 text-neutral-700',
+      class: 'bg-neutral-200 border-neutral-300',
     },
     {
       effect: 'light',
       color: 'primary',
-      class: 'bg-primary-200 border-primary-300 text-primary-700',
+      class: 'bg-primary-100 border-primary-200',
     },
     {
       effect: 'light',
       color: 'success',
-      class: 'bg-success-200 border-success-300 text-success-700',
+      class: 'bg-success-100 border-success-200',
     },
     {
       effect: 'light',
-      color: 'danger',
-      class: 'bg-danger-200 border-danger-300 text-danger-700',
+      color: ['danger', 'error'],
+      class: 'bg-danger-100 border-danger-200',
     },
     {
       effect: 'light',
       color: 'info',
-      class: 'bg-info-200 border-info-300 text-info-700',
+      class: 'bg-info-100 border-info-200',
     },
     {
       effect: 'light',
       color: 'warning',
-      class: 'bg-warning-200 border-warning-300 text-warning-700',
+      class: 'bg-warning-100 border-warning-200',
     },
     {
       effect: 'light',
       color: 'red',
-      class: 'bg-red-200 border-red-300 text-red-700',
+      class: 'bg-red-100 border-red-200',
     },
     {
       effect: 'light',
       color: 'orange',
-      class: 'bg-orange-200 border-orange-300 text-orange-700',
+      class: 'bg-orange-100 border-orange-200',
     },
     {
       effect: 'light',
       color: 'amber',
-      class: 'bg-amber-200 border-amber-300 text-amber-700',
+      class: 'bg-amber-100 border-amber-200',
     },
     {
       effect: 'light',
       color: 'yellow',
-      class: 'bg-yellow-200 border-yellow-300 text-yellow-700',
+      class: 'bg-yellow-100 border-yellow-200',
     },
     {
       effect: 'light',
       color: 'lime',
-      class: 'bg-lime-200 border-lime-300 text-lime-700',
+      class: 'bg-lime-100 border-lime-200',
     },
     {
       effect: 'light',
       color: 'green',
-      class: 'bg-green-200 border-green-300 text-green-700',
+      class: 'bg-green-100 border-green-200',
     },
     {
       effect: 'light',
       color: 'emerald',
-      class: 'bg-emerald-200 border-emerald-300 text-emerald-700',
+      class: 'bg-emerald-100 border-emerald-200',
     },
     {
       effect: 'light',
       color: 'teal',
-      class: 'bg-teal-200 border-teal-300 text-teal-700',
+      class: 'bg-teal-100 border-teal-200',
     },
     {
       effect: 'light',
       color: 'cyan',
-      class: 'bg-cyan-200 border-cyan-300 text-cyan-700',
+      class: 'bg-cyan-100 border-cyan-200',
     },
     {
       effect: 'light',
       color: 'sky',
-      class: 'bg-sky-200 border-sky-300 text-sky-700',
+      class: 'bg-sky-100 border-sky-200',
     },
     {
       effect: 'light',
       color: 'blue',
-      class: 'bg-blue-200 border-blue-300 text-blue-700',
+      class: 'bg-blue-100 border-blue-200',
     },
     {
       effect: 'light',
       color: 'indigo',
-      class: 'bg-indigo-200 border-indigo-300 text-indigo-700',
+      class: 'bg-indigo-100 border-indigo-200',
     },
     {
       effect: 'light',
       color: 'violet',
-      class: 'bg-violet-200 border-violet-300 text-violet-700',
+      class: 'bg-violet-100 border-violet-200',
     },
     {
       effect: 'light',
       color: 'purple',
-      class: 'bg-purple-200 border-purple-300 text-purple-700',
+      class: 'bg-purple-100 border-purple-200',
     },
     {
       effect: 'light',
       color: 'fuchsia',
-      class: 'bg-fuchsia-200 border-fuchsia-300 text-fuchsia-700',
+      class: 'bg-fuchsia-100 border-fuchsia-200',
     },
     {
       effect: 'light',
       color: 'pink',
-      class: 'bg-pink-200 border-pink-300 text-pink-700',
+      class: 'bg-pink-100 border-pink-200',
     },
     {
       effect: 'light',
       color: 'rose',
-      class: 'bg-rose-200 border-rose-300 text-rose-700',
+      class: 'bg-rose-100 border-rose-200',
     },
   ] as any,
   defaultVariants: {

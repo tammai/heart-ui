@@ -160,19 +160,16 @@ const _css = {
     },
     outline: {
       true: 'border',
-      false: '',
     },
     rounded: {
       true: 'rounded-full',
       false: '',
     },
     disabled: {
-      true: 'cursor-not-allowed opacity-50',
-      false: '',
+      true: 'select-none pointer-events-none opacity-50',
     },
     loading: {
       true: 'relative *:not-first:invisible',
-      false: '',
     },
   },
   compoundVariants: [
@@ -182,12 +179,12 @@ const _css = {
     { icon: false, size: 'sm', class: 'px-3' },
     { icon: false, size: 'md', class: 'px-4' },
     { icon: false, size: 'lg', class: 'px-5' },
-    { outline: true, type: 'neutral', class: 'border-neutral-700' },
-    { outline: true, type: 'primary', class: 'border-primary-700' },
-    { outline: true, type: ['danger', 'error'], class: 'border-danger-700' },
-    { outline: true, type: 'warning', class: 'border-warning-700' },
-    { outline: true, type: 'success', class: 'border-success-700' },
-    { outline: true, type: 'info', class: 'border-info-700' },
+    { outline: true, type: 'neutral', class: 'border-neutral-600' },
+    { outline: true, type: 'primary', class: 'border-primary-600' },
+    { outline: true, type: ['danger', 'error'], class: 'border-danger-600' },
+    { outline: true, type: 'warning', class: 'border-warning-600' },
+    { outline: true, type: 'success', class: 'border-success-600' },
+    { outline: true, type: 'info', class: 'border-info-600' },
     {
       variant: 'solid',
       type: 'neutral',

@@ -133,11 +133,24 @@
           <HTag color="fuchsia" effect="dark">Fuchsia</HTag>
         </div>
 
+        <h4 class="mt-6">Plain</h4>
+        <div class="inline-flex flex-wrap gap-2">
+          <HTag effect="plain">Neutral</HTag>
+          <HTag color="primary" effect="plain">Primary</HTag>
+          <HTag color="success" effect="plain">Success</HTag>
+          <HTag color="danger" effect="plain">Danger</HTag>
+          <HTag color="info" effect="plain">Info</HTag>
+          <HTag color="warning" effect="plain">Warning</HTag>
+          <HTag color="lime" effect="plain">Lime</HTag>
+          <HTag color="violet" effect="plain">Violet</HTag>
+          <HTag color="fuchsia" effect="plain">Fuchsia</HTag>
+        </div>
+
         <h4 class="mt-6">Size</h4>
         <div class="inline-flex gap-2">
-          <HTag size="sm">Small</HTag>
-          <HTag>Medium</HTag>
-          <HTag size="lg">Large</HTag>
+          <HTag disabled size="sm">Small</HTag>
+          <HTag disabled>Medium</HTag>
+          <HTag disabled size="lg">Large</HTag>
         </div>
 
         <h3 id="divider" class="mt-8">Divider</h3>
