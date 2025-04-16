@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<SkeletonItemProps>(), {
   variant: 'text',
 });
 
-const skeletonContext = inject<SkeletonContext | null>(
+const skeletonContext = inject<ComputedRef<SkeletonContext> | null>(
   SKELETON_CONTEXT_KEY,
   null,
 );
@@ -36,9 +36,9 @@ const icons = computed(() => ({
 }));
 
 const css = computed(() => {
-  return skeletonContext?.css({
+  return skeletonContext?.value.css({
     variant: props.variant,
-    animation: skeletonContext?.animation?.value,
+    animation: skeletonContext?.value.animation,
     hasIcon: ['image', 'avatar'].includes(props.variant),
   });
 });

@@ -20,6 +20,7 @@
                     'Skeleton',
                     'Alert',
                     'Divider',
+                    'Tag',
                   ]"
                   :key="item"
                   :href="`#${item.toLowerCase()}`"
@@ -100,8 +101,52 @@
           </a>
         </div>
 
+        <h3 id="tag" class="mt-8">Tag</h3>
+        <p>
+          A tag is a small piece of information that can be used to label or
+          categorize content. It can be used for filtering, grouping, or
+          organizing items.
+        </p>
+        <h4 class="mt-6">Light</h4>
+        <div class="inline-flex flex-wrap gap-2">
+          <HTag>Neutral</HTag>
+          <HTag color="primary">Primary</HTag>
+          <HTag color="success">Success</HTag>
+          <HTag color="danger">Danger</HTag>
+          <HTag color="info">Info</HTag>
+          <HTag color="warning">Warning</HTag>
+          <HTag color="lime">Lime</HTag>
+          <HTag color="violet">Violet</HTag>
+          <HTag color="fuchsia">Fuchsia</HTag>
+        </div>
+
+        <h4 class="mt-6">Dark</h4>
+        <div class="inline-flex flex-wrap gap-2">
+          <HTag effect="dark">Neutral</HTag>
+          <HTag color="primary" effect="dark">Primary</HTag>
+          <HTag color="success" effect="dark">Success</HTag>
+          <HTag color="danger" effect="dark">Danger</HTag>
+          <HTag color="info" effect="dark">Info</HTag>
+          <HTag color="warning" effect="dark">Warning</HTag>
+          <HTag color="lime" effect="dark">Lime</HTag>
+          <HTag color="violet" effect="dark">Violet</HTag>
+          <HTag color="fuchsia" effect="dark">Fuchsia</HTag>
+        </div>
+
+        <h4 class="mt-6">Size</h4>
+        <div class="inline-flex gap-2">
+          <HTag size="sm">Small</HTag>
+          <HTag>Medium</HTag>
+          <HTag size="lg">Large</HTag>
+        </div>
+
         <h3 id="divider" class="mt-8">Divider</h3>
-        <div class="grid grid-cols-3 gap-8">
+        <p>
+          A divider is a thin line that separates content or sections within a
+          layout. It can be used to create visual hierarchy and improve
+          readability.
+        </p>
+        <div class="mt-4 grid grid-cols-3 gap-8">
           <div class="flex h-40 flex-col gap-2">
             <div
               class="flex grow items-center justify-center rounded bg-neutral-200"
@@ -193,81 +238,86 @@
         </div>
 
         <h3 id="button" class="mt-8">Button</h3>
+        <p>
+          A button component is an interactive element that performs an action
+          when clicked or tapped. It can be used for navigation, commands, or
+          form submissions.
+        </p>
         <div class="flex flex-wrap gap-4">
-          <h4 class="w-full">Default</h4>
+          <h4 class="mt-4 w-full">Default</h4>
           <HButton @click="handleClick">Default</HButton>
-          <HButton type="tertiary">Tertiary</HButton>
-          <HButton type="ghost">Ghost</HButton>
+          <HButton variant="tertiary">Tertiary</HButton>
+          <HButton variant="ghost">Ghost</HButton>
 
-          <HButton variant="primary">Default</HButton>
-          <HButton variant="primary" type="tertiary">Tertiary</HButton>
-          <HButton variant="primary" type="ghost">Ghost</HButton>
+          <HButton type="primary">Default</HButton>
+          <HButton type="primary" variant="tertiary">Tertiary</HButton>
+          <HButton type="primary" variant="ghost">Ghost</HButton>
 
-          <HButton variant="danger">Default</HButton>
-          <HButton variant="danger" type="tertiary">Tertiary</HButton>
-          <HButton variant="danger" type="ghost">Ghost</HButton>
+          <HButton type="danger">Default</HButton>
+          <HButton type="danger" variant="tertiary">Tertiary</HButton>
+          <HButton type="danger" variant="ghost">Ghost</HButton>
           <div class="w-full"></div>
-          <HButton variant="warning">Default</HButton>
-          <HButton variant="warning" type="tertiary">Tertiary</HButton>
-          <HButton variant="warning" type="ghost">Ghost</HButton>
+          <HButton type="warning">Default</HButton>
+          <HButton type="warning" variant="tertiary">Tertiary</HButton>
+          <HButton type="warning" variant="ghost">Ghost</HButton>
 
-          <HButton variant="success">Default</HButton>
-          <HButton variant="success" type="tertiary">Tertiary</HButton>
-          <HButton variant="success" type="ghost">Ghost</HButton>
+          <HButton type="success">Default</HButton>
+          <HButton type="success" variant="tertiary">Tertiary</HButton>
+          <HButton type="success" variant="ghost">Ghost</HButton>
 
-          <HButton variant="info">Default</HButton>
-          <HButton variant="info" type="tertiary">Tertiary</HButton>
-          <HButton variant="info" type="ghost">Ghost</HButton>
+          <HButton type="info">Default</HButton>
+          <HButton type="info" variant="tertiary">Tertiary</HButton>
+          <HButton type="info" variant="ghost">Ghost</HButton>
 
           <h4 class="w-full">Outline</h4>
           <HButton outline>Default</HButton>
-          <HButton outline type="tertiary">Tertiary</HButton>
-          <HButton outline type="ghost">Ghost</HButton>
+          <HButton outline variant="tertiary">Tertiary</HButton>
+          <HButton outline variant="ghost">Ghost</HButton>
 
-          <HButton outline variant="primary">Default</HButton>
-          <HButton outline variant="primary" type="tertiary">Tertiary</HButton>
-          <HButton outline variant="primary" type="ghost">Ghost</HButton>
+          <HButton outline type="primary">Default</HButton>
+          <HButton outline type="primary" variant="tertiary">Tertiary</HButton>
+          <HButton outline type="primary" variant="ghost">Ghost</HButton>
 
-          <HButton outline variant="danger">Default</HButton>
-          <HButton outline variant="danger" type="tertiary">Tertiary</HButton>
-          <HButton outline variant="danger" type="ghost">Ghost</HButton>
+          <HButton outline type="danger">Default</HButton>
+          <HButton outline type="danger" variant="tertiary">Tertiary</HButton>
+          <HButton outline type="danger" variant="ghost">Ghost</HButton>
           <div class="w-full"></div>
-          <HButton outline variant="warning">Default</HButton>
-          <HButton outline variant="warning" type="tertiary">Tertiary</HButton>
-          <HButton outline variant="warning" type="ghost">Ghost</HButton>
+          <HButton outline type="warning">Default</HButton>
+          <HButton outline type="warning" variant="tertiary">Tertiary</HButton>
+          <HButton outline type="warning" variant="ghost">Ghost</HButton>
 
-          <HButton outline variant="success">Default</HButton>
-          <HButton outline variant="success" type="tertiary">Tertiary</HButton>
-          <HButton outline variant="success" type="ghost">Ghost</HButton>
+          <HButton outline type="success">Default</HButton>
+          <HButton outline type="success" variant="tertiary">Tertiary</HButton>
+          <HButton outline type="success" variant="ghost">Ghost</HButton>
 
-          <HButton outline variant="info">Default</HButton>
-          <HButton outline variant="info" type="tertiary">Tertiary</HButton>
-          <HButton outline variant="info" type="ghost">Ghost</HButton>
+          <HButton outline type="info">Default</HButton>
+          <HButton outline type="info" variant="tertiary">Tertiary</HButton>
+          <HButton outline type="info" variant="ghost">Ghost</HButton>
 
           <h4 class="w-full">Rounded</h4>
           <HButton rounded>Default</HButton>
-          <HButton rounded type="tertiary">Tertiary</HButton>
-          <HButton rounded type="ghost">Ghost</HButton>
+          <HButton rounded variant="tertiary">Tertiary</HButton>
+          <HButton rounded variant="ghost">Ghost</HButton>
 
-          <HButton rounded variant="primary">Default</HButton>
-          <HButton rounded variant="primary" type="tertiary">Tertiary</HButton>
-          <HButton rounded variant="primary" type="ghost">Ghost</HButton>
+          <HButton rounded type="primary">Default</HButton>
+          <HButton rounded type="primary" variant="tertiary">Tertiary</HButton>
+          <HButton rounded type="primary" variant="ghost">Ghost</HButton>
 
-          <HButton rounded variant="danger">Default</HButton>
-          <HButton rounded variant="danger" type="tertiary">Tertiary</HButton>
-          <HButton rounded variant="danger" type="ghost">Ghost</HButton>
+          <HButton rounded type="danger">Default</HButton>
+          <HButton rounded type="danger" variant="tertiary">Tertiary</HButton>
+          <HButton rounded type="danger" variant="ghost">Ghost</HButton>
           <div class="w-full"></div>
-          <HButton rounded variant="warning">Default</HButton>
-          <HButton rounded variant="warning" type="tertiary">Tertiary</HButton>
-          <HButton rounded variant="warning" type="ghost">Ghost</HButton>
+          <HButton rounded type="warning">Default</HButton>
+          <HButton rounded type="warning" variant="tertiary">Tertiary</HButton>
+          <HButton rounded type="warning" variant="ghost">Ghost</HButton>
 
-          <HButton rounded variant="success">Default</HButton>
-          <HButton rounded variant="success" type="tertiary">Tertiary</HButton>
-          <HButton rounded variant="success" type="ghost">Ghost</HButton>
+          <HButton rounded type="success">Default</HButton>
+          <HButton rounded type="success" variant="tertiary">Tertiary</HButton>
+          <HButton rounded type="success" variant="ghost">Ghost</HButton>
 
-          <HButton rounded variant="info">Default</HButton>
-          <HButton rounded variant="info" type="tertiary">Tertiary</HButton>
-          <HButton rounded variant="info" type="ghost">Ghost</HButton>
+          <HButton rounded type="info">Default</HButton>
+          <HButton rounded type="info" variant="tertiary">Tertiary</HButton>
+          <HButton rounded type="info" variant="ghost">Ghost</HButton>
 
           <h4 class="w-full">Size</h4>
           <HButton size="sm">Small</HButton>
@@ -282,16 +332,16 @@
           </HButton>
 
           <h4 class="w-full">Group</h4>
-          <HButtonGroup size="sm" type="ghost" outline rounded>
+          <HButtonGroup size="sm" variant="ghost" outline rounded>
             <HButton>One</HButton>
             <HButton>Two</HButton>
             <HButton>Three</HButton>
           </HButtonGroup>
-          <HButtonGroup outline type="tertiary">
+          <HButtonGroup outline variant="tertiary">
             <HButton icon="fluent:arrow-left-24-regular"></HButton>
             <HButton icon="fluent:arrow-right-24-regular"></HButton>
           </HButtonGroup>
-          <HButtonGroup size="lg" variant="primary">
+          <HButtonGroup size="lg" type="primary">
             <HButton>One</HButton>
             <HButton>Two</HButton>
             <HButton>Three</HButton>
@@ -301,10 +351,10 @@
         <!-- Layout -->
         <h3 id="layout" class="mt-8">Layout</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla hic
-          adipisci nesciunt, est libero voluptatibus neque aliquam soluta
-          quaerat, nisi vitae nostrum ipsum accusantium. Obcaecati nobis
-          consequuntur quibusdam qui temporibus!
+          A layout component is a container that defines the structure and
+          arrangement of other components within a page or section. It can be
+          used to create responsive and organized layouts for different screen
+          sizes.
         </p>
 
         <h4 class="mt-4 mb-1">Default layout</h4>
@@ -410,10 +460,9 @@
         <!-- Card -->
         <h3 id="card" class="mt-8">Card</h3>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur
-          omnis consequatur nam sequi porro dolorum eligendi, laborum sed
-          tempora ratione natus voluptas perspiciatis dignissimos sunt, eos
-          dicta sapiente, fugiat voluptatum.
+          A card component is a container that displays content in a visually
+          appealing way. It can be used to group related information, images,
+          and actions together.
         </p>
 
         <div class="grid grid-cols-2 gap-x-8">
@@ -458,6 +507,11 @@
 
         <!-- Skeleton -->
         <h2 id="skeleton" class="mt-8">Skeleton</h2>
+        <p>
+          A skeleton component is a placeholder that indicates loading content.
+          It can be used to improve user experience by providing visual feedback
+          while data is being fetched or processed.
+        </p>
         <div class="mt-6 grid grid-cols-3 gap-6">
           <HSkeleton :animation="false" />
           <HSkeleton>
@@ -498,21 +552,22 @@
           </HSkeleton>
         </div>
         <h2 id="alert" class="mt-8">Alert</h2>
+        <p>
+          An alert component is a message that provides feedback or information
+          to the user. It can be used to display success, error, warning, or
+          informational messages.
+        </p>
         <div class="grid grid-cols-2 gap-6">
-          <HAlert
-            variant="success"
-            title="Success"
-            message="This is a success!"
-          />
-          <HAlert variant="error" title="Error" message="This is an error!">
+          <HAlert type="success" title="Success" message="This is a success!" />
+          <HAlert type="danger" title="Error" message="This is an error!">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
             recusandae corporis culpa odio repudiandae, natus quas sint,
             explicabo dolor ipsum ex sit tenetur impedit dolore et accusantium
             beatae quaerat! Et!</HAlert
           >
-          <HAlert variant="info" title="Info" message="This is an info!" />
+          <HAlert type="info" title="Info" message="This is an info!" />
           <HAlert
-            variant="warning"
+            type="warning"
             title="Warning"
             message="This is a warning!"
             closable

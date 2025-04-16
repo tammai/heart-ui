@@ -35,12 +35,11 @@
 <script lang="ts" setup>
 import { tv } from 'tailwind-variants';
 import type { ComponentSize, DeepPartial } from '../types/heart';
-import type { Reactive } from 'vue';
 import type { ButtonGroupContext } from './HButtonGroup.vue';
 
 export type ButtonNativeType = 'button' | 'submit' | 'reset';
-export type ButtonType = 'solid' | 'tertiary' | 'ghost';
-export type ButtonVariant =
+export type ButtonVariant = 'solid' | 'tertiary' | 'ghost';
+export type ButtonType =
   | 'neutral'
   | 'primary'
   | 'danger'
@@ -67,8 +66,8 @@ export interface ButtonProps {
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   nativeType: 'button',
-  variant: 'neutral',
-  type: 'solid',
+  type: 'neutral',
+  variant: 'solid',
   outline: false,
   rounded: false,
   iconPosition: 'left',
@@ -78,7 +77,7 @@ const emit = defineEmits<{
   (event: 'click', ev: MouseEvent): void;
 }>();
 
-const buttonGroupContext = inject<ButtonGroupContext | null>(
+const buttonGroupContext = inject<ComputedRef<ButtonGroupContext> | null>(
   BUTTON_GROUP_CONTEXT_KEY,
   null,
 );
@@ -91,24 +90,27 @@ const loadingIconAnimated = computed(() =>
 
 const buttonSize = computed(() => {
   return (
-    buttonGroupContext?.size ?? props.size ?? getHeartConfig('size') ?? 'md'
+    buttonGroupContext?.value.size ??
+    props.size ??
+    getHeartConfig('size') ??
+    'md'
   );
 });
 
 const buttonOutline = computed(() => {
-  return buttonGroupContext?.outline ?? props.outline;
+  return buttonGroupContext?.value.outline ?? props.outline;
 });
 
 const buttonRounded = computed(() => {
-  return buttonGroupContext?.rounded ?? props.rounded;
+  return buttonGroupContext?.value.rounded ?? props.rounded;
 });
 
 const buttonVariant = computed(() => {
-  return buttonGroupContext?.variant ?? props.variant;
+  return buttonGroupContext?.value.variant ?? props.variant;
 });
 
 const buttonType = computed(() => {
-  return buttonGroupContext?.type ?? props.type;
+  return buttonGroupContext?.value.type ?? props.type;
 });
 
 const iconSize = computed(() => {
@@ -129,16 +131,16 @@ const _css = {
       'absolute top-0 left w-full h-full flex items-center justify-center pointer-events-none',
   },
   variants: {
-    variant: {
+    type: {
       neutral: '',
       primary: '',
       danger: '',
+      error: '',
       warning: '',
       success: '',
       info: '',
-      error: '',
     },
-    type: {
+    variant: {
       solid: '',
       tertiary: '',
       ghost: '',
@@ -180,110 +182,110 @@ const _css = {
     { icon: false, size: 'sm', class: 'px-3' },
     { icon: false, size: 'md', class: 'px-4' },
     { icon: false, size: 'lg', class: 'px-5' },
-    { outline: true, variant: 'neutral', class: 'border-neutral-700' },
-    { outline: true, variant: 'primary', class: 'border-primary-700' },
-    { outline: true, variant: ['danger', 'error'], class: 'border-danger-700' },
-    { outline: true, variant: 'warning', class: 'border-warning-700' },
-    { outline: true, variant: 'success', class: 'border-success-700' },
-    { outline: true, variant: 'info', class: 'border-info-700' },
+    { outline: true, type: 'neutral', class: 'border-neutral-700' },
+    { outline: true, type: 'primary', class: 'border-primary-700' },
+    { outline: true, type: ['danger', 'error'], class: 'border-danger-700' },
+    { outline: true, type: 'warning', class: 'border-warning-700' },
+    { outline: true, type: 'success', class: 'border-success-700' },
+    { outline: true, type: 'info', class: 'border-info-700' },
     {
-      type: 'solid',
-      variant: 'neutral',
+      variant: 'solid',
+      type: 'neutral',
       class:
         'bg-neutral-600 text-neutral-50 hover:bg-neutral-500 active:bg-neutral-700',
     },
     {
-      type: 'solid',
-      variant: 'primary',
+      variant: 'solid',
+      type: 'primary',
       class:
         'bg-primary-500 text-primary-50 hover:bg-primary-600 active:bg-primary-700',
     },
     {
-      type: 'solid',
-      variant: ['danger', 'error'],
+      variant: 'solid',
+      type: ['danger', 'error'],
       class:
         'bg-danger-500 text-danger-50 hover:bg-danger-600 active:bg-danger-700',
     },
     {
-      type: 'solid',
-      variant: 'warning',
+      variant: 'solid',
+      type: 'warning',
       class:
         'bg-warning-500 text-warning-50 hover:bg-warning-600 active:bg-warning-700',
     },
     {
-      type: 'solid',
-      variant: 'success',
+      variant: 'solid',
+      type: 'success',
       class:
         'bg-success-500 text-success-50 hover:bg-success-600 active:bg-success-700',
     },
     {
-      type: 'solid',
-      variant: 'info',
+      variant: 'solid',
+      type: 'info',
       class: 'bg-info-500 text-info-50 hover:bg-info-600 active:bg-info-700',
     },
     {
-      type: 'ghost',
-      variant: 'neutral',
+      variant: 'ghost',
+      type: 'neutral',
       class: 'text-neutral-700 hover:bg-neutral-200 active:bg-neutral-300',
     },
     {
-      type: 'ghost',
-      variant: 'primary',
+      variant: 'ghost',
+      type: 'primary',
       class: 'text-primary-600 hover:bg-primary-100 active:bg-primary-200',
     },
     {
-      type: 'ghost',
-      variant: ['danger', 'error'],
+      variant: 'ghost',
+      type: ['danger', 'error'],
       class: 'text-danger-600 hover:bg-danger-100 active:bg-danger-200',
     },
     {
-      type: 'ghost',
-      variant: 'warning',
+      variant: 'ghost',
+      type: 'warning',
       class: 'text-warning-600 hover:bg-warning-100 active:bg-warning-200',
     },
     {
-      type: 'ghost',
-      variant: 'success',
+      variant: 'ghost',
+      type: 'success',
       class: 'text-success-600 hover:bg-success-100 active:bg-success-200',
     },
     {
-      type: 'ghost',
-      variant: 'info',
+      variant: 'ghost',
+      type: 'info',
       class: 'text-info-600 hover:bg-info-100 active:bg-info-200',
     },
     {
-      type: 'tertiary',
-      variant: 'neutral',
+      variant: 'tertiary',
+      type: 'neutral',
       class:
         'bg-neutral-200 text-neutral-700 hover:bg-neutral-300 active:bg-neutral-400',
     },
     {
-      type: 'tertiary',
-      variant: 'primary',
+      variant: 'tertiary',
+      type: 'primary',
       class:
         'bg-primary-100 text-primary-600 hover:bg-primary-200 active:bg-primary-300',
     },
     {
-      type: 'tertiary',
-      variant: ['danger', 'error'],
+      variant: 'tertiary',
+      type: ['danger', 'error'],
       class:
         'bg-danger-100 text-danger-600 hover:bg-danger-200 active:bg-danger-300',
     },
     {
-      type: 'tertiary',
-      variant: 'warning',
+      variant: 'tertiary',
+      type: 'warning',
       class:
         'bg-warning-100 text-warning-600 hover:bg-warning-200 active:bg-warning-300',
     },
     {
-      type: 'tertiary',
-      variant: 'success',
+      variant: 'tertiary',
+      type: 'success',
       class:
         'bg-success-100 text-success-600 hover:bg-success-200 active:bg-success-300',
     },
     {
-      type: 'tertiary',
-      variant: 'info',
+      variant: 'tertiary',
+      type: 'info',
       class: 'bg-info-100 text-info-600 hover:bg-info-200 active:bg-info-300',
     },
   ] as any,

@@ -24,6 +24,7 @@ export default defineAppConfig({
       hide: 'fluent:eye-off-24-filled',
       search: 'fluent:search-24-filled',
       success: 'fluent:checkmark-circle-24-filled',
+      danger: 'fluent:error-circle-24-filled',
       error: 'fluent:error-circle-24-filled',
       info: 'fluent:info-24-filled',
       warning: 'fluent:warning-24-filled',

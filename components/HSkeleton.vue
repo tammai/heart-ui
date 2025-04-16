@@ -36,7 +36,7 @@ export interface SkeletonSlots {
 
 export interface SkeletonContext {
   css: (config: any) => string;
-  animation?: Ref<boolean>;
+  animation?: boolean;
 }
 
 const props = withDefaults(defineProps<SkeletonProps>(), {
@@ -65,8 +65,11 @@ const _itemCss = {
   },
 };
 
-provide<SkeletonContext>(SKELETON_CONTEXT_KEY, {
-  animation: toRef(() => props.animation),
-  css: tv({ extend: tv(_itemCss), ...props.ui }),
-});
+provide<ComputedRef<SkeletonContext>>(
+  SKELETON_CONTEXT_KEY,
+  computed(() => ({
+    animation: props.animation,
+    css: tv({ extend: tv(_itemCss), ...props.ui }),
+  })),
+);
 </script>

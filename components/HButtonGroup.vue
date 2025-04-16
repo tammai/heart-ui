@@ -22,12 +22,12 @@ export interface ButtonGroupProps {
 }
 
 export interface ButtonGroupContext {
-  size: ComponentSize;
-  iconPosition: IconPosition;
-  outline: boolean;
-  rounded: boolean;
-  variant: ButtonVariant;
-  type: ButtonType;
+  size?: ComponentSize;
+  iconPosition?: IconPosition;
+  outline?: boolean;
+  rounded?: boolean;
+  variant?: ButtonVariant;
+  type?: ButtonType;
 }
 
 const props = defineProps<ButtonGroupProps>();
@@ -73,12 +73,15 @@ const css = computed(() => {
   return tv({ extend: tv(_css), ...props.ui });
 });
 
-provide<ButtonGroupContext>(BUTTON_GROUP_CONTEXT_KEY, {
-  size: props.size ?? 'md',
-  outline: props.outline ?? false,
-  rounded: props.rounded ?? false,
-  variant: props.variant ?? 'neutral',
-  type: props.type ?? 'solid',
-  iconPosition: props.iconPosition ?? 'left',
-});
+provide<ComputedRef<ButtonGroupContext>>(
+  BUTTON_GROUP_CONTEXT_KEY,
+  computed(() => ({
+    size: props.size,
+    outline: props.outline,
+    rounded: props.rounded,
+    variant: props.variant,
+    type: props.type,
+    iconPosition: props.iconPosition,
+  })),
+);
 </script>
