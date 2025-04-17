@@ -13,6 +13,7 @@ export default defineAppConfig({
       up: 'fluent:chevron-up-24-filled',
       down: 'fluent:chevron-down-24-filled',
       back: 'fluent:arrow-left-24-filled',
+      collapse: 'fluent:chevron-right-24-regular',
       dropdown: 'fluent:chevron-down-24-filled',
       select: 'fluent:chevron-up-down-24-filled',
       plus: 'fluent:add-24-filled',

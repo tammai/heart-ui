@@ -1,10 +1,11 @@
 import { get, isNumber } from 'lodash-unified';
 
-export const SKELETON_CONTEXT_KEY = Symbol('skeleton');
-export const BUTTON_GROUP_CONTEXT_KEY = Symbol('button-group');
-export const CHECKBOX_GROUP_CONTEXT_KEY = Symbol('checkbox-group');
-export const RADIO_GROUP_CONTEXT_KEY = Symbol('radio-group');
-export const FORM_CONTEXT_KEY = Symbol('form');
+export const SKELETON_CONTEXT_KEY = Symbol('h-skeleton');
+export const BUTTON_GROUP_CONTEXT_KEY = Symbol('h-button-group');
+export const CHECKBOX_GROUP_CONTEXT_KEY = Symbol('h-checkbox-group');
+export const RADIO_GROUP_CONTEXT_KEY = Symbol('h-radio-group');
+export const FORM_CONTEXT_KEY = Symbol('h-form');
+export const COLLAPSE_CONTEXT_KEY = Symbol('h-collapse');
 
 export const addUnit = (value: number | string) =>
   isNumber(value) || parseInt(value) ? value + 'px' : value;

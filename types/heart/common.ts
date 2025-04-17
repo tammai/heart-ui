@@ -6,6 +6,9 @@ export type DeepPartial<T> = T extends object
     }
   : T;
 
+export type Arrayable<T> = T | T[];
+export type Awaitable<T> = Promise<T> | T;
+
 export type ComponentSize = 'sm' | 'md' | 'lg';
 
 export interface HeartConfig {

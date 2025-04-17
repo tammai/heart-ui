@@ -101,6 +101,88 @@
           </a>
         </div>
 
+        <h3 id="collapse" class="mt-8">Collapse</h3>
+        <div class="mt-6">
+          <h4 class="mb-3">Default</h4>
+          <HCollapse v-model="collapseValue1" @change="handleChange">
+            <HCollapseItem title="Consistency" name="1">
+              <div>
+                Consistency refers to the quality of always behaving or
+                performing in a similar way, maintaining uniformity or
+                steadiness over time. It's about reliability, predictability,
+                and coherence in actions, principles, or results.
+              </div>
+            </HCollapseItem>
+            <HCollapseItem title="Feedback" name="2">
+              <div>
+                Feedback is information or reactions shared with someone about
+                their actions, work, or behavior to help them improve,
+                understand their impact, or reinforce positive outcomes. It can
+                be verbal, written, or expressed nonverbally and is often used
+                in workplaces, education, personal relationships, and creative
+                projects.
+              </div>
+            </HCollapseItem>
+            <HCollapseItem title="Efficiency" name="3">
+              <div>
+                Efficiency is the ability to accomplish a task or achieve a goal
+                with the least amount of wasted time, effort, or resources. It's
+                about optimizing processes and outputs while minimizing
+                unnecessary inputs or actions. Essentially, it's doing things
+                right—and doing them swiftly and smartly.
+              </div>
+            </HCollapseItem>
+            <HCollapseItem title="Controllability" name="4">
+              <div>
+                Controllability refers to the ability to manage, influence, or
+                regulate a system, process, or situation to achieve desired
+                outcomes. It's often used in fields like engineering, economics,
+                and management.
+              </div>
+            </HCollapseItem>
+          </HCollapse>
+        </div>
+        <div class="mt-6">
+          <h4 class="mb-3">Accordion</h4>
+          <HCollapse v-model="collapseValue2" accordion @change="handleChange">
+            <HCollapseItem title="Consistency" name="1">
+              <div>
+                Consistency refers to the quality of always behaving or
+                performing in a similar way, maintaining uniformity or
+                steadiness over time. It's about reliability, predictability,
+                and coherence in actions, principles, or results.
+              </div>
+            </HCollapseItem>
+            <HCollapseItem title="Feedback" name="2">
+              <div>
+                Feedback is information or reactions shared with someone about
+                their actions, work, or behavior to help them improve,
+                understand their impact, or reinforce positive outcomes. It can
+                be verbal, written, or expressed nonverbally and is often used
+                in workplaces, education, personal relationships, and creative
+                projects.
+              </div>
+            </HCollapseItem>
+            <HCollapseItem title="Efficiency" name="3">
+              <div>
+                Efficiency is the ability to accomplish a task or achieve a goal
+                with the least amount of wasted time, effort, or resources. It's
+                about optimizing processes and outputs while minimizing
+                unnecessary inputs or actions. Essentially, it's doing things
+                right—and doing them swiftly and smartly.
+              </div>
+            </HCollapseItem>
+            <HCollapseItem title="Controllability" name="4">
+              <div>
+                Controllability refers to the ability to manage, influence, or
+                regulate a system, process, or situation to achieve desired
+                outcomes. It's often used in fields like engineering, economics,
+                and management.
+              </div>
+            </HCollapseItem>
+          </HCollapse>
+        </div>
+
         <h3 id="tag" class="mt-8">Tag</h3>
         <p>
           A tag is a small piece of information that can be used to label or
@@ -148,9 +230,15 @@
 
         <h4 class="mt-6">Size</h4>
         <div class="inline-flex gap-2">
-          <HTag disabled size="sm">Small</HTag>
-          <HTag disabled>Medium</HTag>
-          <HTag disabled size="lg">Large</HTag>
+          <HTag size="sm">Small</HTag>
+          <HTag>Medium</HTag>
+          <HTag size="lg">Large</HTag>
+        </div>
+
+        <h4 class="mt-6">Others</h4>
+        <div class="inline-flex gap-2">
+          <HTag disabled>Disabled</HTag>
+          <HTag removable>Removable</HTag>
         </div>
 
         <h3 id="divider" class="mt-8">Divider</h3>
@@ -596,5 +684,11 @@ const handleClick = () => {
   if (import.meta.client) {
     alert('You just clicked!');
   }
+};
+
+const collapseValue1 = ref(['1']);
+const collapseValue2 = ref([]);
+const handleChange = (val: any) => {
+  console.log('activeItems', val);
 };
 </script>
