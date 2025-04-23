@@ -30,6 +30,7 @@
 <script setup lang="ts">
 import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../types/heart';
+import type { CSSProperties } from 'vue';
 
 export interface LayoutProps {
   slotSizes?: {
@@ -64,8 +65,8 @@ const slots = defineSlots<LayoutSlots>();
 const _css = {
   base: 'flex flex-col',
   slots: {
-    body: 'grow w-full',
-    main: 'w-full',
+    body: 'grow w-full min-w-0',
+    main: 'grow min-w-0',
     header: 'h-[var(--h-layout-header-size)]',
     footer: 'h-[var(--h-layout-footer-size)]',
     asideRight: 'min-w-[var(--h-layout-aside-right-size)]',
@@ -88,7 +89,7 @@ const css = computed(() =>
 );
 
 const style = computed(() => {
-  const _style: { [x: string]: string } = {};
+  const _style: CSSProperties = {};
   const { header, footer, asideLeft, asideRight } = props.slotSizes;
   const _slotSizes = {
     header: header ?? 64,

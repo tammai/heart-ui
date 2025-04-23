@@ -13,11 +13,20 @@
       <div :class="css().title()">
         <slot name="title">{{ title }}</slot>
       </div>
-      <slot name="icon" :is-active="isActive">
+      <slot
+        name="icon"
+        :is-active="isActive"
+        :css="css({ active: isActive }).icon()"
+      >
         <Icon
-          :name="collapseIcon"
+          :name="isActive ? (collapseActiveIcon ?? collapseIcon) : collapseIcon"
           size="16"
-          :class="css({ active: isActive }).icon()"
+          :class="
+            css({
+              active: isActive,
+              hasActiveIcon: !!collapseActiveIcon,
+            }).icon()
+          "
         />
       </slot>
     </button>
@@ -39,21 +48,26 @@
 
 <script lang="ts" setup>
 import type { RendererElement } from '@vue/runtime-core';
-import type { CollapseContext } from './HCollapse.vue';
+import type { CollapseContext } from '../HCollapse.vue';
 import { tv } from 'tailwind-variants';
-import type { DeepPartial } from '../types/heart';
+import type { DeepPartial } from '../../types/heart';
 
 export interface CollapseItemProps {
   title: string;
   icon?: string;
+  activeIcon?: string;
   name?: string;
   disabled?: boolean;
   ui?: DeepPartial<typeof _css>;
 }
 
+const defineOptions = {
+  name: 'HCollapseItem',
+};
+
 const props = defineProps<CollapseItemProps>();
 
-const collapse = inject<CollapseContext>(COLLAPSE_CONTEXT_KEY);
+const collapse = inject<ComputedRef<CollapseContext>>(COLLAPSE_CONTEXT_KEY);
 
 const focusing = ref(false);
 const isClick = ref(false);
@@ -62,12 +76,15 @@ const name = computed(() => {
 });
 
 const isActive = computed(() =>
-  collapse?.activeNames.value.includes(unref(name)),
+  collapse?.value.activeNames.value.includes(unref(name)),
 );
 
 const collapseIcon = computed(() => {
-  if (props.icon) return props.icon;
-  return getHeartConfig('icon.collapse');
+  return collapse?.value.icon ?? props.icon ?? getHeartConfig('icon.collapse');
+});
+
+const collapseActiveIcon = computed(() => {
+  return props.activeIcon ?? collapse?.value.activeIcon;
 });
 
 const _css = {
@@ -75,13 +92,21 @@ const _css = {
     title: 'font-semibold',
     inner: 'pb-3',
     header:
-      'flex items-center justify-between w-full py-3 border-t border-neutral-200 cursor-pointer',
+      'flex items-center justify-between w-full py-3 border-t border-neutral-200 cursor-pointer hover:text-primary-500',
     content: 'transition-all duration-300 ease-in-out',
     icon: 'rotate-0 transition-transform duration-300 ease-in-out',
   },
   variants: {
-    active: { true: { icon: 'rotate-90' } },
+    active: { true: '' },
+    hasActiveIcon: { false: '' },
   },
+  compoundVariants: [
+    {
+      active: true,
+      hasActiveIcon: false,
+      class: { icon: 'rotate-90' },
+    },
+  ] as any,
 };
 
 const css = computed(() => {
@@ -100,13 +125,13 @@ const handleFocus = () => {
 
 const handleHeaderClick = () => {
   if (props.disabled) return;
-  collapse?.handleItemClick(unref(name));
+  collapse?.value.handleItemClick(unref(name));
   focusing.value = false;
   isClick.value = true;
 };
 
 const handleEnterClick = () => {
-  collapse?.handleItemClick(unref(name));
+  collapse?.value.handleItemClick(unref(name));
 };
 
 const reset = (el: RendererElement) => {

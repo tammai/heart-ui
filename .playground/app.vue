@@ -21,6 +21,7 @@
                     'Alert',
                     'Divider',
                     'Tag',
+                    'Scrollbar',
                   ]"
                   :key="item"
                   :href="`#${item.toLowerCase()}`"
@@ -101,6 +102,35 @@
           </a>
         </div>
 
+        <h3 id="scrollbar" class="mt-8">Scrollbar</h3>
+
+        <h4 class="mt-6">Vertical</h4>
+        <HScrollbar height="320px">
+          <div class="flex flex-col gap-2 p-3">
+            <div
+              v-for="item in 16"
+              :key="item"
+              class="bg-primary-100 flex h-10 items-center justify-center rounded"
+            >
+              {{ item }}
+            </div>
+          </div>
+        </HScrollbar>
+
+        <h4 class="mt-6">Horizontal</h4>
+
+        <HScrollbar>
+          <div class="flex w-fit gap-2 p-3">
+            <div
+              v-for="item in 16"
+              :key="item"
+              class="bg-info-100 flex h-10 w-30 items-center justify-center rounded"
+            >
+              {{ item }}
+            </div>
+          </div>
+        </HScrollbar>
+
         <h3 id="collapse" class="mt-8">Collapse</h3>
         <div class="mt-6">
           <h4 class="mb-3">Default</h4>
@@ -144,7 +174,13 @@
         </div>
         <div class="mt-6">
           <h4 class="mb-3">Accordion</h4>
-          <HCollapse v-model="collapseValue2" accordion @change="handleChange">
+          <HCollapse
+            v-model="collapseValue2"
+            accordion
+            icon="fluent:add-24-regular"
+            active-icon="fluent:subtract-24-regular"
+            @change="handleChange"
+          >
             <HCollapseItem title="Consistency" name="1">
               <div>
                 Consistency refers to the quality of always behaving or
@@ -271,6 +307,7 @@
               icon="fluent:heart-24-filled"
               icon-size="24"
               class="text-rose-600"
+              :ui="{ base: 'before:bg-rose-600 after:bg-rose-600' }"
             />
             <div
               class="flex grow items-center justify-center rounded bg-neutral-200"
@@ -316,6 +353,11 @@
               icon="fluent:heart-24-filled"
               icon-size="24"
               class="h-30 text-rose-600"
+              :ui="{
+                variants: {
+                  hasChild: { true: 'before:bg-rose-600 after:bg-rose-600' },
+                },
+              }"
             />
             <div
               class="flex grow items-center justify-center rounded bg-neutral-200"

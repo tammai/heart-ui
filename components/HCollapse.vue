@@ -15,9 +15,8 @@ export type CollapseModelValue = Arrayable<CollapseActiveName>;
 export interface CollapseProps {
   modelValue?: string | string[];
   accordion?: boolean;
-  disabled?: boolean;
-  border?: boolean;
   icon?: string;
+  activeIcon?: string;
   ui?: {
     root?: string;
     item?: string;
@@ -25,6 +24,8 @@ export interface CollapseProps {
 }
 
 export interface CollapseContext {
+  icon?: string;
+  activeIcon?: string;
   activeNames: Ref<CollapseActiveName[]>;
   handleItemClick: (name: CollapseActiveName) => void;
 }
@@ -78,10 +79,15 @@ watch(
   { deep: true },
 );
 
-provide<CollapseContext>(COLLAPSE_CONTEXT_KEY, {
-  activeNames,
-  handleItemClick,
-});
+provide<ComputedRef<CollapseContext>>(
+  COLLAPSE_CONTEXT_KEY,
+  computed(() => ({
+    icon: props.icon,
+    activeIcon: props.activeIcon,
+    activeNames,
+    handleItemClick,
+  })),
+);
 
 defineExpose({
   activeNames,

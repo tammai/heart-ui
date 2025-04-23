@@ -23,12 +23,12 @@ export interface DividerProps {
 const props = defineProps<DividerProps>();
 
 const _css = {
-  base: 'text-neutral-600',
+  base: 'text-neutral-600 before:bg-neutral-200 after:bg-neutral-200 bg-neutral-200',
   variants: {
     isVertical: { true: '' },
     hasChild: {
-      true: 'flex gap-2 items-center content-center before:content-[""] after:content-[""] before:block after:block before:bg-neutral-300 after:bg-neutral-300 before:grow after:grow',
-      false: 'bg-neutral-300',
+      true: 'bg-transparent flex gap-2 items-center content-center before:content-[""] after:content-[""] before:block after:block before:grow after:grow',
+      false: '',
     },
   },
   compoundVariants: [
