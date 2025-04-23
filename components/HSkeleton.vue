@@ -21,6 +21,7 @@
 <script lang="ts" setup>
 import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../types/heart';
+import type { Reactive } from 'vue';
 
 export interface SkeletonProps {
   rows?: number;
@@ -35,7 +36,7 @@ export interface SkeletonSlots {
 }
 
 export interface SkeletonContext {
-  css: (config: any) => string;
+  css?: (config: any) => string;
   animation?: boolean;
 }
 
@@ -65,11 +66,11 @@ const _itemCss = {
   },
 };
 
-provide<ComputedRef<SkeletonContext>>(
+provide<Reactive<SkeletonContext>>(
   SKELETON_CONTEXT_KEY,
-  computed(() => ({
+  reactive({
     animation: props.animation,
     css: tv({ extend: tv(_itemCss), ...props.ui }),
-  })),
+  }),
 );
 </script>

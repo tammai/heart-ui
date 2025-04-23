@@ -8,6 +8,7 @@
 import { castArray } from 'lodash-unified';
 import type { Arrayable } from '../types/heart';
 import { tv } from 'tailwind-variants';
+import type { Reactive } from 'vue';
 
 export type CollapseActiveName = string | number;
 export type CollapseModelValue = Arrayable<CollapseActiveName>;
@@ -79,14 +80,14 @@ watch(
   { deep: true },
 );
 
-provide<ComputedRef<CollapseContext>>(
+provide<Reactive<CollapseContext>>(
   COLLAPSE_CONTEXT_KEY,
-  computed(() => ({
+  reactive({
     icon: props.icon,
     activeIcon: props.activeIcon,
     activeNames,
     handleItemClick,
-  })),
+  }),
 );
 
 defineExpose({

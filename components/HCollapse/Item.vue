@@ -51,6 +51,7 @@ import type { RendererElement } from '@vue/runtime-core';
 import type { CollapseContext } from '../HCollapse.vue';
 import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../../types/heart';
+import type { Reactive } from 'vue';
 
 export interface CollapseItemProps {
   title: string;
@@ -67,7 +68,7 @@ const defineOptions = {
 
 const props = defineProps<CollapseItemProps>();
 
-const collapse = inject<ComputedRef<CollapseContext>>(COLLAPSE_CONTEXT_KEY);
+const collapse = inject<Reactive<CollapseContext>>(COLLAPSE_CONTEXT_KEY);
 
 const focusing = ref(false);
 const isClick = ref(false);
@@ -75,16 +76,14 @@ const name = computed(() => {
   return props.name ?? `h-collapse-id-${Math.floor(Math.random() * 1e6)}`;
 });
 
-const isActive = computed(() =>
-  collapse?.value.activeNames.value.includes(unref(name)),
-);
+const isActive = computed(() => collapse?.activeNames.includes(unref(name)));
 
 const collapseIcon = computed(() => {
-  return collapse?.value.icon ?? props.icon ?? getHeartConfig('icon.collapse');
+  return collapse?.icon ?? props.icon ?? getHeartConfig('icon.collapse');
 });
 
 const collapseActiveIcon = computed(() => {
-  return props.activeIcon ?? collapse?.value.activeIcon;
+  return props.activeIcon ?? collapse?.activeIcon;
 });
 
 const _css = {
@@ -125,13 +124,13 @@ const handleFocus = () => {
 
 const handleHeaderClick = () => {
   if (props.disabled) return;
-  collapse?.value.handleItemClick(unref(name));
+  collapse?.handleItemClick(unref(name));
   focusing.value = false;
   isClick.value = true;
 };
 
 const handleEnterClick = () => {
-  collapse?.value.handleItemClick(unref(name));
+  collapse?.handleItemClick(unref(name));
 };
 
 const reset = (el: RendererElement) => {

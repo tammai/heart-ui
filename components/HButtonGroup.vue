@@ -8,6 +8,7 @@
 import { tv } from 'tailwind-variants';
 import type { ComponentSize, DeepPartial } from '../types/heart';
 import type { ButtonType, ButtonVariant, IconPosition } from './HButton.vue';
+import type { Reactive } from 'vue';
 
 export interface ButtonGroupProps {
   vertical?: boolean;
@@ -73,15 +74,15 @@ const css = computed(() => {
   return tv({ extend: tv(_css), ...props.ui });
 });
 
-provide<ComputedRef<ButtonGroupContext>>(
+provide<Reactive<ButtonGroupContext>>(
   BUTTON_GROUP_CONTEXT_KEY,
-  computed(() => ({
+  reactive({
     size: props.size,
     outline: props.outline,
     rounded: props.rounded,
     variant: props.variant,
     type: props.type,
     iconPosition: props.iconPosition,
-  })),
+  }),
 );
 </script>

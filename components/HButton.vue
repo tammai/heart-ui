@@ -36,6 +36,7 @@
 import { tv } from 'tailwind-variants';
 import type { ComponentSize, DeepPartial } from '../types/heart';
 import type { ButtonGroupContext } from './HButtonGroup.vue';
+import type { Reactive } from 'vue';
 
 export type ButtonNativeType = 'button' | 'submit' | 'reset';
 export type ButtonVariant = 'solid' | 'tertiary' | 'ghost';
@@ -77,9 +78,9 @@ const emit = defineEmits<{
   (event: 'click', ev: MouseEvent): void;
 }>();
 
-const buttonGroupContext = inject<ComputedRef<ButtonGroupContext> | null>(
+const buttonGroup = inject<Reactive<ButtonGroupContext>>(
   BUTTON_GROUP_CONTEXT_KEY,
-  null,
+  {},
 );
 
 const loadingIcon = computed(() => getHeartConfig('icon.loading.name'));
@@ -89,28 +90,23 @@ const loadingIconAnimated = computed(() =>
 );
 
 const buttonSize = computed(() => {
-  return (
-    buttonGroupContext?.value.size ??
-    props.size ??
-    getHeartConfig('size') ??
-    'md'
-  );
+  return buttonGroup?.size ?? props.size ?? getHeartConfig('size') ?? 'md';
 });
 
 const buttonOutline = computed(() => {
-  return buttonGroupContext?.value.outline ?? props.outline;
+  return buttonGroup?.outline ?? props.outline;
 });
 
 const buttonRounded = computed(() => {
-  return buttonGroupContext?.value.rounded ?? props.rounded;
+  return buttonGroup?.rounded ?? props.rounded;
 });
 
 const buttonVariant = computed(() => {
-  return buttonGroupContext?.value.variant ?? props.variant;
+  return buttonGroup?.variant ?? props.variant;
 });
 
 const buttonType = computed(() => {
-  return buttonGroupContext?.value.type ?? props.type;
+  return buttonGroup?.type ?? props.type;
 });
 
 const iconSize = computed(() => {

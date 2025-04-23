@@ -14,6 +14,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { Reactive } from 'vue';
 import type { SkeletonContext } from './HSkeleton.vue';
 
 export interface SkeletonItemProps {
@@ -25,10 +26,7 @@ const props = withDefaults(defineProps<SkeletonItemProps>(), {
   variant: 'text',
 });
 
-const skeletonContext = inject<ComputedRef<SkeletonContext> | null>(
-  SKELETON_CONTEXT_KEY,
-  null,
-);
+const skeleton = inject<Reactive<SkeletonContext>>(SKELETON_CONTEXT_KEY, {});
 
 const icons = computed(() => ({
   image: getHeartConfig('icon.image') ?? 'fluent:image-32-regular',
@@ -36,10 +34,14 @@ const icons = computed(() => ({
 }));
 
 const css = computed(() => {
-  return skeletonContext?.value.css({
-    variant: props.variant,
-    animation: skeletonContext?.value.animation,
-    hasIcon: ['image', 'avatar'].includes(props.variant),
-  });
+  if (skeleton.css) {
+    return skeleton?.css({
+      variant: props.variant,
+      animation: skeleton?.animation,
+      hasIcon: ['image', 'avatar'].includes(props.variant),
+    });
+  }
+
+  return '';
 });
 </script>
