@@ -92,7 +92,7 @@ const wrapStyle = computed<StyleValue>(() => {
 
 const _css = {
   slots: {
-    base: 'relative overflow-hidden h-full',
+    base: 'relative overflow-hidden',
     wrap: 'overflow-auto',
     view: '',
   },

@@ -3,23 +3,8 @@
     <div v-if="$slots.header" :class="css().header()">
       <slot name="header" />
     </div>
-    <div
-      :class="
-        css({
-          isMultiColumn: Boolean($slots.asideLeft || $slots.asideRight),
-        }).body()
-      "
-    >
-      <div v-if="$slots.asideLeft" :class="css().asideLeft()">
-        <slot name="asideLeft" />
-      </div>
-
-      <div :class="css().main()">
-        <slot />
-      </div>
-      <div v-if="$slots.asideRight" :class="css().asideRight()">
-        <slot name="asideRight" />
-      </div>
+    <div :class="css().body()">
+      <slot />
     </div>
     <div v-if="$slots.footer" :class="css().footer()">
       <slot name="footer" />
@@ -36,8 +21,7 @@ export interface LayoutProps {
   slotSizes?: {
     header?: string | number;
     footer?: string | number;
-    asideLeft?: string | number;
-    asideRight?: string | number;
+    aside?: string | number;
   };
   ui?: DeepPartial<typeof _css>;
 }
@@ -54,8 +38,7 @@ const props = withDefaults(defineProps<LayoutProps>(), {
   slotSizes: () => ({
     header: 64,
     footer: 64,
-    asideLeft: 240,
-    asideRight: 240,
+    aside: 240,
   }),
   ui: () => ({}),
 });
@@ -65,19 +48,9 @@ const slots = defineSlots<LayoutSlots>();
 const _css = {
   base: 'flex flex-col',
   slots: {
-    body: 'grow w-full min-w-0',
-    main: 'grow min-w-0',
+    body: 'flex grow w-full min-w-0',
     header: 'h-[var(--h-layout-header-size)]',
     footer: 'h-[var(--h-layout-footer-size)]',
-    asideRight: 'min-w-[var(--h-layout-aside-right-size)]',
-    asideLeft: 'min-w-[var(--h-layout-aside-left-size)]',
-  },
-  variants: {
-    isMultiColumn: {
-      true: {
-        body: 'flex',
-      },
-    },
   },
 };
 
@@ -90,15 +63,14 @@ const css = computed(() =>
 
 const style = computed(() => {
   const _style: CSSProperties = {};
-  const { header, footer, asideLeft, asideRight } = props.slotSizes;
+  const { header, footer, aside } = props.slotSizes;
   const _slotSizes = {
     header: header ?? 64,
     footer: footer ?? 64,
-    asideLeft: asideLeft ?? 240,
-    asideRight: asideRight ?? 240,
+    aside: aside ?? 240,
   };
 
-  Object.keys(useSlots()).forEach((key) => {
+  Object.keys(props.slotSizes).forEach((key) => {
     _style[`--h-layout-${formatCssVariableName(key)}-size`] = addUnit(
       _slotSizes[key as keyof typeof _slotSizes],
     );

@@ -1,8 +1,8 @@
 <template>
   <HApp :config="{ locale: 'vi' }">
+    <NuxtLoadingIndicator color="var(--color-primary)" />
     <HLayout class="min-h-screen">
-      <NuxtLoadingIndicator color="var(--color-primary)" />
-      <template #asideLeft>
+      <HAside>
         <ClientOnly>
           <div class="sticky top-0 bottom-0 flex h-screen flex-col p-5">
             <div class="flex items-center gap-2">
@@ -85,9 +85,9 @@
             </div>
           </div>
         </ClientOnly>
-      </template>
+      </HAside>
 
-      <HContainer class="mx-auto p-5 lg:p-8">
+      <HMain class="mx-auto p-5 lg:p-8">
         <div class="flex h-60 flex-col items-center justify-center">
           <h1 class="!font-bold">Heart UI</h1>
           <p class="max-w-140 text-center text-lg text-neutral-600">
@@ -101,6 +101,21 @@
             <Icon name="mdi:github" size="32" />
           </a>
         </div>
+        <h3 id="empty-state" class="mt-8">Empty State</h3>
+
+        <h4 class="mt-6">Default</h4>
+
+        <HEmptyState />
+
+        <h4 class="mt-6">Custom content</h4>
+        <HEmptyState>
+          <template #image="{ css }">
+            <HEmptyStateImage type="coffee" color="blue" :class="css" />
+          </template>
+          <h4>Title</h4>
+          <p class="text-neutral-600">Message</p>
+          <HButton type="primary" class="mt-6">Action</HButton>
+        </HEmptyState>
 
         <h3 id="scrollbar" class="mt-8">Scrollbar</h3>
 
@@ -511,25 +526,26 @@
               Header
             </div>
           </template>
-          <template #asideLeft>
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-r border-pink-300 dark:border-pink-600"
             >
               Left Aside
             </div>
-          </template>
-          <div
+          </HAside>
+          <HMain
             class="flex h-60 flex-col items-center justify-center bg-pink-100 dark:bg-pink-900"
           >
             Body
-          </div>
-          <template #asideRight>
+          </HMain>
+
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-l border-pink-300 dark:border-pink-600"
             >
               Right Aside
             </div>
-          </template>
+          </HAside>
           <template #footer>
             <div
               class="flex h-full flex-col items-center justify-center border-t border-pink-300 dark:border-pink-600"
@@ -541,14 +557,16 @@
 
         <h4 class="mt-4 mb-1">Two columns</h4>
         <HLayout class="rounded border border-neutral-200 bg-white">
-          <template #asideLeft>
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-r-1 border-neutral-200"
             >
               Aside
             </div>
-          </template>
-          <div class="flex h-76 flex-col items-center justify-center">Body</div>
+          </HAside>
+          <HMain class="flex h-76 flex-col items-center justify-center"
+            >Body</HMain
+          >
         </HLayout>
 
         <h4 class="mt-4 mb-1">One column</h4>
@@ -560,7 +578,9 @@
               Header
             </div>
           </template>
-          <div class="flex h-60 flex-col items-center justify-center">Body</div>
+          <HMain class="flex h-60 flex-col items-center justify-center"
+            >Body</HMain
+          >
           <template #footer>
             <div
               class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
@@ -572,32 +592,34 @@
 
         <h4 class="mt-4 mb-1">Nested containers</h4>
         <HLayout class="rounded border border-neutral-200 bg-white">
-          <template #asideLeft>
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-r-1 border-neutral-200"
             >
               Aside
             </div>
-          </template>
-          <HLayout>
-            <template #header>
-              <div
-                class="flex h-full flex-col items-center justify-center border-b-1 border-neutral-200"
-              >
-                Header
-              </div>
-            </template>
-            <div class="flex h-60 flex-col items-center justify-center">
-              Body
-            </div>
-            <template #footer>
-              <div
-                class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
-              >
-                Footer
-              </div>
-            </template>
-          </HLayout>
+          </HAside>
+          <HMain>
+            <HLayout>
+              <template #header>
+                <div
+                  class="flex h-full flex-col items-center justify-center border-b-1 border-neutral-200"
+                >
+                  Header
+                </div>
+              </template>
+              <HMain class="flex h-60 flex-col items-center justify-center">
+                Body
+              </HMain>
+              <template #footer>
+                <div
+                  class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
+                >
+                  Footer
+                </div>
+              </template>
+            </HLayout>
+          </HMain>
         </HLayout>
 
         <!-- Card -->
@@ -716,12 +738,14 @@
             closable
           />
         </div>
-      </HContainer>
+      </HMain>
     </HLayout>
   </HApp>
 </template>
 
 <script setup lang="ts">
+import { HEmptyStateImage } from '#components';
+
 const handleClick = () => {
   if (import.meta.client) {
     alert('You just clicked!');

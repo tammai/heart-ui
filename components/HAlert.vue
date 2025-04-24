@@ -21,6 +21,9 @@
         size="sm"
         variant="tertiary"
         :icon="closeIcon"
+        :ui="{
+          compoundVariants: [{ size: 'sm', icon: true, class: 'size-6' }],
+        }"
         @click="handleClose"
       >
       </HButton>
@@ -49,7 +52,7 @@ export interface AlertProps {
 
 const props = defineProps<AlertProps>();
 const emit = defineEmits<{ (event: 'close'): void }>();
-defineSlots<{
+const slots = defineSlots<{
   default: () => void;
   icon: () => void;
 }>();
