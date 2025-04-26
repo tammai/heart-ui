@@ -1,344 +1,184 @@
 <template>
-  <div>
-    <svg
-      v-if="type === 'image'"
-      class="h-full"
-      width="250"
-      height="200"
-      viewBox="0 0 250 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M86.2783 139.123L82.2081 139.695C80.0205 140.002 77.9978 138.478 77.6904 136.291L66.5565 57.0691C66.2491 54.8815 67.7733 52.8588 69.9609 52.5513L148.192 41.5567C150.38 41.2492 152.402 42.7734 152.71 44.961C152.71 44.961 153.422 50.0264 153.667 51.7688"
-        fill="white"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M88.805 134.712L85.1092 135.238C83.1227 135.52 81.2886 134.139 81.0126 132.153L71.0174 60.2279C70.7414 58.2417 72.128 56.4028 74.1145 56.1204L145.152 46.0237C147.138 45.7413 148.973 47.1225 149.249 49.1087L150.108 55.2894C150.154 55.6239 153.223 77.8233 159.313 121.888C159.619 124.1 158.093 126.145 155.905 126.454C155.882 126.457 155.858 126.461 155.835 126.463L88.805 134.712Z"
-        :fill="fillColor"
-      />
-      <path
-        d="M86.2783 139.123L82.2081 139.695C80.0205 140.002 77.9978 138.478 77.6904 136.291L66.5565 57.0691C66.2491 54.8815 67.7733 52.8588 69.9609 52.5513L148.192 41.5567C150.38 41.2492 152.402 42.7734 152.71 44.961C152.71 44.961 153.422 50.0264 153.667 51.7688"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        d="M154.5 56.3796L155 59.5"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        d="M102.844 58.0408L181.411 66.2986C182.922 66.4573 184.018 67.8105 183.859 69.321L175.497 148.883C175.338 150.393 173.985 151.489 172.474 151.33L93.9071 143.072C92.3966 142.914 91.3008 141.561 91.4596 140.05L99.8219 60.4883C99.9806 58.9779 101.334 57.8821 102.844 58.0408Z"
-        fill="white"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M106.693 69.2546C106.866 67.6068 108.342 66.4115 109.99 66.5846L172.645 73.1699C174.293 73.3431 175.488 74.8193 175.315 76.4671L169.775 129.177C169.602 130.825 168.126 132.02 166.478 131.847L103.823 125.261C102.175 125.088 100.98 123.612 101.153 121.964L106.693 69.2546Z"
-        fill="white"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M109.741 109.878L119.538 103.27C121.172 102.168 123.365 102.42 124.706 103.864L131.879 111.587C132.237 111.972 132.833 112.014 133.242 111.683L148.581 99.2534C150.429 97.7561 153.167 98.1922 154.459 100.189L164.44 115.627L165.873 118.019L165.187 126.143C165.139 126.704 164.639 127.115 164.08 127.053L107.117 120.724C106.575 120.664 106.182 120.181 106.232 119.639L106.987 111.44L109.741 109.878Z"
-        :fill="fillColor"
-      />
-      <path
-        d="M109.859 67.8278L172.514 74.4131C173.476 74.5141 174.173 75.3752 174.072 76.3364L168.532 129.046C168.431 130.007 167.57 130.705 166.609 130.604L103.954 124.018C102.992 123.917 102.295 123.056 102.396 122.095L107.936 69.3853C108.037 68.4241 108.898 67.7268 109.859 67.8278Z"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-      />
-      <circle
-        cx="122.032"
-        cy="85.9494"
-        r="6"
-        transform="rotate(6 122.032 85.9494)"
-        fill="#F3F7FF"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-      />
-      <path
-        d="M107.729 111.425C111.665 108.706 119.538 103.27 119.538 103.27C121.172 102.168 123.365 102.42 124.706 103.864L131.879 111.587C132.237 111.972 132.833 112.014 133.241 111.683L148.581 99.2534C150.298 97.8626 152.817 98.1266 154.207 99.843C154.297 99.9539 154.381 100.07 154.459 100.189C154.459 100.189 163.427 114.42 165.523 117.745"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-    </svg>
-
-    <svg
-      v-if="type === 'search'"
-      class="h-full"
-      width="250"
-      height="200"
-      viewBox="0 0 250 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M120.5 133C139.002 133 154 118.002 154 99.5C154 80.9985 139.002 66 120.5 66C101.998 66 87 80.9985 87 99.5C87 118.002 101.998 133 120.5 133Z"
-        :fill="fillColor"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M115.132 125.494C116.891 125.819 118.68 125.987 120.5 126C135.136 126 147 114.136 147 99.5C147 84.8645 135.136 73 120.5 73C116.74 73 113.164 73.7829 109.924 75.1946C104.294 77.6479 99.6816 81.9999 96.896 87.4419C95.0445 91.0589 94 95.1575 94 99.5C94 103.44 94.8599 107.179 96.4021 110.54C97.5032 112.94 98.9521 115.146 100.684 117.096"
-        fill="white"
-      />
-      <path
-        d="M115.132 125.494C116.891 125.819 118.68 125.987 120.5 126C135.136 126 147 114.136 147 99.5C147 84.8645 135.136 73 120.5 73C116.74 73 113.164 73.7829 109.924 75.1946C104.294 77.6479 99.6816 81.9999 96.896 87.4419C95.0445 91.0589 94 95.1575 94 99.5C94 103.44 94.8599 107.179 96.4021 110.54C97.5032 112.94 98.9521 115.146 100.684 117.096"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        d="M103.797 120.075C105.945 121.821 108.372 123.237 111.001 124.247"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path d="M148 126L154 132" :stroke="strokeColor" stroke-width="2.5" />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M153.03 131.03C151.138 132.923 151.138 135.992 153.03 137.884L164.116 148.97C166.008 150.862 169.077 150.862 170.97 148.97C172.863 147.077 172.863 144.008 170.97 142.116L159.885 131.03C157.992 129.138 154.923 129.138 153.03 131.03Z"
-        :fill="fillColor"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-      />
-      <path
-        d="M158 133L169 144"
-        stroke="white"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M114 88C114 99.598 123.402 109 135 109C137.278 109 139.472 108.637 141.526 107.966C138.173 116.287 130.023 122.161 120.5 122.161C107.985 122.161 97.8394 112.015 97.8394 99.5C97.8394 88.1596 106.17 78.7648 117.045 77.1011C115.113 80.2793 114 84.0097 114 88Z"
-        :fill="fillColor"
-      />
-      <path
-        d="M121 81C119.727 81 118.482 81.1253 117.279 81.3642M113.645 82.4761C106.804 85.3508 102 92.1144 102 100"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        d="M174.176 99.7773H166M180.5 92H163.324H180.5ZM187.5 92H185.279H187.5Z"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M84.1758 121.777H76M79.5 113H62.3242H79.5ZM56.5 113H52.2788H56.5Z"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-    <svg
-      v-if="type === 'inbox'"
-      class="h-full"
-      width="250"
-      height="200"
-      viewBox="0 0 250 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M113.119 112.307C113.04 112.86 113 113.425 113 114C113 120.627 118.373 126 125 126C131.627 126 137 120.627 137 114C137 113.425 136.96 112.86 136.881 112.307H166V139C166 140.657 164.657 142 163 142H87C85.3431 142 84 140.657 84 139V112.307H113.119Z"
-        fill="white"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M138 112C138 119.18 132.18 125 125 125C117.82 125 112 119.18 112 112C112 111.767 112.006 111.536 112.018 111.307H84L93.5604 83.0389C93.9726 81.8202 95.1159 81 96.4023 81H153.598C154.884 81 156.027 81.8202 156.44 83.0389L166 111.307H137.982C137.994 111.536 138 111.767 138 112Z"
-        fill="white"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M136.098 112.955C136.098 118.502 131.129 124 125 124C118.871 124 113.902 118.502 113.902 112.955C113.902 112.775 113.908 111.596 113.918 111.419H93L101.161 91.5755C101.513 90.6338 102.489 90 103.587 90H146.413C147.511 90 148.487 90.6338 148.839 91.5755L157 111.419H136.082C136.092 111.596 136.098 112.775 136.098 112.955Z"
-        :fill="fillColor"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M85.25 111.512V138C85.25 138.966 86.0335 139.75 87 139.75H163C163.966 139.75 164.75 138.966 164.75 138V111.512L155.255 83.4393C155.015 82.7285 154.348 82.25 153.598 82.25H96.4023C95.6519 82.25 94.985 82.7285 94.7446 83.4393L85.25 111.512Z"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-      />
-      <path
-        d="M98 111C101.937 111 106.185 111 110.745 111C112.621 111 112.621 112.319 112.621 113C112.621 119.627 118.117 125 124.897 125C131.677 125 137.173 119.627 137.173 113C137.173 112.319 137.173 111 139.05 111H164M90.5737 111H93H90.5737Z"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M150.1 58.3027L139 70.7559M124.1 54V70.7559V54ZM98 58.3027L109.1 70.7559L98 58.3027Z"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-    <svg
-      v-if="type === 'document'"
-      class="h-full"
-      width="250"
-      height="200"
-      viewBox="0 0 250 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M153.672 64L162.974 131.843L163.809 138.649C164.079 140.842 162.519 142.837 160.327 143.107L101.766 150.297C99.5738 150.566 97.578 149.007 97.3088 146.814L88.2931 73.3868C88.1584 72.2904 88.9381 71.2925 90.0344 71.1579C90.0413 71.1571 90.0483 71.1563 90.0552 71.1555L94.9136 70.6105M98.8421 70.1698L103.429 69.6553L98.8421 70.1698Z"
-        fill="white"
-      />
-      <path
-        d="M154.91 63.8302C154.816 63.1463 154.186 62.6678 153.502 62.7616C152.818 62.8554 152.34 63.4859 152.433 64.1698L154.91 63.8302ZM162.974 131.843L164.214 131.69C164.214 131.685 164.213 131.679 164.212 131.673L162.974 131.843ZM97.3088 146.814L98.5495 146.662L97.3088 146.814ZM88.2931 73.3868L89.5337 73.2344L88.2931 73.3868ZM90.0552 71.1555L89.9159 69.9133L90.0552 71.1555ZM95.0529 71.8527C95.739 71.7758 96.2327 71.1572 96.1558 70.4712C96.0788 69.7851 95.4603 69.2913 94.7742 69.3683L95.0529 71.8527ZM98.7028 68.9276C98.0167 69.0046 97.5229 69.6231 97.5999 70.3092C97.6768 70.9952 98.2954 71.489 98.9814 71.412L98.7028 68.9276ZM103.568 70.8975C104.255 70.8205 104.748 70.202 104.671 69.5159C104.594 68.8299 103.976 68.3361 103.29 68.4131L103.568 70.8975ZM152.433 64.1698L161.735 132.013L164.212 131.673L154.91 63.8302L152.433 64.1698ZM161.733 131.995L162.569 138.801L165.05 138.497L164.214 131.69L161.733 131.995ZM162.569 138.801C162.754 140.309 161.682 141.681 160.174 141.866L160.479 144.347C163.357 143.994 165.403 141.375 165.05 138.497L162.569 138.801ZM160.174 141.866L101.614 149.056L101.919 151.538L160.479 144.347L160.174 141.866ZM101.614 149.056C100.107 149.241 98.7346 148.169 98.5495 146.662L96.0681 146.967C96.4215 149.845 99.0409 151.891 101.919 151.538L101.614 149.056ZM98.5495 146.662L89.5337 73.2344L87.0524 73.5391L96.0681 146.967L98.5495 146.662ZM89.5337 73.2344C89.4833 72.8233 89.7756 72.4491 90.1867 72.3986L89.8821 69.9173C88.1005 70.136 86.8336 71.7576 87.0524 73.5391L89.5337 73.2344ZM90.1867 72.3986C90.1893 72.3983 90.1919 72.398 90.1945 72.3977L89.9159 69.9133C89.9046 69.9145 89.8933 69.9159 89.8821 69.9173L90.1867 72.3986ZM90.1945 72.3977L95.0529 71.8527L94.7742 69.3683L89.9159 69.9133L90.1945 72.3977ZM98.9814 71.412L103.568 70.8975L103.29 68.4131L98.7028 68.9276L98.9814 71.412ZM103.29 68.4131L98.7028 68.9276L98.9814 71.412L103.568 70.8975L103.29 68.4131Z"
-        :fill="strokeColor"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M151.14 68.2692L159.56 129.753L160.317 135.921C160.561 137.908 159.167 139.715 157.203 139.956L104.761 146.395C102.798 146.636 101.008 145.22 100.764 143.233L92.6141 76.8568C92.4795 75.7605 93.2591 74.7626 94.3555 74.628L100.843 73.8314"
-        :fill="fillColor"
-      />
-      <path
-        d="M110.672 51.25H156.229C156.866 51.25 157.481 51.4715 157.971 51.8721L158.173 52.0547L171.616 65.4902C172.132 66.0059 172.422 66.7053 172.422 67.4346V130C172.422 131.519 171.191 132.75 169.672 132.75H110.672C109.153 132.75 107.922 131.519 107.922 130V54C107.922 52.4812 109.153 51.25 110.672 51.25Z"
-        fill="white"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-      />
-      <path
-        d="M156.672 52.4028V64C156.672 65.6569 158.015 67 159.672 67H167.605"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M118 118H144M118 67H144H118ZM118 79H161H118ZM118 92H161H118ZM118 105H161H118Z"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-    <svg
-      v-if="type === 'coffee'"
-      class="h-full"
-      width="250"
-      height="200"
-      viewBox="0 0 250 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M99.942 133.192L101.432 133.141V154.14C101.432 154.615 101.819 155 102.296 155H154.136C154.613 155 155 154.615 155 154.14V82.155C155 80.4126 153.582 79 151.832 79H104.6C102.85 79 101.432 80.4126 101.432 82.155V97.1227L99.942 97.0711C99.767 97.065 99.5917 97.062 99.416 97.062C90.3809 97.062 83 105.124 83 115.132C83 125.139 90.3809 133.202 99.416 133.202C99.5917 133.202 99.767 133.199 99.942 133.192ZM100.107 126.29C99.8778 126.309 99.6473 126.318 99.416 126.318C93.9625 126.318 89.6432 121.263 89.6432 115.132C89.6432 109.001 93.9625 103.946 99.416 103.946C99.6473 103.946 99.8778 103.955 100.107 103.973L101.432 104.079V126.184L100.107 126.29Z"
-        fill="white"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M147 85.1816V103.5M147 109.182V113.925V109.182Z"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M67.1279 147H74M181.128 147H184M161 147H176.428M80 147H97.4541"
-        :stroke="strokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M128 35C125.333 39.2135 124 42.8802 124 46C124 51.5562 128.654 54.0444 128.654 60.063C128.654 63.1177 127.103 66.1507 124 69.1621"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        d="M116 46C115.128 51.5127 119 52.5322 119 57.4746C119 59.9831 118 62.4915 116 65"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        d="M134.795 43.4741C133.474 46.8933 134.216 48.9774 134.795 50.2041C136.033 52.8262 138 55.0896 138 57.7578C138 60.8568 136.932 63.8392 134.795 66.7051"
-        :stroke="altStrokeColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-      <path
-        d="M105 84C105 83.4477 105.448 83 106 83L125 83V152H106C105.448 152 105 151.552 105 151V84Z"
-        :fill="fillColor"
-      />
-    </svg>
-  </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="512"
+    height="512"
+    x="0"
+    y="0"
+    viewBox="0 0 682.667 682.667"
+    style="enable-background: new 0 0 512 512"
+    xml:space="preserve"
+    class="p-5"
+  >
+    <g>
+      <defs>
+        <clipPath id="a" clipPathUnits="userSpaceOnUse">
+          <path
+            d="M0 512h512V0H0Z"
+            fill="#90a1b9"
+            opacity="1"
+            data-original="#90a1b9"
+          ></path>
+        </clipPath>
+      </defs>
+      <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 682.667)">
+        <path
+          d="M95.333 15H256v160.667H95.333Z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          fill="var(--color-neutral-200)"
+          stroke="var(--color-neutral-200)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M0 0h-160.667l80.334-80.333H80.333Z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(175.667 256)"
+          fill="var(--color-neutral-300)"
+          stroke="var(--color-neutral-300)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M256 15h160.667v160.667H256Z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          fill="var(--color-neutral-300)"
+          stroke="var(--color-neutral-300)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M0 0h-160.667L-241-80.333h160.667z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(497 256)"
+          fill="var(--color-neutral-400)"
+          stroke="var(--color-neutral-400)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M0 0s0 176.733-96.4 176.733c-80.333 0-80.333-112.466 32.133-112.466"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(256 272.067)"
+          fill="none"
+          stroke="var(--color-neutral-400)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#e2e8f0"
+          class=""
+        ></path>
+        <path
+          d="M0 0c112.466 0 112.466-144.6-32.133-144.6"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(336.334 480.933)"
+          fill="none"
+          stroke="var(--color-neutral-300)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#e2e8f0"
+          class=""
+        ></path>
+        <path
+          d="m0 0 16.067-16.067L32.133 0"
+          style="
+            stroke-width: 30;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(256 497)"
+          fill="none"
+          stroke="#D82A0C"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#D82A0C"
+          class=""
+        ></path>
+      </g>
+    </g>
+  </svg>
 </template>
 
-<script lang="ts" setup>
-export interface EmptyStateImageProps {
-  type?: 'image' | 'search' | 'inbox' | 'document' | 'coffee';
-  color?:
-    | 'primary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'red'
-    | 'orange'
-    | 'amber'
-    | 'yellow'
-    | 'lime'
-    | 'green'
-    | 'emerald'
-    | 'teal'
-    | 'cyan'
-    | 'sky'
-    | 'blue'
-    | 'indigo'
-    | 'violet'
-    | 'purple'
-    | 'fuchsia'
-    | 'pink'
-    | 'rose'
-    | 'neutral'
-    | 'gray'
-    | 'stone'
-    | 'zinc'
-    | 'slate';
-}
-const props = withDefaults(defineProps<EmptyStateImageProps>(), {
-  color: 'neutral',
-  type: 'search',
-});
-
-const fillColor = computed(() => `var(--color-${props.color}-100)`);
-const strokeColor = computed(() => `var(--color-${props.color}-400)`);
-const altStrokeColor = computed(() => `var(--color-${props.color}-300)`);
-</script>
+<script lang="ts" setup></script>
