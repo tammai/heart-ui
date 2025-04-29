@@ -54,7 +54,7 @@ export interface AlertProps {
 
 const props = defineProps<AlertProps>();
 const emit = defineEmits<{ (event: 'close'): void }>();
-defineSlots<{
+const slots = defineSlots<{
   default: () => void;
   icon: () => void;
 }>();

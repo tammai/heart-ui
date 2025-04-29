@@ -1,8 +1,8 @@
 <template>
   <HApp :config="{ locale: 'vi' }">
+    <NuxtLoadingIndicator color="var(--color-primary)" />
     <HLayout class="min-h-screen">
-      <NuxtLoadingIndicator color="var(--color-primary)" />
-      <template #asideLeft>
+      <HAside>
         <ClientOnly>
           <div class="sticky top-0 bottom-0 flex h-screen flex-col p-5">
             <div class="flex items-center gap-2">
@@ -85,9 +85,9 @@
             </div>
           </div>
         </ClientOnly>
-      </template>
+      </HAside>
 
-      <HContainer class="mx-auto p-5 lg:p-8">
+      <HMain class="mx-auto p-5 lg:p-8">
         <div class="flex h-60 flex-col items-center justify-center">
           <h1 class="!font-bold">Heart UI</h1>
           <p class="max-w-140 text-center text-lg text-neutral-600">
@@ -101,6 +101,82 @@
             <Icon name="mdi:github" size="32" />
           </a>
         </div>
+        <h3 id="empty-state" class="mt-8">Empty State</h3>
+
+        <h4 class="mt-6">Default</h4>
+
+        <HEmptyState />
+
+        <h4 class="mt-6">Custom content</h4>
+        <HEmptyState>
+          <template #image="{ css }">
+            <svg
+              width="250"
+              height="200"
+              viewBox="0 0 250 200"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M99.942 133.192L101.432 133.141V154.14C101.432 154.615 101.819 155 102.296 155H154.136C154.613 155 155 154.615 155 154.14V82.155C155 80.4126 153.582 79 151.832 79H104.6C102.85 79 101.432 80.4126 101.432 82.155V97.1227L99.942 97.0711C99.767 97.065 99.5917 97.062 99.416 97.062C90.3809 97.062 83 105.124 83 115.132C83 125.139 90.3809 133.202 99.416 133.202C99.5917 133.202 99.767 133.199 99.942 133.192ZM100.107 126.29C99.8778 126.309 99.6473 126.318 99.416 126.318C93.9625 126.318 89.6432 121.263 89.6432 115.132C89.6432 109.001 93.9625 103.946 99.416 103.946C99.6473 103.946 99.8778 103.955 100.107 103.973L101.432 104.079V126.184L100.107 126.29Z"
+                fill="white"
+                stroke="#1F64E7"
+                stroke-width="2.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M147 85.1816V103.5M147 109.182V113.925V109.182Z"
+                stroke="#75A4FE"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M67.1279 147H74M181.128 147H184M161 147H176.428M80 147H97.4541"
+                stroke="#1F64E7"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M128 35C125.333 39.2135 124 42.8802 124 46C124 51.5562 128.654 54.0444 128.654 60.063C128.654 63.1177 127.103 66.1507 124 69.1621"
+                stroke="#75A4FE"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M116 46C115.128 51.5127 119 52.5322 119 57.4746C119 59.9831 118 62.4915 116 65"
+                stroke="#75A4FE"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M134.795 43.4741C133.474 46.8933 134.216 48.9774 134.795 50.2041C136.033 52.8262 138 55.0896 138 57.7578C138 60.8568 136.932 63.8392 134.795 66.7051"
+                stroke="#75A4FE"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M105 84C105 83.4477 105.448 83 106 83L125 83V152H106C105.448 152 105 151.552 105 151V84Z"
+                fill="#E8F0FE"
+              />
+            </svg>
+          </template>
+          <h5>You're all caught up!</h5>
+          <p class="text-neutral-600">Check back later for new tasks</p>
+          <HButton type="primary" class="mt-6">OK</HButton>
+        </HEmptyState>
+
+        <HEmptyState
+          title="The list is empty"
+          message="Create your first item by clicking below button"
+        >
+          <template #action>
+            <HButton type="primary" label="Create" />
+          </template>
+        </HEmptyState>
 
         <h3 id="scrollbar" class="mt-8">Scrollbar</h3>
 
@@ -507,25 +583,26 @@
               Header
             </div>
           </template>
-          <template #asideLeft>
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-r border-pink-300 dark:border-pink-600"
             >
               Left Aside
             </div>
-          </template>
-          <div
+          </HAside>
+          <HMain
             class="flex h-60 flex-col items-center justify-center bg-pink-100 dark:bg-pink-900"
           >
             Body
-          </div>
-          <template #asideRight>
+          </HMain>
+
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-l border-pink-300 dark:border-pink-600"
             >
               Right Aside
             </div>
-          </template>
+          </HAside>
           <template #footer>
             <div
               class="flex h-full flex-col items-center justify-center border-t border-pink-300 dark:border-pink-600"
@@ -537,14 +614,16 @@
 
         <h4 class="mt-4 mb-1">Two columns</h4>
         <HLayout class="rounded border border-neutral-200 bg-white">
-          <template #asideLeft>
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-r-1 border-neutral-200"
             >
               Aside
             </div>
-          </template>
-          <div class="flex h-76 flex-col items-center justify-center">Body</div>
+          </HAside>
+          <HMain class="flex h-76 flex-col items-center justify-center"
+            >Body</HMain
+          >
         </HLayout>
 
         <h4 class="mt-4 mb-1">One column</h4>
@@ -556,7 +635,9 @@
               Header
             </div>
           </template>
-          <div class="flex h-60 flex-col items-center justify-center">Body</div>
+          <HMain class="flex h-60 flex-col items-center justify-center"
+            >Body</HMain
+          >
           <template #footer>
             <div
               class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
@@ -568,32 +649,34 @@
 
         <h4 class="mt-4 mb-1">Nested containers</h4>
         <HLayout class="rounded border border-neutral-200 bg-white">
-          <template #asideLeft>
+          <HAside>
             <div
               class="flex h-full flex-col items-center justify-center border-r-1 border-neutral-200"
             >
               Aside
             </div>
-          </template>
-          <HLayout>
-            <template #header>
-              <div
-                class="flex h-full flex-col items-center justify-center border-b-1 border-neutral-200"
-              >
-                Header
-              </div>
-            </template>
-            <div class="flex h-60 flex-col items-center justify-center">
-              Body
-            </div>
-            <template #footer>
-              <div
-                class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
-              >
-                Footer
-              </div>
-            </template>
-          </HLayout>
+          </HAside>
+          <HMain>
+            <HLayout>
+              <template #header>
+                <div
+                  class="flex h-full flex-col items-center justify-center border-b-1 border-neutral-200"
+                >
+                  Header
+                </div>
+              </template>
+              <HMain class="flex h-60 flex-col items-center justify-center">
+                Body
+              </HMain>
+              <template #footer>
+                <div
+                  class="flex h-full flex-col items-center justify-center border-t-1 border-neutral-200"
+                >
+                  Footer
+                </div>
+              </template>
+            </HLayout>
+          </HMain>
         </HLayout>
 
         <!-- Card -->
@@ -712,12 +795,14 @@
             closable
           />
         </div>
-      </HContainer>
+      </HMain>
     </HLayout>
   </HApp>
 </template>
 
 <script setup lang="ts">
+import { HEmptyStateImage } from '#components';
+
 const handleClick = () => {
   if (import.meta.client) {
     alert('You just clicked!');

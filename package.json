@@ -37,7 +37,7 @@
     "typescript": "^5.8.3",
     "vue": "latest"
   },
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.9.0",
   "dependencies": {
     "@vueuse/core": "^13.1.0",
     "lodash-unified": "^1.0.3",

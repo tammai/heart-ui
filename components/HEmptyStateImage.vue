@@ -1,0 +1,184 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="512"
+    height="512"
+    x="0"
+    y="0"
+    viewBox="0 0 682.667 682.667"
+    style="enable-background: new 0 0 512 512"
+    xml:space="preserve"
+    class="p-5"
+  >
+    <g>
+      <defs>
+        <clipPath id="a" clipPathUnits="userSpaceOnUse">
+          <path
+            d="M0 512h512V0H0Z"
+            fill="#90a1b9"
+            opacity="1"
+            data-original="#90a1b9"
+          ></path>
+        </clipPath>
+      </defs>
+      <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 682.667)">
+        <path
+          d="M95.333 15H256v160.667H95.333Z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          fill="var(--color-neutral-200)"
+          stroke="var(--color-neutral-200)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M0 0h-160.667l80.334-80.333H80.333Z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(175.667 256)"
+          fill="var(--color-neutral-300)"
+          stroke="var(--color-neutral-300)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M256 15h160.667v160.667H256Z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          fill="var(--color-neutral-300)"
+          stroke="var(--color-neutral-300)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M0 0h-160.667L-241-80.333h160.667z"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(497 256)"
+          fill="var(--color-neutral-400)"
+          stroke="var(--color-neutral-400)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#90a1b9"
+          class=""
+        ></path>
+        <path
+          d="M0 0s0 176.733-96.4 176.733c-80.333 0-80.333-112.466 32.133-112.466"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(256 272.067)"
+          fill="none"
+          stroke="var(--color-neutral-400)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#e2e8f0"
+          class=""
+        ></path>
+        <path
+          d="M0 0c112.466 0 112.466-144.6-32.133-144.6"
+          style="
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(336.334 480.933)"
+          fill="none"
+          stroke="var(--color-neutral-300)"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#e2e8f0"
+          class=""
+        ></path>
+        <path
+          d="m0 0 16.067-16.067L32.133 0"
+          style="
+            stroke-width: 30;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: none;
+            stroke-opacity: 1;
+          "
+          transform="translate(256 497)"
+          fill="none"
+          stroke="#D82A0C"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray="none"
+          stroke-opacity=""
+          data-original="#D82A0C"
+          class=""
+        ></path>
+      </g>
+    </g>
+  </svg>
+</template>
+
+<script lang="ts" setup></script>
