@@ -1,12 +1,13 @@
 <template>
-  <div
-    :class="
-      css({ isVertical: !!vertical, hasChild: !!$slots.default || !!icon })
-    "
-  >
+  <div :class="css({ isVertical: !!vertical }).base()">
+    <div :class="css({ isVertical: !!vertical }).line()"></div>
     <slot>
       <Icon v-if="icon" :name="icon" :size="iconSize" />
     </slot>
+    <div
+      v-if="!!$slots.default || !!icon"
+      :class="css({ isVertical: !!vertical }).line()"
+    ></div>
   </div>
 </template>
 
@@ -23,24 +24,16 @@ export interface DividerProps {
 const props = defineProps<DividerProps>();
 
 const _css = {
-  base: 'text-neutral-600 before:bg-neutral-200 after:bg-neutral-200 bg-neutral-200',
+  base: 'text-neutral-600 flex justify-center items-center gap-2',
+  slots: {
+    line: 'bg-neutral-200 grow',
+  },
   variants: {
-    isVertical: { true: '' },
-    hasChild: {
-      true: 'bg-transparent flex gap-2 items-center content-center before:content-[""] after:content-[""] before:block after:block before:grow after:grow',
-      false: '',
+    isVertical: {
+      true: { base: 'flex-col', line: 'w-0.25' },
+      false: { line: 'h-0.25' },
     },
   },
-  compoundVariants: [
-    { hasChild: true, isVertical: false, class: 'before:h-0.25 after:h-0.25' },
-    {
-      hasChild: true,
-      isVertical: true,
-      class: 'flex-col before:w-0.25 after:w-0.25',
-    },
-    { hasChild: false, isVertical: false, class: 'h-0.25 w-full' },
-    { hasChild: false, isVertical: true, class: 'w-0.25 h-full' },
-  ] as any,
 };
 
 const css = computed(() => {

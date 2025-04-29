@@ -14,7 +14,6 @@
         iconPosition,
       }).base()
     "
-    :title="label ?? ''"
     :disabled="disabled || loading"
     @click="handleClick"
   >

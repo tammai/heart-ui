@@ -32,7 +32,6 @@ export interface ScrollbarThumbProps {
   ratio: number;
   vertical?: boolean;
   always?: boolean;
-  ui?: DeepPartial<typeof _css>;
 }
 
 const COMPONENT_NAME = 'HScrollbarThumb';
@@ -85,7 +84,7 @@ const _css = {
     base: 'absolute transition-all duration-300 bottom-0.5 right-0.5',
     transitionLeave: 'opacity-0',
     transitionEnter: 'opacity-100',
-    thumb: 'bg-neutral-500/75 hover:bg-neutral-500 rounded-full cursor-pointer',
+    thumb: 'bg-neutral-400/50 hover:bg-neutral-400 rounded-full cursor-pointer',
   },
   variants: {
     vertical: {
@@ -102,7 +101,7 @@ const _css = {
 };
 
 const css = computed(() => {
-  return tv({ extend: tv(_css), ...props.ui });
+  return tv({ extend: tv(_css), ...scrollbar?.ui });
 });
 
 const renderThumbStyle = ({

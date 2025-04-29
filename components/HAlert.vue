@@ -21,6 +21,11 @@
         size="sm"
         variant="tertiary"
         :icon="closeIcon"
+        rounded
+        title="Dismiss"
+        :ui="{
+          compoundVariants: [{ icon: true, size: 'sm', class: 'size-6' }],
+        }"
         @click="handleClose"
       >
       </HButton>

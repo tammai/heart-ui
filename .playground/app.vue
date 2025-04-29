@@ -110,7 +110,7 @@
             <div
               v-for="item in 16"
               :key="item"
-              class="bg-primary-100 flex h-10 items-center justify-center rounded"
+              class="flex h-10 items-center justify-center rounded bg-neutral-200"
             >
               {{ item }}
             </div>
@@ -124,7 +124,7 @@
             <div
               v-for="item in 16"
               :key="item"
-              class="bg-info-100 flex h-10 w-30 items-center justify-center rounded"
+              class="flex h-10 w-30 items-center justify-center rounded bg-neutral-200"
             >
               {{ item }}
             </div>
@@ -307,7 +307,7 @@
               icon="fluent:heart-24-filled"
               icon-size="24"
               class="text-rose-600"
-              :ui="{ base: 'before:bg-rose-600 after:bg-rose-600' }"
+              :ui="{ slots: { line: 'bg-rose-600' } }"
             />
             <div
               class="flex grow items-center justify-center rounded bg-neutral-200"
@@ -353,11 +353,7 @@
               icon="fluent:heart-24-filled"
               icon-size="24"
               class="h-30 text-rose-600"
-              :ui="{
-                variants: {
-                  hasChild: { true: 'before:bg-rose-600 after:bg-rose-600' },
-                },
-              }"
+              :ui="{ slots: { line: 'bg-rose-600' } }"
             />
             <div
               class="flex grow items-center justify-center rounded bg-neutral-200"

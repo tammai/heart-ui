@@ -60,6 +60,7 @@ export interface ScrollbarEmit {
 export interface ScrollbarContext {
   scrollbarElement: Ref<HTMLDivElement | undefined>;
   wrapElement: Ref<HTMLDivElement | undefined>;
+  ui?: DeepPartial<typeof _css>;
 }
 
 const COMPONENT_NAME = 'HScrollbar';
@@ -95,6 +96,7 @@ const _css = {
     base: 'relative overflow-hidden h-full',
     wrap: 'overflow-auto',
     view: '',
+    thumb: '',
   },
 };
 
@@ -182,6 +184,7 @@ provide<Reactive<ScrollbarContext>>(
   reactive({
     scrollbarElement: scrollbarRef,
     wrapElement: wrapRef,
+    ui: { slots: { thumb: props.ui?.slots?.thumb ?? _css.slots.thumb } },
   }),
 );
 
