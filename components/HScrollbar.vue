@@ -50,7 +50,7 @@ export interface ScrollbarProps {
   ariaLabel?: string;
   ariaOrientation?: 'horizontal' | 'vertical';
   noresize?: boolean;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 export interface ScrollbarEmit {
@@ -60,7 +60,7 @@ export interface ScrollbarEmit {
 export interface ScrollbarContext {
   scrollbarElement: Ref<HTMLDivElement | undefined>;
   wrapElement: Ref<HTMLDivElement | undefined>;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 const COMPONENT_NAME = 'HScrollbar';
@@ -91,7 +91,7 @@ const wrapStyle = computed<StyleValue>(() => {
   return [props.wrapStyle, style];
 });
 
-const _css = {
+const ui = {
   slots: {
     base: 'relative overflow-hidden',
     wrap: 'overflow-auto',
@@ -102,8 +102,8 @@ const _css = {
 
 const css = computed(() => {
   return tv({
-    extend: tv(_css),
-    ...props.ui,
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('scrollbar', props.ui),
   });
 });
 
@@ -184,7 +184,7 @@ provide<Reactive<ScrollbarContext>>(
   reactive({
     scrollbarElement: scrollbarRef,
     wrapElement: wrapRef,
-    ui: { slots: { thumb: props.ui?.slots?.thumb ?? _css.slots.thumb } },
+    ui: { slots: { thumb: props.ui?.slots?.thumb ?? ui.slots.thumb } },
   }),
 );
 

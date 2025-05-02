@@ -36,4 +36,5 @@ export interface HeartConfig {
   }>;
   rounded?: boolean;
   shadow?: boolean;
+  ui?: Record<string, any>;
 }

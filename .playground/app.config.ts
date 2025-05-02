@@ -7,5 +7,6 @@ export default defineAppConfig({
       },
     },
     rounded: true,
+    ui: {},
   },
 });

@@ -16,6 +16,7 @@
 import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../types/heart';
 import type { CSSProperties } from 'vue';
+import { useHeartTheme } from '../composables/heart';
 
 export interface LayoutProps {
   slotSizes?: {
@@ -23,15 +24,13 @@ export interface LayoutProps {
     footer?: string | number;
     aside?: string | number;
   };
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 export interface LayoutSlots {
   default(props?: object): void;
   header(props?: object): void;
   footer(props?: object): void;
-  asideRight(props?: object): void;
-  asideLeft(props?: object): void;
 }
 
 const props = withDefaults(defineProps<LayoutProps>(), {
@@ -40,12 +39,11 @@ const props = withDefaults(defineProps<LayoutProps>(), {
     footer: 64,
     aside: 240,
   }),
-  ui: () => ({}),
 });
 
 const slots = defineSlots<LayoutSlots>();
 
-const _css = {
+const ui = {
   base: 'flex flex-col',
   slots: {
     body: 'flex grow w-full min-w-0',
@@ -54,12 +52,12 @@ const _css = {
   },
 };
 
-const css = computed(() =>
-  tv({
-    extend: tv(_css),
-    ...props.ui,
-  }),
-);
+const css = computed(() => {
+  return tv({
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('layout', props.ui),
+  });
+});
 
 const style = computed(() => {
   const _style: CSSProperties = {};

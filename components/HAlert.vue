@@ -49,7 +49,7 @@ export interface AlertProps {
   title?: string;
   message?: string;
   closable?: boolean;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 const props = defineProps<AlertProps>();
@@ -69,7 +69,7 @@ const closeIcon = computed(() => {
   return getHeartConfig('icon.close');
 });
 
-const _css = {
+const ui = {
   slots: {
     base: 'flex items-center gap-2 p-2 min-h-12 transition-all duration-500',
     body: 'flex-1 text-xs',
@@ -88,8 +88,8 @@ const _css = {
   },
 };
 const css = computed(() => {
-  _css.slots.base = `${_css.slots.base} ${getHeartRoundedValue('md')}`;
-  return tv({ extend: tv(_css), ...props.ui });
+  ui.slots.base = `${ui.slots.base} ${getHeartRoundedValue('md')}`;
+  return tv({ extend: tv(ui), ...useHeartTheme<typeof ui>('alert', props.ui) });
 });
 
 const handleClose = () => {

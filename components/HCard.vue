@@ -25,7 +25,7 @@ export interface CardSlots {
 export interface CardProps {
   size?: SizeVariant;
   clickable?: boolean;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 type SizeVariant = 'sm' | 'md' | 'lg';
@@ -34,7 +34,7 @@ const props = defineProps<CardProps>();
 
 defineSlots<CardSlots>();
 
-const _css = {
+const ui = {
   slots: {
     base: 'overflow-hidden border border-neutral-200 bg-white ring-2 ring-transparent transition-all',
     body: '',
@@ -56,10 +56,10 @@ const _css = {
 const cardSize = computed(() => props.size ?? getHeartConfig('size') ?? 'md');
 
 const css = computed(() => {
-  _css.slots.base = `${_css.slots.base} ${getHeartRoundedValue(cardSize.value)}`;
+  ui.slots.base = `${ui.slots.base} ${getHeartRoundedValue(cardSize.value)}`;
   return tv({
-    extend: tv(_css),
-    ...props.ui,
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('card', props.ui),
   });
 });
 </script>

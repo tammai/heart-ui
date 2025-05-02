@@ -59,7 +59,7 @@ export interface CollapseItemProps {
   activeIcon?: string;
   name?: string;
   disabled?: boolean;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 const defineOptions = {
@@ -86,7 +86,7 @@ const collapseActiveIcon = computed(() => {
   return props.activeIcon ?? collapse?.activeIcon;
 });
 
-const _css = {
+const ui = {
   slots: {
     title: 'font-semibold',
     inner: 'pb-3',
@@ -109,7 +109,10 @@ const _css = {
 };
 
 const css = computed(() => {
-  return tv({ extend: tv(_css), ...props.ui });
+  return tv({
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('collapseItem', props.ui),
+  });
 });
 
 const handleFocus = () => {

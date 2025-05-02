@@ -19,7 +19,7 @@ export interface ButtonGroupProps {
   type?: ButtonType;
   iconPosition?: IconPosition;
   disabled?: boolean;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 export interface ButtonGroupContext {
@@ -33,7 +33,7 @@ export interface ButtonGroupContext {
 
 const props = defineProps<ButtonGroupProps>();
 
-const _css = {
+const ui = {
   base: 'flex ',
   variants: {
     vertical: {
@@ -71,7 +71,10 @@ const _css = {
 };
 
 const css = computed(() => {
-  return tv({ extend: tv(_css), ...props.ui });
+  return tv({
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('buttonGroup', props.ui),
+  });
 });
 
 provide<Reactive<ButtonGroupContext>>(

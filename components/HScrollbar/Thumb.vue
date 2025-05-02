@@ -23,7 +23,6 @@
 import { useEventListener, isClient } from '@vueuse/core';
 import { tv } from 'tailwind-variants';
 import type { CSSProperties, Reactive } from 'vue';
-import type { DeepPartial } from '../../types/heart';
 import type { ScrollbarContext } from '../HScrollbar.vue';
 
 export interface ScrollbarThumbProps {
@@ -79,7 +78,7 @@ const offsetRatio = computed(
     thumb.value![bar.value.offset],
 );
 
-const _css = {
+const ui = {
   slots: {
     base: 'absolute transition-all duration-300 bottom-0.5 right-0.5',
     transitionLeave: 'opacity-0',
@@ -101,7 +100,7 @@ const _css = {
 };
 
 const css = computed(() => {
-  return tv({ extend: tv(_css), ...scrollbar?.ui });
+  return tv({ extend: tv(ui), ...scrollbar?.ui });
 });
 
 const renderThumbStyle = ({

@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import { castArray } from 'lodash-unified';
-import type { Arrayable } from '../types/heart';
+import type { Arrayable, DeepPartial } from '../types/heart';
 import { tv } from 'tailwind-variants';
 import type { Reactive } from 'vue';
 
@@ -18,10 +18,7 @@ export interface CollapseProps {
   accordion?: boolean;
   icon?: string;
   activeIcon?: string;
-  ui?: {
-    root?: string;
-    item?: string;
-  };
+  ui?: DeepPartial<typeof ui>;
 }
 
 export interface CollapseContext {
@@ -50,12 +47,15 @@ const setActiveNames = (_activeNames: CollapseActiveName[]) => {
   emit('change', value);
 };
 
-const _css = {
+const ui = {
   base: 'border-b border-neutral-200',
 };
 
 const css = computed(() => {
-  return tv({ extend: tv(_css), base: props.ui?.root });
+  return tv({
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('collapse', props.ui),
+  });
 });
 
 const handleItemClick = (name: CollapseActiveName) => {

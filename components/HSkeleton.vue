@@ -27,7 +27,7 @@ export interface SkeletonProps {
   rows?: number;
   animation?: boolean;
   loading?: boolean;
-  ui?: DeepPartial<typeof _itemCss>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 export interface SkeletonSlots {
@@ -46,7 +46,7 @@ const props = withDefaults(defineProps<SkeletonProps>(), {
   loading: true,
 });
 
-const _itemCss = {
+const ui = {
   base: 'bg-neutral-300',
   variants: {
     variant: {
@@ -70,7 +70,10 @@ provide<Reactive<SkeletonContext>>(
   SKELETON_CONTEXT_KEY,
   reactive({
     animation: props.animation,
-    css: tv({ extend: tv(_itemCss), ...props.ui }),
+    css: tv({
+      extend: tv(ui),
+      ...useHeartTheme<typeof ui>('skeleton', props.ui),
+    }),
   }),
 );
 </script>

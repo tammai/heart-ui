@@ -61,7 +61,7 @@ export interface ButtonProps {
   icon?: string;
   iconPosition?: IconPosition;
   label?: string;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -119,7 +119,7 @@ const iconSize = computed(() => {
   }
 });
 
-const _css = {
+const ui = {
   base: 'flex items-center justify-center font-semibold cursor-pointer transition-all',
   slots: {
     loading:
@@ -284,8 +284,11 @@ const _css = {
 };
 
 const css = computed(() => {
-  _css.variants.rounded.false = getHeartRoundedValue(buttonSize.value);
-  return tv({ extend: tv(_css), ...props.ui });
+  ui.variants.rounded.false = getHeartRoundedValue(buttonSize.value);
+  return tv({
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('button', props.ui),
+  });
 });
 
 const handleClick = (event: MouseEvent) => {

@@ -66,7 +66,7 @@ export interface TagProps {
   message?: string;
   removable?: boolean;
   disabled?: boolean;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 const props = defineProps<TagProps>();
@@ -86,7 +86,7 @@ const removeIcon = computed(() => {
   return getHeartConfig('icon.close');
 });
 
-const _css = {
+const ui = {
   slots: {
     base: 'inline-flex items-center border font-medium transition-all duration-500',
     icon: 'flex hover:bg-black/10 rounded-full p-0.5 transition-all cursor-pointer',
@@ -374,8 +374,8 @@ const _css = {
   } as any,
 };
 const css = computed(() => {
-  _css.slots.base = `${_css.slots.base} ${getHeartRoundedValue('md')}`;
-  return tv({ extend: tv(_css), ...props.ui });
+  ui.slots.base = `${ui.slots.base} ${getHeartRoundedValue('md')}`;
+  return tv({ extend: tv(ui), ...useHeartTheme<typeof ui>('tag', props.ui) });
 });
 
 const handleRemove = () => {

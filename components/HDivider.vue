@@ -19,11 +19,11 @@ export interface DividerProps {
   icon?: string;
   iconSize?: number | string;
   vertical?: boolean;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 const props = defineProps<DividerProps>();
 
-const _css = {
+const ui = {
   base: 'text-neutral-600 flex justify-center items-center gap-2',
   slots: {
     line: 'bg-neutral-200 grow',
@@ -37,6 +37,9 @@ const _css = {
 };
 
 const css = computed(() => {
-  return tv({ extend: tv(_css), ...props.ui });
+  return tv({
+    extend: tv(ui),
+    ...useHeartTheme<typeof ui>('divider', props.ui),
+  });
 });
 </script>

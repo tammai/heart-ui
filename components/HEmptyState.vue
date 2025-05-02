@@ -20,12 +20,12 @@ export interface EmptyStateProps {
   imageSrc?: string;
   title?: string;
   message?: string;
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 
 const props = defineProps<EmptyStateProps>();
 
-const _css = {
+const ui = {
   base: 'flex flex-col items-center justify-center gap-6 w-full p-10 text-center',
   slots: {
     body: 'flex flex-col items-center gap-1',
@@ -34,7 +34,9 @@ const _css = {
     message: 'text-neutral-600',
   },
 };
-const css = computed(() => tv({ extend: tv(_css), ...props.ui }));
+const css = computed(() =>
+  tv({ extend: tv(ui), ...useHeartTheme<typeof ui>('emptyState', props.ui) }),
+);
 
 const messageWithDefault = computed(
   () => props.message ?? getHeartConfig('message.nodata'),

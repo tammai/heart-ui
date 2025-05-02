@@ -9,9 +9,11 @@ import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../types/heart';
 
 export interface AsideProps {
-  ui?: DeepPartial<typeof _css>;
+  ui?: DeepPartial<typeof ui>;
 }
 const props = defineProps<AsideProps>();
-const _css = { base: 'min-w-[var(--h-layout-aside-size)]' };
-const css = computed(() => tv({ extend: tv(_css), ...props.ui }));
+const ui = { base: 'min-w-[var(--h-layout-aside-size)]' };
+const css = computed(() =>
+  tv({ extend: tv(ui), ...useHeartTheme('aside', props.ui) }),
+);
 </script>
