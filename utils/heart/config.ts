@@ -1,9 +1,13 @@
 import { get } from 'lodash-unified';
 
 export const getHeartConfig = (path: string) => {
-  const heart = useAppConfig().heart;
+  try {
+    const heart = useAppConfig().heart;
 
-  return get(heart, path);
+    return get(heart, path);
+  } catch (error) {
+    return {};
+  }
 };
 
 export const getHeartRoundedValue = (

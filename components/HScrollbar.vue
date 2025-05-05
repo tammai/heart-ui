@@ -33,6 +33,7 @@ import type { CSSProperties, Reactive, StyleValue } from 'vue';
 import { isNumber } from 'lodash-unified';
 import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../types/heart';
+import { SCROLLBAR_CONTEXT_KEY } from '../constants';
 
 export interface ScrollbarProps {
   id?: string;

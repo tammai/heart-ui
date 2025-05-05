@@ -52,6 +52,7 @@ import type { CollapseContext } from '../HCollapse.vue';
 import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../../types/heart';
 import type { Reactive } from 'vue';
+import { COLLAPSE_CONTEXT_KEY } from '../../constants';
 
 export interface CollapseItemProps {
   title: string;

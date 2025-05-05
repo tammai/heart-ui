@@ -9,6 +9,7 @@ import { castArray } from 'lodash-unified';
 import type { Arrayable, DeepPartial } from '../types/heart';
 import { tv } from 'tailwind-variants';
 import type { Reactive } from 'vue';
+import { COLLAPSE_CONTEXT_KEY } from '../constants';
 
 export type CollapseActiveName = string | number;
 export type CollapseModelValue = Arrayable<CollapseActiveName>;

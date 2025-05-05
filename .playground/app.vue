@@ -87,7 +87,7 @@
         </ClientOnly>
       </HAside>
 
-      <HMain class="mx-auto p-5 lg:p-8">
+      <HMain class="mx-auto min-w-screen p-5 md:min-w-0 lg:p-8">
         <div class="flex h-60 flex-col items-center justify-center">
           <h1 class="!font-bold">Heart UI</h1>
           <p class="max-w-140 text-center text-lg text-neutral-600">
@@ -101,6 +101,23 @@
             <Icon name="mdi:github" size="32" />
           </a>
         </div>
+        <div class="flex flex-wrap gap-2">
+          <HBadge :value="1000" :max="99">
+            <HButton tertiary>Button</HButton>
+          </HBadge>
+          <HBadge :value="1000" :max="99" is-dot :offset="[2, 2]">
+            <HButton tertiary>Button</HButton>
+          </HBadge>
+          <HBadge :value="'NEW'" type="success">
+            <HButton tertiary>Button</HButton>
+          </HBadge>
+          <HBadge>
+            <HButton tertiary>Button</HButton>
+            <template #content>Custom</template>
+          </HBadge>
+          <HButton @click="showMessage" label="Show message" />
+        </div>
+
         <h3 id="empty-state" class="mt-8">Empty State</h3>
 
         <h4 class="mt-6">Default</h4>
@@ -801,17 +818,27 @@
 </template>
 
 <script setup lang="ts">
-import { HEmptyStateImage } from '#components';
-
 const handleClick = () => {
   if (import.meta.client) {
     alert('You just clicked!');
   }
 };
 
+const { info, warning, success, error } = useHeartToast();
+
 const collapseValue1 = ref(['1']);
 const collapseValue2 = ref([]);
 const handleChange = (val: any) => {
   console.log('activeItems', val);
+};
+const showMessage = () => {
+  info({
+    message: 'Banana is the best fruit!',
+    duration: 0,
+    showClose: true,
+  });
+  warning('Banana make you better!');
+  success({ message: 'Banana is the winner!' });
+  error({ message: 'But Potato is the king.' });
 };
 </script>

@@ -24,6 +24,7 @@ import { useEventListener, isClient } from '@vueuse/core';
 import { tv } from 'tailwind-variants';
 import type { CSSProperties, Reactive } from 'vue';
 import type { ScrollbarContext } from '../HScrollbar.vue';
+import { SCROLLBAR_CONTEXT_KEY } from '../../constants';
 
 export interface ScrollbarThumbProps {
   size?: string;

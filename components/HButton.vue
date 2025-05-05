@@ -36,6 +36,7 @@ import { tv } from 'tailwind-variants';
 import type { ComponentSize, DeepPartial } from '../types/heart';
 import type { ButtonGroupContext } from './HButtonGroup.vue';
 import type { Reactive } from 'vue';
+import { BUTTON_GROUP_CONTEXT_KEY } from '../constants';
 
 export type ButtonNativeType = 'button' | 'submit' | 'reset';
 export type ButtonVariant = 'solid' | 'tertiary' | 'ghost';
@@ -53,6 +54,8 @@ export interface ButtonProps {
   nativeType?: ButtonNativeType;
   size?: ComponentSize;
   variant?: ButtonVariant;
+  tertiary?: boolean;
+  ghost?: boolean;
   type?: ButtonType;
   outline?: boolean;
   rounded?: boolean;
@@ -67,7 +70,6 @@ export interface ButtonProps {
 const props = withDefaults(defineProps<ButtonProps>(), {
   nativeType: 'button',
   type: 'neutral',
-  variant: 'solid',
   outline: false,
   rounded: false,
   iconPosition: 'left',
@@ -101,7 +103,13 @@ const buttonRounded = computed(() => {
 });
 
 const buttonVariant = computed(() => {
-  return buttonGroup?.variant ?? props.variant;
+  return (
+    buttonGroup?.variant ||
+    props.variant ||
+    (props.ghost && 'ghost') ||
+    (props.tertiary && 'tertiary') ||
+    'solid'
+  );
 });
 
 const buttonType = computed(() => {

@@ -22,6 +22,7 @@
 import { tv } from 'tailwind-variants';
 import type { DeepPartial } from '../types/heart';
 import type { Reactive } from 'vue';
+import { SKELETON_CONTEXT_KEY } from '../constants';
 
 export interface SkeletonProps {
   rows?: number;

@@ -13,6 +13,7 @@
 import Thumb from './Thumb.vue';
 import type { Reactive } from 'vue';
 import type { ScrollbarContext } from '../HScrollbar.vue';
+import { SCROLLBAR_CONTEXT_KEY } from '../../constants';
 
 export interface ScrollbarBarProps {
   always?: boolean;

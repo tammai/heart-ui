@@ -9,6 +9,7 @@ import { tv } from 'tailwind-variants';
 import type { ComponentSize, DeepPartial } from '../types/heart';
 import type { ButtonType, ButtonVariant, IconPosition } from './HButton.vue';
 import type { Reactive } from 'vue';
+import { BUTTON_GROUP_CONTEXT_KEY } from '../constants';
 
 export interface ButtonGroupProps {
   vertical?: boolean;

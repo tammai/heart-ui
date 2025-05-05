@@ -16,6 +16,7 @@
 <script lang="ts" setup>
 import type { Reactive } from 'vue';
 import type { SkeletonContext } from './HSkeleton.vue';
+import { SKELETON_CONTEXT_KEY } from '../constants';
 
 export interface SkeletonItemProps {
   variant?: 'rect' | 'circle' | 'heading' | 'text' | 'image' | 'avatar';
