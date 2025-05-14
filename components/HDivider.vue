@@ -1,12 +1,12 @@
 <template>
-  <div :class="css({ isVertical: !!vertical }).base()">
-    <div :class="css({ isVertical: !!vertical }).line()"></div>
+  <div :class="css({ vertical }).base()">
+    <div :class="css({ vertical, dash, dot }).line()"></div>
     <slot>
       <Icon v-if="icon" :name="icon" :size="iconSize" />
     </slot>
     <div
       v-if="!!$slots.default || !!icon"
-      :class="css({ isVertical: !!vertical }).line()"
+      :class="css({ vertical, dash, dot }).line()"
     ></div>
   </div>
 </template>
@@ -19,6 +19,8 @@ export interface DividerProps {
   icon?: string;
   iconSize?: number | string;
   vertical?: boolean;
+  dash?: boolean;
+  dot?: boolean;
   ui?: DeepPartial<typeof ui>;
 }
 const props = defineProps<DividerProps>();
@@ -26,12 +28,14 @@ const props = defineProps<DividerProps>();
 const ui = {
   base: 'text-neutral-600 flex justify-center items-center gap-2',
   slots: {
-    line: 'bg-neutral-200 grow',
+    line: 'border-neutral-200 grow',
   },
   variants: {
-    isVertical: {
-      true: { base: 'flex-col', line: 'w-0.25' },
-      false: { line: 'h-0.25' },
+    dash: { true: { line: 'border-dashed' } },
+    dot: { true: { line: 'border-dotted' } },
+    vertical: {
+      true: { base: 'flex-col', line: 'border-l' },
+      false: { line: 'border-t' },
     },
   },
 };

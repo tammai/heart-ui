@@ -4,6 +4,7 @@ import {
   isFunction,
   isNumber,
   isString,
+  merge,
 } from 'lodash-unified';
 import { createVNode, isVNode, render, type AppContext } from 'vue';
 import ToastConstructor, {
@@ -71,7 +72,7 @@ const toastDefaults = {
   appendTo: isClient ? document.body : (undefined as never),
 } as const;
 
-const toastTypes = ['success', 'info', 'warning', 'error'];
+const toastTypes = ['neutral', 'success', 'info', 'warning', 'error'];
 
 export type ToastType = (typeof toastTypes)[number];
 
@@ -121,11 +122,26 @@ const normalizeOptions = (params?: ToastParams) => {
   return normalized as ToastParamsNormalized;
 };
 
+const mergeOptions = (
+  a: ToastParams,
+  b?: ToastParams,
+): ToastParamsNormalized => {
+  const normalizedA =
+    !a || isString(a) || isVNode(a) || isFunction(a)
+      ? { message: a }
+      : { ...a };
+  const normalizedB =
+    !b || isString(b) || isVNode(b) || isFunction(b) ? {} : { ...b };
+
+  return merge(normalizedB, normalizedA) as ToastParamsNormalized;
+};
+
 const closeToast = (instance: ToastContext) => {
-  const idx = instances.indexOf(instance);
+  const pos = instance.props.position || 'top';
+  const idx = instances['toast'][pos].indexOf(instance);
   if (idx === -1) return;
 
-  instances.splice(idx, 1);
+  instances['toast'][pos].splice(idx, 1);
   const { handler } = instance;
   handler.close();
 };
@@ -168,7 +184,7 @@ const createToast = (
         }
       : null,
   );
-  vnode.appContext = context || message._context;
+  vnode.appContext = context || toast._context;
 
   render(vnode, container);
   // instances will remove this item when close function gets called. So we do not need to worry about it.
@@ -195,16 +211,17 @@ const createToast = (
   return instance;
 };
 
-const message: ToastFn & Partial<Toast> & { _context: AppContext | null } = (
+const toast: ToastFn & Partial<Toast> & { _context: AppContext | null } = (
   options = {},
   context,
 ) => {
   if (!isClient) return { close: () => undefined };
 
   const normalized = normalizeOptions(options);
+  const pos = normalized.position || 'top';
 
-  if (normalized.grouping && instances.length) {
-    const instance = instances.find(
+  if (normalized.grouping && instances['toast'][pos].length) {
+    const instance = instances['toast'][pos].find(
       ({ vnode: vm }) => vm.props?.message === normalized.message,
     );
     if (instance) {
@@ -214,26 +231,37 @@ const message: ToastFn & Partial<Toast> & { _context: AppContext | null } = (
     }
   }
 
-  if (isNumber(toastConfig.max) && instances.length >= toastConfig.max) {
+  if (
+    isNumber(toastConfig.max) &&
+    instances['toast'][pos].length >= toastConfig.max
+  ) {
     return { close: () => undefined };
   }
 
   const instance = createToast(normalized, context);
 
-  instances.push(instance);
+  if (!instances['toast'][pos]) {
+    instances['toast'][pos] = [];
+  }
+
+  instances['toast'][pos].push(instance);
   return instance.handler;
 };
 
 toastTypes.forEach((type) => {
-  message[type] = (options = {}, appContext: AppContext) => {
+  toast[type] = (options = {}, appContext: AppContext) => {
     const normalized = normalizeOptions(options);
-    return message({ ...normalized, type } as ToastParams, appContext);
+    return toast({ ...normalized, type } as ToastParams, appContext);
   };
 });
 
 export function closeAll(type?: ToastType): void {
   // Create a copy of instances to avoid modification during iteration
-  const instancesToClose = [...instances];
+  const instancesToClose = [
+    ...Object.keys(instances['toast']).reduce((a, c) => {
+      return a.concat(instances['toast'][c]);
+    }, [] as ToastContext[]),
+  ];
 
   for (const instance of instancesToClose) {
     if (!type || type === instance.props.type) {
@@ -242,10 +270,12 @@ export function closeAll(type?: ToastType): void {
   }
 }
 
-message.closeAll = closeAll;
-message._context = null;
+toast.closeAll = closeAll;
+toast._context = null;
 
-export const useHeartToast = (): {
+export const useHeartToast = (
+  params?: ToastParams,
+): {
   info: (p: ToastParamsWithType) => ToastHandler;
   warning: (p: ToastParamsWithType) => ToastHandler;
   success: (p: ToastParamsWithType) => ToastHandler;
@@ -254,21 +284,9 @@ export const useHeartToast = (): {
   const c = useNuxtApp().vueApp._context;
 
   return {
-    info: (p) => message.info(p, c),
-    warning: (p) => message.warning(p, c),
-    success: (p) => message.success(p, c),
-    error: (p) => message.error(p, c),
-  };
-};
-
-export const useHeartGlobalZIndex = () => {
-  const savedZIndex = ref(1987);
-
-  return {
-    currentZIndex: savedZIndex,
-    nextZIndex: () => {
-      savedZIndex.value += 1;
-      return savedZIndex.value;
-    },
+    info: (p) => toast.info(mergeOptions(p, params), c),
+    warning: (p) => toast.warning(mergeOptions(p, params), c),
+    success: (p) => toast.success(mergeOptions(p, params), c),
+    error: (p) => toast.error(mergeOptions(p, params), c),
   };
 };

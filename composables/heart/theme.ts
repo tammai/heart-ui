@@ -16,3 +16,15 @@ export const useHeartTheme = <T>(
 
   return (mergeObjects(prop, global) ?? {}) as DeepPartial<T>;
 };
+
+export const useHeartGlobalZIndex = () => {
+  const savedZIndex = ref(1987);
+
+  return {
+    currentZIndex: savedZIndex,
+    nextZIndex: () => {
+      savedZIndex.value += 1;
+      return savedZIndex.value;
+    },
+  };
+};

@@ -116,6 +116,8 @@
             <template #content>Custom</template>
           </HBadge>
           <HButton @click="showMessage" label="Show message" />
+
+          <HButton @click="showNotify" label="Show notify" />
         </div>
 
         <h3 id="empty-state" class="mt-8">Empty State</h3>
@@ -818,13 +820,13 @@
 </template>
 
 <script setup lang="ts">
+import { useHeartNotify } from '../composables/heart/notify';
+
 const handleClick = () => {
   if (import.meta.client) {
     alert('You just clicked!');
   }
 };
-
-const { info, warning, success, error } = useHeartToast();
 
 const collapseValue1 = ref(['1']);
 const collapseValue2 = ref([]);
@@ -832,7 +834,37 @@ const handleChange = (val: any) => {
   console.log('activeItems', val);
 };
 const showMessage = () => {
+  const { info, warning, success, error } = useHeartToast({
+    position: 'bottom',
+    showClose: true,
+  });
+
   info({
+    message: 'Banana is the best fruit!',
+    position: 'top',
+  });
+  warning({ message: 'Banana make you better!' });
+  success({ message: 'Banana is the winner!' });
+  error({ message: 'But Potato is the king.' });
+};
+
+const showNotify = () => {
+  const { notify, info, warning, success, error } = useHeartNotify({
+    position: 'bottom-right',
+    duration: 0,
+    showClose: true,
+  });
+
+  notify({
+    title: 'Notification',
+    message: 'Banana is the best fruit!',
+    duration: 0,
+    showClose: true,
+    position: 'top-right',
+  });
+
+  info({
+    title: 'Information',
     message: 'Banana is the best fruit!',
     duration: 0,
     showClose: true,

@@ -45,7 +45,7 @@ export interface BadgeProps {
   color?: string;
   offset?: [number, number];
   hidden?: boolean;
-  type?: 'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
   badgeClass?: string;
   ui?: DeepPartial<typeof ui>;
 }
@@ -89,7 +89,6 @@ const ui = {
       false: { content: 'px-1.5' },
     },
     type: {
-      neutral: { content: 'bg-neutral-500 text-neutral-50' },
       primary: { content: 'bg-primary-500 text-primary-50' },
       success: { content: 'bg-success-500 text-success-50' },
       warning: { content: 'bg-warning-500 text-warning-50' },

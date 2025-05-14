@@ -27,7 +27,7 @@
           },
         }"
       />
-      <Icon :name="iconName" size="20" />
+      <Icon :name="iconName" size="24" />
       <slot>
         <div v-if="!dangerouslyUseHTMLString" :class="css().content()">
           {{ message }}
@@ -35,9 +35,21 @@
         <!-- Caution here, message could've been compromised, never use user's input as message -->
         <div v-else :class="css().content()" v-html="message" />
       </slot>
-      <div v-if="showClose" :class="css().action()" @click.stop="close">
-        <Icon :name="closeIcon" size="12" />
-      </div>
+
+      <HButton
+        v-if="showClose"
+        :type="type"
+        size="sm"
+        tertiary
+        :icon="closeIcon"
+        rounded
+        title="Dismiss"
+        :ui="{
+          compoundVariants: [{ icon: true, size: 'sm', class: 'size-6' }],
+        }"
+        @click.stop="close"
+      >
+      </HButton>
     </div>
   </transition>
 </template>
@@ -128,10 +140,10 @@ const closeIcon = computed(() => {
   return getHeartConfig('icon.close') || '';
 });
 
-const lastOffset = computed(() => getLastOffset(props.id));
+const lastOffset = computed(() => getLastOffset('toast', props.id));
 const offset = computed(
   () =>
-    getOffsetOrSpace(props.id, props.offset) +
+    getOffsetOrSpace('toast', props.id, props.offset) +
     (lastOffset.value === 0 ? props.offset : lastOffset.value),
 );
 const outerHeight = computed((): number => height.value + offset.value);
@@ -148,9 +160,9 @@ const customStyle = computed<CSSProperties>(() => {
   }
 
   if (position.endsWith('left')) {
-    result.left = `${props.offset}px`;
+    result.left = `24px`;
   } else if (position.endsWith('right')) {
-    result.right = `${props.offset}px`;
+    result.right = `24px`;
   } else {
     result.left = '50%';
     result.transform = 'translateX(-50%)';
@@ -163,8 +175,6 @@ const ui = {
   slots: {
     base: 'flex items-center gap-2 p-3 fixed rounded-lg shadow-lg shadow-black/5 transition-all duration-300 ease-in-out',
     content: 'text-xs grow',
-    action:
-      'flex items-center justify-center rounded-full size-5 hover:bg-black/10 transition-all cursor-pointer',
     badge: 'absolute top-0 right-0 z-1',
     transitionLeave: 'opacity-0 scale-95',
     transitionEnter: 'opacity-100 scale-100',

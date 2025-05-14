@@ -19,7 +19,7 @@
         v-if="closable"
         :type="type"
         size="sm"
-        variant="tertiary"
+        tertiary
         :icon="closeIcon"
         rounded
         title="Dismiss"
